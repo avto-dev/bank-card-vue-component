@@ -1,0 +1,78 @@
+export default {
+  props: {
+    errors: Object
+  },
+  computed: {
+    /**
+     * Collapsing completely filled number
+     * @returns { String }
+     */
+    numberCollapsed() {
+      if (this.isFieldFull("cardNumber")) {
+        const mask = "**** ";
+        const number = this.cardNumber.slice(-4);
+        return mask + number;
+      } else {
+        return "";
+      }
+    }
+  },
+  methods: {
+    /**
+     * Set focus on text field
+     * @param { String } refName - Ref name of text field element
+     */
+    focusOnField(refName) {
+      this.$nextTick(() => {
+        this.$refs[refName] && this.$refs[refName].focus();
+      });
+    },
+    /**
+     * Autocomplete a date (month or year) after blur on half-filled field
+     * @param { Object } e - Event
+     */
+    autocompleteDate(e) {
+      if (e.target.value.length === 1) {
+        e.preventDefault();
+        const field = e.target.dataset.cp;
+        const fieldKebab = field
+          .replace(/([a-z])([A-Z])/g, "$1-$2")
+          .toLowerCase();
+        const value = "0" + e.target.value;
+
+        this.$emit(`input-${fieldKebab}`, value);
+      }
+    },
+    /**
+     * Filter errors from outside by type of field
+     * @param { String } type - Type of error
+     * @returns { String } - Message of suitable error
+     */
+    errorFiltered(type) {
+      let errorFiltered = "";
+      Object.entries(this.errors).forEach(([key, value]) => {
+        type === key && (errorFiltered = value);
+      });
+      return errorFiltered;
+    },
+    /**
+     * Clear internal and external errors
+     * @params {String} type - Name of field
+     */
+    clearErrors(type) {
+      this.$v[type].$reset();
+      const errors = this.errors;
+      delete errors[type];
+      this.$emit("clear-errors", errors);
+    },
+    /**
+     * Toggling type of field
+     * @params {Object} e - Event object
+     */
+    toggleType(e) {
+      let type = this.$parent.isSmall ? "tel" : "text";
+      if (e.target.type === type) type = "password";
+      e.target.type = type;
+    }
+  }
+};
