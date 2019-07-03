@@ -48,9 +48,11 @@ export default {
 }
 
 #app {
+  width: 420px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 auto;
   padding: 20px;
 }
 </style>

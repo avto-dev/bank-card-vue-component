@@ -41,7 +41,7 @@
           </label>
 
           <input
-            v-if="!cardNumberCollapsed"
+            v-show="!cardNumberCollapsed"
             class="card__field"
             type="tel"
             data-cp="cardNumber"
@@ -376,7 +376,7 @@ $base-color: #343434;
 .card {
   display: flex;
   flex-wrap: nowrap;
-  width: 300px;
+  width: 100%;
   height: 45px;
   border: 1px solid #e5e5e5;
   border-radius: 2px;

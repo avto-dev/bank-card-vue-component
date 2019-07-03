@@ -1,5 +1,5 @@
 <template>
-  <article>
+  <article style="width: 100%">
     <CardBase
       v-if="!isSmall"
       :is-new="isNew"
