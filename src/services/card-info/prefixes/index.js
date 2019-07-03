@@ -1,3 +1,3 @@
-import { prefixes } from "../utils/get-banks-and-prefixes";
+import { getPrefixes } from "../utils/get-banks-and-prefixes";
 
-export default prefixes;
+export default getPrefixes();

@@ -2,7 +2,7 @@ import readBanks from "./read-banks";
 
 const banksWithPrefixes = readBanks();
 
-const getBanks = () => {
+export const getBanks = () => {
   const banks = {};
   for (const bank of banksWithPrefixes) {
     const bankWithoutPrefixes = { ...bank };
@@ -13,7 +13,7 @@ const getBanks = () => {
   return banks;
 };
 
-const getPrefixes = () => {
+export const getPrefixes = () => {
   const prefixes = {};
   for (const bank of banksWithPrefixes) {
     const prefixesArray = [...bank.prefixes];
@@ -24,6 +24,3 @@ const getPrefixes = () => {
 
   return prefixes;
 };
-
-export const banks = getBanks();
-export const prefixes = getPrefixes();
