@@ -3,7 +3,7 @@
     <!--<Card is-new is-small @form-id="formBaseId = $event" />-->
     <!--<Card is-new is-small :errors="errors" @form-id="formSmallId = $event" />-->
     <!--<Card :number="number" />-->
-    <Card is-new is-small @enter="onEnter" />
+    <Card is-new :number="number" />
   </div>
 </template>
 

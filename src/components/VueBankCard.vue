@@ -44,7 +44,7 @@ import CardBase from "./CardBase";
 import CardSmall from "./CardSmall";
 
 export default {
-  name: "Card",
+  name: "VueBankCard",
   components: {
     CardBase,
     CardSmall

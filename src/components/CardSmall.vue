@@ -23,9 +23,14 @@
       <span
         v-show="!cardFocused && isFieldEmpty('cardNumber')"
         class="card__main-title"
+        :class="{ 'card__main-title--invalid': !!errorFiltered('cardNumber') }"
       >
         Новая карта
       </span>
+
+      <CardTooltip position="left" :is-show="!!errorFiltered('cardNumber')">
+        {{ errorFiltered("cardNumber") }}
+      </CardTooltip>
 
       <div
         v-show="cardFocused || !isFieldEmpty('cardNumber')"
@@ -67,122 +72,109 @@
           <input type="hidden" data-cp="name" :value="cardHolderName" />
 
           <CardTooltip
-            position="right"
+            position="left"
             :is-show="$v.cardNumber.$error && $v.cardNumber.required"
           >
             Вам нужно заполнить это поле
           </CardTooltip>
-          <CardTooltip
-            position="right"
-            :is-show="!!errorFiltered('cardNumber')"
-          >
-            {{ errorFiltered("cardNumber") }}
-          </CardTooltip>
         </div>
 
-        <template v-if="isNew && cardNumberCollapsed">
-          <div :class="expDateCssClasses">
-            <label class="card__field-label" :for="generateId('expDateMonth')">
-              ММ / ГГ
-            </label>
+        <div v-show="isNew && cardNumberCollapsed" :class="expDateCssClasses">
+          <label class="card__field-label" :for="generateId('expDateMonth')">
+            ММ / ГГ
+          </label>
 
-            <div class="card__date-inner">
-              <input
-                class="card__field"
-                type="tel"
-                ref="expDateMonth"
-                data-cp="expDateMonth"
-                v-mask="expDateMonthMask"
-                :id="generateId('expDateMonth')"
-                :value="expDateMonth"
-                @input="$emit('input-exp-date-month', $event.target.value)"
-                @keydown.delete="moveCaretTo('back', 'expDateMonth')"
-                @focus="clearErrors('expDateMonth')"
-                @blur="
-                  autocompleteDate($event);
-                  $v.expDateMonth.$touch();
-                "
-              />
-
-              <span
-                v-show="
-                  isFieldFull('expDateMonth') || isFieldFull('expDateYear')
-                "
-                class="card__field-divider"
-              >
-                /
-              </span>
-
-              <input
-                class="card__field"
-                type="tel"
-                ref="expDateYear"
-                data-cp="expDateYear"
-                v-mask="expDateYearMask"
-                :value="expDateYear"
-                @input="$emit('input-exp-date-year', $event.target.value)"
-                @keydown.delete="moveCaretTo('back', 'expDateYear')"
-                @focus="clearErrors('expDateYear')"
-                @blur="
-                  autocompleteDate($event);
-                  $v.expDateYear.$touch();
-                "
-              />
-            </div>
-
-            <CardTooltip
-              position="right"
-              :is-show="$v.expDateMonth.$error || $v.expDateYear.$error"
-            >
-              Введите дату как на карте
-            </CardTooltip>
-            <CardTooltip
-              position="right"
-              :is-show="
-                !!errorFiltered('expDateMonth') ||
-                  !!errorFiltered('expDateYear')
-              "
-            >
-              {{
-                errorFiltered("expDateMonth") || errorFiltered("expDateYear")
-              }}
-            </CardTooltip>
-          </div>
-
-          <div :class="cvvCssClasses">
-            <label class="card__field-label" :for="generateId('cvv')">
-              {{ cardInfo.codeName || "CVV" }}
-            </label>
-
+          <div class="card__date-inner">
             <input
               class="card__field"
-              type="password"
-              ref="cvv"
-              data-cp="cvv"
-              v-mask="cvvMask"
-              :id="generateId('cvv')"
-              :value="cvv"
-              @input="$emit('input-cvv', $event.target.value)"
-              @keydown.delete="moveCaretTo('back', 'cvv')"
-              @focus="
-                toggleType($event);
-                clearErrors('cvv');
-              "
+              type="tel"
+              ref="expDateMonth"
+              data-cp="expDateMonth"
+              v-mask="expDateMonthMask"
+              :id="generateId('expDateMonth')"
+              :value="expDateMonth"
+              @input="$emit('input-exp-date-month', $event.target.value)"
+              @keydown.delete="moveCaretTo('back', 'expDateMonth')"
+              @focus="clearErrors('expDateMonth')"
               @blur="
-                toggleType($event);
-                $v.cvv.$touch();
+                autocompleteDate($event);
+                $v.expDateMonth.$touch();
               "
             />
 
-            <CardTooltip :is-show="$v.cvv.$error">
-              Вам нужно заполнить это поле
-            </CardTooltip>
+            <span
+              v-show="isFieldFull('expDateMonth') || isFieldFull('expDateYear')"
+              class="card__field-divider"
+            >
+              /
+            </span>
 
-            <CardTooltip :is-show="!!errorFiltered('cvv')">
-              {{ errorFiltered("cvv") }}
-            </CardTooltip>
+            <input
+              class="card__field"
+              type="tel"
+              ref="expDateYear"
+              data-cp="expDateYear"
+              v-mask="expDateYearMask"
+              :value="expDateYear"
+              @input="$emit('input-exp-date-year', $event.target.value)"
+              @keydown.delete="moveCaretTo('back', 'expDateYear')"
+              @focus="clearErrors('expDateYear')"
+              @blur="
+                autocompleteDate($event);
+                $v.expDateYear.$touch();
+              "
+            />
           </div>
-        </template>
+
+          <CardTooltip
+            position="left"
+            :is-show="$v.expDateMonth.$error || $v.expDateYear.$error"
+          >
+            Введите дату как на карте
+          </CardTooltip>
+          <CardTooltip
+            position="right"
+            :is-show="
+              !!errorFiltered('expDateMonth') || !!errorFiltered('expDateYear')
+            "
+          >
+            {{ errorFiltered("expDateMonth") || errorFiltered("expDateYear") }}
+          </CardTooltip>
+        </div>
+
+        <div v-show="isNew && cardNumberCollapsed" :class="cvvCssClasses">
+          <label class="card__field-label" :for="generateId('cvv')">
+            {{ cardInfo.codeName || "CVV" }}
+          </label>
+
+          <input
+            class="card__field"
+            type="password"
+            ref="cvv"
+            data-cp="cvv"
+            v-mask="cvvMask"
+            :id="generateId('cvv')"
+            :value="cvv"
+            @input="$emit('input-cvv', $event.target.value)"
+            @keydown.delete="moveCaretTo('back', 'cvv')"
+            @focus="
+              toggleType($event);
+              clearErrors('cvv');
+            "
+            @blur="
+              toggleType($event);
+              $v.cvv.$touch();
+            "
+          />
+
+          <CardTooltip :is-show="$v.cvv.$error" position="right">
+            Вам нужно заполнить это поле
+          </CardTooltip>
+
+          <CardTooltip :is-show="!!errorFiltered('cvv')" position="right">
+            {{ errorFiltered("cvv") }}
+          </CardTooltip>
+        </div>
       </div>
     </form>
   </div>
@@ -356,6 +348,7 @@ export default {
      */
     onBlurCard() {
       this.cardFocused = false;
+      if (this.isFieldFull("cardNumber")) this.cardNumberCollapsed = true;
     },
     /**
      * Handle click on collapsed number
@@ -381,7 +374,9 @@ export default {
 <style lang="scss" scoped>
 $base-font-family: "PT Sans", Arial, sans-serif;
 $field-font-family: "Roboto Mono", Arial, sans-serif;
+
 $base-color: #343434;
+$invalid-color: #df4242;
 
 .card {
   display: flex;
@@ -445,6 +440,10 @@ $base-color: #343434;
       line-height: 21px;
       font-family: $base-font-family;
       color: $base-color;
+
+      &--invalid {
+        color: $invalid-color;
+      }
     }
   }
 
@@ -532,14 +531,14 @@ $base-color: #343434;
       &--invalid {
         .card {
           &__field {
-            color: #df4242;
+            color: $invalid-color;
 
             &-label {
-              color: #df4242;
+              color: $invalid-color;
             }
 
             &-divider {
-              color: #df4242;
+              color: $invalid-color;
             }
           }
         }

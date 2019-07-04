@@ -55,6 +55,7 @@ $base-font-family: "PT Sans", Arial, sans-serif;
       font-size: 12px;
       line-height: 16px;
       white-space: nowrap;
+      color: #000;
     }
 
     &--left {
