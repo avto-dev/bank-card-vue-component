@@ -1,11 +1,20 @@
 {
   "name": "payment-card",
   "version": "0.1.0",
-  "private": true,
+  "description": "Bank card payment form",
+  "author": "gnklv",
+  "license": "MIT",
+  "private": false,
+  "main": "dist/bank-card-vue-component.umd.min.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/avto-dev/bank-card-vue-component.git"
+  },
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "serve": "vue-cli-service serve ./demo/index.js",
+    "build": "vue-cli-service build --target lib --name vue-bank-card ./src/index.js",
+    "lint": "vue-cli-service lint --no-fix",
+    "lint:fix": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^2.6.5",
@@ -33,7 +42,8 @@
   "lint-staged": {
     "*.{js,vue}": [
       "vue-cli-service lint",
-      "git add"
+      "npm run build",
+      "git add ."
     ]
   }
 }

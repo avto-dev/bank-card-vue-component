@@ -189,12 +189,15 @@
 </template>
 
 <script>
+import { mask } from "vue-the-mask";
+import { validationMixin } from "vuelidate";
 import {
   commonMixin,
-  validationMixin,
+  validatorsMixin,
   moveCaretMixin,
   helpersMixin
 } from "@/mixins";
+import clickOutside from "@/utils/click-outside-directive";
 import CardTooltip from "./CardTooltip";
 
 export default {
@@ -202,7 +205,14 @@ export default {
   components: {
     CardTooltip
   },
-  mixins: [commonMixin, validationMixin, moveCaretMixin, helpersMixin],
+  directives: { mask, clickOutside },
+  mixins: [
+    commonMixin,
+    validationMixin,
+    validatorsMixin,
+    moveCaretMixin,
+    helpersMixin
+  ],
   props: {
     isNew: Boolean,
     cardInfo: {
