@@ -28,9 +28,12 @@
         Новая карта
       </span>
 
-      <CardTooltip position="left" :is-show="!!errorFiltered('cardNumber')">
+      <VueBankCardTooltip
+        position="left"
+        :is-show="!!errorFiltered('cardNumber')"
+      >
         {{ errorFiltered("cardNumber") }}
-      </CardTooltip>
+      </VueBankCardTooltip>
 
       <div
         v-show="cardFocused || !isFieldEmpty('cardNumber')"
@@ -71,12 +74,12 @@
 
           <input type="hidden" data-cp="name" :value="cardHolderName" />
 
-          <CardTooltip
+          <VueBankCardTooltip
             position="left"
             :is-show="$v.cardNumber.$error && $v.cardNumber.required"
           >
             Вам нужно заполнить это поле
-          </CardTooltip>
+          </VueBankCardTooltip>
         </div>
 
         <div v-show="isNew && cardNumberCollapsed" :class="expDateCssClasses">
@@ -126,20 +129,20 @@
             />
           </div>
 
-          <CardTooltip
+          <VueBankCardTooltip
             position="left"
             :is-show="$v.expDateMonth.$error || $v.expDateYear.$error"
           >
             Введите дату как на карте
-          </CardTooltip>
-          <CardTooltip
+          </VueBankCardTooltip>
+          <VueBankCardTooltip
             position="right"
             :is-show="
               !!errorFiltered('expDateMonth') || !!errorFiltered('expDateYear')
             "
           >
             {{ errorFiltered("expDateMonth") || errorFiltered("expDateYear") }}
-          </CardTooltip>
+          </VueBankCardTooltip>
         </div>
 
         <div v-show="isNew && cardNumberCollapsed" :class="cvvCssClasses">
@@ -167,13 +170,16 @@
             "
           />
 
-          <CardTooltip :is-show="$v.cvv.$error" position="right">
+          <VueBankCardTooltip :is-show="$v.cvv.$error" position="right">
             Вам нужно заполнить это поле
-          </CardTooltip>
+          </VueBankCardTooltip>
 
-          <CardTooltip :is-show="!!errorFiltered('cvv')" position="right">
+          <VueBankCardTooltip
+            :is-show="!!errorFiltered('cvv')"
+            position="right"
+          >
             {{ errorFiltered("cvv") }}
-          </CardTooltip>
+          </VueBankCardTooltip>
         </div>
       </div>
     </form>
@@ -190,12 +196,12 @@ import {
   helpersMixin
 } from "@/mixins";
 import clickOutside from "@/utils/click-outside-directive";
-import CardTooltip from "./CardTooltip";
+import VueBankCardTooltip from "./VueBankCardTooltip";
 
 export default {
-  name: "CardSmall",
+  name: "VueBankCardSmall",
   components: {
-    CardTooltip
+    VueBankCardTooltip
   },
   directives: { mask, clickOutside },
   mixins: [

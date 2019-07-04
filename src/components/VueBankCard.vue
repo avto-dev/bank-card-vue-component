@@ -1,6 +1,6 @@
 <template>
   <article class="vue-bank-card__wrapper">
-    <CardBase
+    <VueBankCardBase
       v-if="!isSmall"
       :is-new="isNew"
       :card-info="cardInfo"
@@ -17,7 +17,7 @@
       @enter="$emit('enter', $event)"
       @clear-errors="$emit('clear-errors', $event)"
     />
-    <CardSmall
+    <VueBankCardSmall
       v-else
       :is-new="isNew"
       :card-info="cardInfo"
@@ -40,14 +40,14 @@
 <script>
 import CardInfo from "@/services/card-info";
 
-import CardBase from "./CardBase";
-import CardSmall from "./CardSmall";
+import VueBankCardBase from "./VueBankCardBase";
+import VueBankCardSmall from "./VueBankCardSmall";
 
 export default {
   name: "VueBankCard",
   components: {
-    CardBase,
-    CardSmall
+    VueBankCardBase,
+    VueBankCardSmall
   },
   props: {
     isSmall: {

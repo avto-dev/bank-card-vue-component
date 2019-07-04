@@ -65,12 +65,12 @@
 
           <input type="hidden" data-cp="name" :value="cardHolderName" />
 
-          <CardTooltip :is-show="$v.cardNumber.$error">
+          <VueBankCardTooltip :is-show="$v.cardNumber.$error">
             Вам нужно заполнить это поле
-          </CardTooltip>
-          <CardTooltip :is-show="!!errorFiltered('cardNumber')">
+          </VueBankCardTooltip>
+          <VueBankCardTooltip :is-show="!!errorFiltered('cardNumber')">
             {{ errorFiltered("cardNumber") }}
-          </CardTooltip>
+          </VueBankCardTooltip>
         </div>
       </div>
 
@@ -130,18 +130,18 @@
             </div>
           </div>
 
-          <CardTooltip
+          <VueBankCardTooltip
             :is-show="$v.expDateMonth.$error || $v.expDateYear.$error"
           >
             Введите дату как на карте
-          </CardTooltip>
-          <CardTooltip
+          </VueBankCardTooltip>
+          <VueBankCardTooltip
             :is-show="
               !!errorFiltered('expDateMonth') || !!errorFiltered('expDateYear')
             "
           >
             {{ errorFiltered("expDateMonth") || errorFiltered("expDateYear") }}
-          </CardTooltip>
+          </VueBankCardTooltip>
         </div>
 
         <div class="card__field-group card__code">
@@ -172,13 +172,13 @@
             "
           />
 
-          <CardTooltip :is-show="$v.cvv.$error">
+          <VueBankCardTooltip :is-show="$v.cvv.$error">
             Вам нужно заполнить это поле
-          </CardTooltip>
+          </VueBankCardTooltip>
 
-          <CardTooltip :is-show="!!errorFiltered('cvv')">
+          <VueBankCardTooltip :is-show="!!errorFiltered('cvv')">
             {{ errorFiltered("cvv") }}
-          </CardTooltip>
+          </VueBankCardTooltip>
         </div>
       </div>
     </form>
@@ -196,12 +196,12 @@ import {
   helpersMixin
 } from "@/mixins";
 import clickOutside from "@/utils/click-outside-directive";
-import CardTooltip from "./CardTooltip";
+import VueBankCardTooltip from "./VueBankCardTooltip";
 
 export default {
-  name: "CardBase",
+  name: "VueBankCardBase",
   components: {
-    CardTooltip
+    VueBankCardTooltip
   },
   directives: { mask, clickOutside },
   mixins: [
