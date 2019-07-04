@@ -1,11 +1,11 @@
 {
-  "name": "payment-card",
+  "name": "vue-bank-card",
   "version": "0.1.0",
   "description": "Bank card payment form",
   "author": "gnklv",
   "license": "MIT",
   "private": false,
-  "main": "dist/bank-card-vue-component.umd.min.js",
+  "main": "dist/vue-bank-card.umd.min.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/avto-dev/bank-card-vue-component.git"
@@ -42,6 +42,6 @@
     "vue-template-compiler": "^2.6.10"
   },
   "gitHooks": {
-    "pre-commit": "vue-cli-service lint && jest && vue-cli-service build --target lib --name vue-bank-card ./src/index.js && git add ."
+    "pre-commit": "npm run lint:fix && npm run test && npm run build && git add ."
   }
 }
