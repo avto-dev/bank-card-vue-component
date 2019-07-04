@@ -1,5 +1,5 @@
 <template>
-  <article style="width: 100%">
+  <article class="vue-bank-card__wrapper">
     <CardBase
       v-if="!isSmall"
       :is-new="isNew"
@@ -106,4 +106,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.vue-bank-card__wrapper {
+  width: 100%;
+}
+</style>

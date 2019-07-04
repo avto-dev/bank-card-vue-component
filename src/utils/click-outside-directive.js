@@ -6,8 +6,8 @@ export default {
     if (typeof binding.value !== "function") {
       const compName = vNode.context.name;
       let warn = `[Vue-click-outside:] provided expression '${
-          binding.expression
-          }' is not a function, but has to be`;
+        binding.expression
+      }' is not a function, but has to be`;
       compName && (warn += `Found in component '${compName}'`);
 
       console.warn(warn);
