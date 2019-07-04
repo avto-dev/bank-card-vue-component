@@ -14,7 +14,8 @@
     "serve": "vue-cli-service serve ./demo/index.js",
     "build": "vue-cli-service build --target lib --name vue-bank-card ./src/index.js",
     "lint": "vue-cli-service lint --no-fix",
-    "lint:fix": "vue-cli-service lint"
+    "lint:fix": "vue-cli-service lint",
+    "test": "jest"
   },
   "dependencies": {
     "core-js": "^2.6.5",
@@ -28,12 +29,18 @@
     "@vue/cli-plugin-eslint": "^3.8.0",
     "@vue/cli-service": "^3.8.0",
     "@vue/eslint-config-prettier": "^4.0.1",
+    "@vue/test-utils": "^1.0.0-beta.29",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.8.0",
+    "babel-preset-env": "^1.7.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "jest": "^24.8.0",
+    "jest-transform-stub": "^2.0.0",
     "lint-staged": "^8.1.5",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.1.0",
+    "vue-jest": "^3.0.4",
     "vue-template-compiler": "^2.6.10"
   },
   "gitHooks": {
@@ -42,6 +49,7 @@
   "lint-staged": {
     "*.{js,vue}": [
       "vue-cli-service lint",
+      "jest --bail --findRelatedTests",
       "npm run build",
       "git add ."
     ]
