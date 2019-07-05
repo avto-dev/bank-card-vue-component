@@ -14,11 +14,7 @@
             >
               <img
                 class="card__brand-logo"
-                :src="
-                  require(`@/assets/images/brands-logos/${
-                    brand.alias
-                  }-colored.png`)
-                "
+                :src="`./images/brands-logos/${brand.alias}-colored.png`"
                 :alt="brand.name"
               />
             </div>
@@ -28,7 +24,7 @@
             <div class="card__bank-logo-wrapper">
               <img
                 class="card__bank-logo"
-                :src="require(`@/assets/images/${cardInfo.bankLogo}`)"
+                :src="`./images/${cardInfo.bankLogo}`"
                 :alt="cardInfo.bankName"
               />
             </div>
@@ -36,7 +32,7 @@
             <div class="card__brand-logo-wrapper">
               <img
                 class="card__brand-logo"
-                :src="require(`@/assets/images/${cardInfo.brandLogo}`)"
+                :src="`./images/${cardInfo.brandLogo}`"
                 :alt="cardInfo.brandName"
               />
             </div>
@@ -182,7 +178,6 @@
         </div>
       </div>
     </form>
-    {{ isReset }}
   </div>
 </template>
 

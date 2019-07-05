@@ -38,9 +38,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css?family=PT+Sans&display=swap&subset=cyrillic");
-@import url("https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap&subset=cyrillic");
-
 *,
 *::after,
 *::before {
