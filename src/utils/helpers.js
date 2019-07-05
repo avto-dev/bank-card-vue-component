@@ -6,3 +6,6 @@ export const isObject = value =>
 
 export const isArray = value =>
   value && typeof value === "object" && value.constructor === Array;
+
+export const CamelToKebab = value =>
+  value.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();

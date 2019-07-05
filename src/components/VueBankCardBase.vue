@@ -182,6 +182,7 @@
         </div>
       </div>
     </form>
+    {{ isReset }}
   </div>
 </template>
 

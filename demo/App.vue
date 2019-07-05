@@ -3,7 +3,7 @@
     <!--<Card is-new is-small @form-id="formBaseId = $event" />-->
     <!--<Card is-new is-small :errors="errors" @form-id="formSmallId = $event" />-->
     <!--<Card :number="number" />-->
-    <Card is-new :number="number" />
+    <Card is-new :is-reset="reset" @reset="reset = $event" />
   </div>
 </template>
 
@@ -24,7 +24,8 @@ export default {
         cardNumber: "Недостаточно средств на карте",
         expDateMonth: "Карта просрочена",
         cvv: "Неверный код cvv"
-      }
+      },
+      reset: false
     };
   },
   methods: {

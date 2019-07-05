@@ -1,6 +1,14 @@
+import { CamelToKebab } from "@/utils/helpers";
+
 export default {
   props: {
-    errors: Object
+    errors: Object,
+    isReset: Boolean
+  },
+  watch: {
+    isReset(value) {
+      value && this.resetForm();
+    }
   },
   computed: {
     /**
@@ -35,12 +43,9 @@ export default {
       if (e.target.value.length === 1) {
         e.preventDefault();
         const field = e.target.dataset.cp;
-        const fieldKebab = field
-          .replace(/([a-z])([A-Z])/g, "$1-$2")
-          .toLowerCase();
         const value = "0" + e.target.value;
 
-        this.$emit(`input-${fieldKebab}`, value);
+        this.$emit(`input-${CamelToKebab(field)}`, value);
       }
     },
     /**
@@ -73,6 +78,17 @@ export default {
       let type = this.$parent.isSmall ? "tel" : "text";
       if (e.target.type === type) type = "password";
       e.target.type = type;
+    },
+    /**
+     * Reset all fields in form
+     */
+    resetForm() {
+      for (const field of this.fields) {
+        const value = field.ref;
+        this.$emit(`input-${CamelToKebab(value)}`, "");
+      }
+      this.isSmall && (this.cardNumberCollapsed = false);
+      this.$emit("reset", false);
     }
   }
 };

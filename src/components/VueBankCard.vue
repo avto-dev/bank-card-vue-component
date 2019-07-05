@@ -10,12 +10,14 @@
       :exp-date-year="expDateYear"
       :cvv="cvv"
       :errors="errors"
+      :is-reset="isReset"
       @input-card-number="cardNumber = $event"
       @input-exp-date-month="expDateMonth = $event"
       @input-exp-date-year="expDateYear = $event"
       @input-cvv="cvv = $event"
       @enter="$emit('enter', $event)"
       @clear-errors="$emit('clear-errors', $event)"
+      @reset="$emit('reset', $event)"
     />
     <VueBankCardSmall
       v-else
@@ -27,12 +29,14 @@
       :exp-date-year="expDateYear"
       :cvv="cvv"
       :errors="errors"
+      :is-reset="isReset"
       @input-card-number="cardNumber = $event"
       @input-exp-date-month="expDateMonth = $event"
       @input-exp-date-year="expDateYear = $event"
       @input-cvv="cvv = $event"
       @enter="$emit('enter', $event)"
       @clear-errors="$emit('clear-errors', $event)"
+      @reset="$emit('reset', $event)"
     />
   </article>
 </template>
@@ -65,6 +69,10 @@ export default {
     errors: {
       type: Object,
       default: () => ({})
+    },
+    isReset: {
+      type: Boolean,
+      default: false
     }
   },
   data() {

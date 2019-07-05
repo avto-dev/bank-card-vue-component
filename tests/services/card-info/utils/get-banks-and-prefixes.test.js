@@ -2,7 +2,7 @@ import {
   getBanks,
   getPrefixes
 } from "@/services/card-info/utils/get-banks-and-prefixes";
-import { isObject, isString } from "@/services/utils";
+import { isObject, isString } from "@/utils/helpers";
 
 describe("get banks and prefixes", () => {
   describe("getBanks", () => {
