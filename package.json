@@ -10,6 +10,9 @@
     "type": "git",
     "url": "https://github.com/avto-dev/bank-card-vue-component.git"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve ./demo/index.js",
     "build": "vue-cli-service build --target lib --name vue-bank-card ./src/index.js",

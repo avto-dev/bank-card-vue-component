@@ -266,7 +266,7 @@ export default {
         ? brandLogo
         : cardIcon;
 
-      return `./images/${dynamicPath}`;
+      return `${this.imagePath}/images/${dynamicPath}`;
     },
     /**
      * CCS classes for card number element

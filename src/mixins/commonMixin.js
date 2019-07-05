@@ -23,6 +23,12 @@ export default {
       } else {
         return "";
       }
+    },
+    /**
+     * General path for images
+     */
+    imagePath() {
+      return process.env.VUE_APP_IMAGE_CDN;
     }
   },
   methods: {

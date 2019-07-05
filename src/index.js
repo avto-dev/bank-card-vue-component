@@ -1,19 +1,19 @@
-// Import vue component
 import VueBankCard from "./components/VueBankCard";
 
-// Declare install function executed by Vue.use()
-export function install(Vue) {
+const install = Vue => {
   if (install.installed) return;
   install.installed = true;
-  Vue.component("VueBankCard", VueBankCard);
-}
+  Vue.component(VueBankCard.name, VueBankCard);
+};
 
-// Create module definition for Vue.use()
+export default install;
+export { VueBankCard };
+
 const plugin = {
   install
 };
 
-// Auto-install when vue is found (eg. in browser via <script> tag)
+// Install by default if included from script tag
 let GlobalVue = null;
 if (typeof window !== "undefined") {
   GlobalVue = window.Vue;
@@ -23,6 +23,3 @@ if (typeof window !== "undefined") {
 if (GlobalVue) {
   GlobalVue.use(plugin);
 }
-
-// To allow use as module (npm/webpack/etc.) export component
-export default VueBankCard;

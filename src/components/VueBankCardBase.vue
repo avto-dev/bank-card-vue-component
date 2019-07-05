@@ -14,7 +14,9 @@
             >
               <img
                 class="card__brand-logo"
-                :src="`./images/brands-logos/${brand.alias}-colored.png`"
+                :src="
+                  `${imagePath}/images/brands-logos/${brand.alias}-colored.png`
+                "
                 :alt="brand.name"
               />
             </div>
@@ -24,7 +26,7 @@
             <div class="card__bank-logo-wrapper">
               <img
                 class="card__bank-logo"
-                :src="`./images/${cardInfo.bankLogo}`"
+                :src="`${imagePath}/images/${cardInfo.bankLogo}`"
                 :alt="cardInfo.bankName"
               />
             </div>
@@ -32,7 +34,7 @@
             <div class="card__brand-logo-wrapper">
               <img
                 class="card__brand-logo"
-                :src="`./images/${cardInfo.brandLogo}`"
+                :src="`${imagePath}/images/${cardInfo.brandLogo}`"
                 :alt="cardInfo.brandName"
               />
             </div>
