@@ -3,18 +3,13 @@
     <!--<Card is-new is-small @form-id="formBaseId = $event" />-->
     <!--<Card is-new is-small :errors="errors" @form-id="formSmallId = $event" />-->
     <!--<Card :number="number" />-->
-    <Card is-small is-new :is-reset="reset" @reset="reset = $event" />
+    <VueBankCard is-new :is-reset="reset" @reset="reset = $event" />
   </div>
 </template>
 
 <script>
-import Card from "@/components/VueBankCard";
-
 export default {
   name: "App",
-  components: {
-    Card
-  },
   data() {
     return {
       number: "4276163199737755",

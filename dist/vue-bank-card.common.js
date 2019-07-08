@@ -781,6 +781,13 @@ exports.default = _default;
 
 /***/ }),
 
+/***/ "142f":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "1495":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1795,17 +1802,6 @@ exports.f = Object.getOwnPropertySymbols;
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("fde4");
-
-/***/ }),
-
-/***/ "27a7":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VueBankCardBase_vue_vue_type_style_index_0_id_48da6e62_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("d561");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VueBankCardBase_vue_vue_type_style_index_0_id_48da6e62_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VueBankCardBase_vue_vue_type_style_index_0_id_48da6e62_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VueBankCardBase_vue_vue_type_style_index_0_id_48da6e62_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -5745,16 +5741,16 @@ function (_Card) {
 }(card_Card);
 
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"b4cc2606-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/VueBankCardBase.vue?vue&type=template&id=48da6e62&scoped=true&
-var VueBankCardBasevue_type_template_id_48da6e62_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"card",style:({ backgroundColor: _vm.cssPropertySpecial('backgroundColor') })},[_c('form',{staticClass:"card-inner",on:{"keydown":function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.$emit('enter', $event)}}},[_c('div',{staticClass:"card__main"},[_c('div',{staticClass:"card__info"},[(!_vm.cardInfo.bankName)?_c('div',{staticClass:"card__brand-placeholder"},_vm._l((_vm.brandsPlaceholder),function(brand){return _c('div',{key:("brand-placeholder-" + (brand.alias)),staticClass:"card__brand-logo-wrapper"},[_c('img',{staticClass:"card__brand-logo",attrs:{"src":(_vm.imagePath + "/images/brands-logos/" + (brand.alias) + "-colored.png"),"alt":brand.name}})])}),0):_c('div',{staticClass:"card__bank-info"},[_c('div',{staticClass:"card__bank-logo-wrapper"},[_c('img',{staticClass:"card__bank-logo",attrs:{"src":(_vm.imagePath + "/images/" + (_vm.cardInfo.bankLogo)),"alt":_vm.cardInfo.bankName}})]),_c('div',{staticClass:"card__brand-logo-wrapper"},[_c('img',{staticClass:"card__brand-logo",attrs:{"src":(_vm.imagePath + "/images/" + (_vm.cardInfo.brandLogo)),"alt":_vm.cardInfo.brandName}})])])]),_c('div',{staticClass:"card__number"},[(!_vm.isNew)?_c('span',{staticClass:"card__field-mock"},[_vm._v("\n          "+_vm._s(_vm.numberCollapsed)+"\n        ")]):_c('input',{directives:[{name:"mask",rawName:"v-mask",value:(_vm.cardNumberMask),expression:"cardNumberMask"}],ref:"cardNumber",class:_vm.fieldCssClasses('cardNumber'),attrs:{"type":"text","data-cp":"cardNumber","placeholder":"0000 0000 0000 0000","readonly":!_vm.isNew},domProps:{"value":_vm.cardNumber},on:{"input":function($event){return _vm.$emit('input-card-number', $event.target.value)},"keydown":function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"delete",[8,46],$event.key,["Backspace","Delete","Del"])){ return null; }return _vm.moveCaretTo('back', 'cardNumber')},"focus":function($event){return _vm.clearErrors('cardNumber')},"blur":function($event){return _vm.$v.cardNumber.$touch()}}}),_c('input',{attrs:{"type":"hidden","data-cp":"name"},domProps:{"value":_vm.cardHolderName}}),_c('VueBankCardTooltip',{attrs:{"is-show":_vm.$v.cardNumber.$error}},[_vm._v("\n          Вам нужно заполнить это поле\n        ")]),_c('VueBankCardTooltip',{attrs:{"is-show":!!_vm.errorFiltered('cardNumber')}},[_vm._v("\n          "+_vm._s(_vm.errorFiltered("cardNumber"))+"\n        ")])],1)]),(_vm.isNew)?_c('div',{staticClass:"card__extra"},[_c('div',{staticClass:"card__field-group"},[_c('p',{staticClass:"card__field-label",style:({ color: _vm.cssPropertySpecial('textColor') })},[_vm._v("\n          Действует до:\n        ")]),_c('div',{staticClass:"card__expiration"},[_c('div',{staticClass:"card__date"},[_c('input',{directives:[{name:"mask",rawName:"v-mask",value:(_vm.expDateMonthMask),expression:"expDateMonthMask"}],ref:"expDateMonth",class:_vm.fieldCssClasses('expDateMonth'),attrs:{"type":"text","data-cp":"expDateMonth","placeholder":"ММ"},domProps:{"value":_vm.expDateMonth},on:{"input":function($event){return _vm.$emit('input-exp-date-month', $event.target.value)},"keydown":function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"delete",[8,46],$event.key,["Backspace","Delete","Del"])){ return null; }return _vm.moveCaretTo('back', 'expDateMonth')},"focus":function($event){return _vm.clearErrors('expDateMonth')},"blur":function($event){_vm.autocompleteDate($event);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"b4cc2606-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/VueBankCardBase.vue?vue&type=template&id=2b08d632&scoped=true&
+var VueBankCardBasevue_type_template_id_2b08d632_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"card",style:({ backgroundColor: _vm.cssPropertySpecial('backgroundColor') })},[_c('form',{staticClass:"card-inner",on:{"keydown":function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }return _vm.$emit('enter', $event)}}},[_c('div',{staticClass:"card__main"},[_c('div',{staticClass:"card__info"},[(!_vm.cardInfo.bankName)?_c('div',{staticClass:"card__brand-placeholder"},_vm._l((_vm.brandsPlaceholder),function(brand){return _c('div',{key:("brand-placeholder-" + (brand.alias)),staticClass:"card__brand-logo-wrapper"},[_c('img',{staticClass:"card__brand-logo",attrs:{"src":(_vm.imagePath + "/images/brands-logos/" + (brand.alias) + "-colored.png"),"alt":brand.name}})])}),0):_c('div',{staticClass:"card__bank-info"},[_c('div',{staticClass:"card__bank-logo-wrapper"},[_c('img',{staticClass:"card__bank-logo",attrs:{"src":(_vm.imagePath + "/images/" + (_vm.cardInfo.bankLogo)),"alt":_vm.cardInfo.bankName}})]),_c('div',{staticClass:"card__brand-logo-wrapper"},[_c('img',{staticClass:"card__brand-logo",attrs:{"src":(_vm.imagePath + "/images/" + (_vm.cardInfo.brandLogo)),"alt":_vm.cardInfo.brandName}})])])]),_c('div',{staticClass:"card__number"},[(!_vm.isNew)?_c('span',{staticClass:"card__field-mock"},[_vm._v("\n          "+_vm._s(_vm.numberCollapsed)+"\n        ")]):_c('input',{directives:[{name:"mask",rawName:"v-mask",value:(_vm.cardNumberMask),expression:"cardNumberMask"}],ref:"cardNumber",class:_vm.fieldCssClasses('cardNumber'),attrs:{"type":"text","data-cp":"cardNumber","placeholder":"0000 0000 0000 0000","readonly":!_vm.isNew},domProps:{"value":_vm.cardNumber},on:{"input":function($event){return _vm.$emit('input-card-number', $event.target.value)},"keydown":function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"delete",[8,46],$event.key,["Backspace","Delete","Del"])){ return null; }return _vm.moveCaretTo('back', 'cardNumber')},"focus":function($event){return _vm.clearErrors('cardNumber')},"blur":function($event){return _vm.$v.cardNumber.$touch()}}}),_c('input',{attrs:{"type":"hidden","data-cp":"name"},domProps:{"value":_vm.cardHolderName}}),(!_vm.isFieldEmpty('cardNumber'))?_c('button',{staticClass:"card__field-icon",on:{"click":_vm.onReset}},[_c('span',{staticClass:"card__field-icon-close"})]):_vm._e(),_c('VueBankCardTooltip',{attrs:{"is-show":_vm.$v.cardNumber.$error}},[_vm._v("\n          Вам нужно заполнить это поле\n        ")]),_c('VueBankCardTooltip',{attrs:{"is-show":!!_vm.errorFiltered('cardNumber')}},[_vm._v("\n          "+_vm._s(_vm.errorFiltered("cardNumber"))+"\n        ")])],1)]),(_vm.isNew)?_c('div',{staticClass:"card__extra"},[_c('div',{staticClass:"card__field-group"},[_c('p',{staticClass:"card__field-label",style:({ color: _vm.cssPropertySpecial('textColor') })},[_vm._v("\n          Действует до:\n        ")]),_c('div',{staticClass:"card__expiration"},[_c('div',{staticClass:"card__date"},[_c('input',{directives:[{name:"mask",rawName:"v-mask",value:(_vm.expDateMonthMask),expression:"expDateMonthMask"}],ref:"expDateMonth",class:_vm.fieldCssClasses('expDateMonth'),attrs:{"type":"text","data-cp":"expDateMonth","placeholder":"ММ"},domProps:{"value":_vm.expDateMonth},on:{"input":function($event){return _vm.$emit('input-exp-date-month', $event.target.value)},"keydown":function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"delete",[8,46],$event.key,["Backspace","Delete","Del"])){ return null; }return _vm.moveCaretTo('back', 'expDateMonth')},"focus":function($event){return _vm.clearErrors('expDateMonth')},"blur":function($event){_vm.autocompleteDate($event);
                 _vm.$v.expDateMonth.$touch();}}})]),_c('span',{staticClass:"card__field-divider",style:({ color: _vm.cssPropertySpecial('textColor') })},[_vm._v("\n            /\n          ")]),_c('div',{staticClass:"card__date"},[_c('input',{directives:[{name:"mask",rawName:"v-mask",value:(_vm.expDateYearMask),expression:"expDateYearMask"}],ref:"expDateYear",class:_vm.fieldCssClasses('expDateYear'),attrs:{"type":"text","data-cp":"expDateYear","placeholder":"ГГ"},domProps:{"value":_vm.expDateYear},on:{"input":function($event){return _vm.$emit('input-exp-date-year', $event.target.value)},"keydown":function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"delete",[8,46],$event.key,["Backspace","Delete","Del"])){ return null; }return _vm.moveCaretTo('back', 'expDateYear')},"focus":function($event){return _vm.clearErrors('expDateYear')},"blur":function($event){_vm.autocompleteDate($event);
                 _vm.$v.expDateYear.$touch();}}})])]),_c('VueBankCardTooltip',{attrs:{"is-show":_vm.$v.expDateMonth.$error || _vm.$v.expDateYear.$error}},[_vm._v("\n          Введите дату как на карте\n        ")]),_c('VueBankCardTooltip',{attrs:{"is-show":!!_vm.errorFiltered('expDateMonth') || !!_vm.errorFiltered('expDateYear')}},[_vm._v("\n          "+_vm._s(_vm.errorFiltered("expDateMonth") || _vm.errorFiltered("expDateYear"))+"\n        ")])],1),_c('div',{staticClass:"card__field-group card__code"},[_c('p',{staticClass:"card__field-label",style:({ color: _vm.cssPropertySpecial('textColor') })},[_vm._v("\n          Код с обратной стороны:\n        ")]),_c('input',{directives:[{name:"mask",rawName:"v-mask",value:(_vm.cvvMask),expression:"cvvMask"}],ref:"cvv",class:_vm.fieldCssClasses('cvv'),attrs:{"type":"password","data-cp":"cvv","placeholder":_vm.cardInfo.codeName || 'CVV'},domProps:{"value":_vm.cvv},on:{"input":function($event){return _vm.$emit('input-cvv', $event.target.value)},"keydown":function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"delete",[8,46],$event.key,["Backspace","Delete","Del"])){ return null; }return _vm.moveCaretTo('back', 'cvv')},"focus":function($event){_vm.toggleType($event);
             _vm.clearErrors('cvv');},"blur":function($event){_vm.toggleType($event);
             _vm.$v.cvv.$touch();}}}),_c('VueBankCardTooltip',{attrs:{"is-show":_vm.$v.cvv.$error}},[_vm._v("\n          Вам нужно заполнить это поле\n        ")]),_c('VueBankCardTooltip',{attrs:{"is-show":!!_vm.errorFiltered('cvv')}},[_vm._v("\n          "+_vm._s(_vm.errorFiltered("cvv"))+"\n        ")])],1)]):_vm._e()])])}
-var VueBankCardBasevue_type_template_id_48da6e62_scoped_true_staticRenderFns = []
+var VueBankCardBasevue_type_template_id_2b08d632_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/VueBankCardBase.vue?vue&type=template&id=48da6e62&scoped=true&
+// CONCATENATED MODULE: ./src/components/VueBankCardBase.vue?vue&type=template&id=2b08d632&scoped=true&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es7.array.includes.js
 var es7_array_includes = __webpack_require__("6762");
@@ -6596,6 +6592,14 @@ var component = normalizeComponent(
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -6684,13 +6688,17 @@ var component = normalizeComponent(
       return ["card__field", {
         "card__field--invalid": this.$v[type].$error || this.errorFiltered(type)
       }];
+    },
+    onReset: function onReset(event) {
+      event.preventDefault();
+      this.resetForm();
     }
   }
 });
 // CONCATENATED MODULE: ./src/components/VueBankCardBase.vue?vue&type=script&lang=js&
  /* harmony default export */ var components_VueBankCardBasevue_type_script_lang_js_ = (VueBankCardBasevue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./src/components/VueBankCardBase.vue?vue&type=style&index=0&id=48da6e62&lang=scss&scoped=true&
-var VueBankCardBasevue_type_style_index_0_id_48da6e62_lang_scss_scoped_true_ = __webpack_require__("27a7");
+// EXTERNAL MODULE: ./src/components/VueBankCardBase.vue?vue&type=style&index=0&id=2b08d632&lang=scss&scoped=true&
+var VueBankCardBasevue_type_style_index_0_id_2b08d632_lang_scss_scoped_true_ = __webpack_require__("a17a");
 
 // CONCATENATED MODULE: ./src/components/VueBankCardBase.vue
 
@@ -6703,11 +6711,11 @@ var VueBankCardBasevue_type_style_index_0_id_48da6e62_lang_scss_scoped_true_ = _
 
 var VueBankCardBase_component = normalizeComponent(
   components_VueBankCardBasevue_type_script_lang_js_,
-  VueBankCardBasevue_type_template_id_48da6e62_scoped_true_render,
-  VueBankCardBasevue_type_template_id_48da6e62_scoped_true_staticRenderFns,
+  VueBankCardBasevue_type_template_id_2b08d632_scoped_true_render,
+  VueBankCardBasevue_type_template_id_2b08d632_scoped_true_staticRenderFns,
   false,
   null,
-  "48da6e62",
+  "2b08d632",
   null
   
 )
@@ -7303,6 +7311,17 @@ module.exports = Object.create || function create(O, Properties) {
   return Properties === undefined ? result : dPs(result, Properties);
 };
 
+
+/***/ }),
+
+/***/ "a17a":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VueBankCardBase_vue_vue_type_style_index_0_id_2b08d632_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("142f");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VueBankCardBase_vue_vue_type_style_index_0_id_2b08d632_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VueBankCardBase_vue_vue_type_style_index_0_id_2b08d632_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_VueBankCardBase_vue_vue_type_style_index_0_id_2b08d632_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -8391,13 +8410,6 @@ module.exports = function (done, value) {
   return { value: value, done: !!done };
 };
 
-
-/***/ }),
-
-/***/ "d561":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
 
 /***/ }),
 
