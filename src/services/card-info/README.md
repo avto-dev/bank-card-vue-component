@@ -1,89 +1,91 @@
 # CardInfo.js
 
-CardInfo.js позволяет по номеру карты получить логотип банка и типа, фирменные цвета и прочее. Используйте эти данные, чтобы верстать красивые формы для приёма банковских карт. В базе сейчас 49 самых популярных российских банков.
+CardInfo.js allows you to get the logo of the bank and brand, brand colors and etc. by card number. Use this data to make beautiful forms for bank cards. The database currently has 49 most popular Russian banks.
 
-## Быстрый старт
+## Get Started
 
-Импортируйте класс `CardInfo` в свой код и используйте:
+Import class `CardInfo` and use it:
 ```js
 import CardInfo from '@/services/card-info';
 
 const cardInfo = new CardInfo('4377730000000000');
-console.log('Название банка:', cardInfo.bankName);
-// > Название банка: Тинькофф Банк
-console.log('Логотип банка:', cardInfo.bankLogo);
-// > Логотип банка: /banks-logos/ru-tinkoff.png
+console.log('Bank name:', cardInfo.bankName);
+// > Bank name: Тинькофф Банк
+console.log('Bank logo:', cardInfo.bankLogo);
+// > Bank logo: /banks-logos/ru-tinkoff.png
 ```
 
-## Конструктор
+## Constructor
+
 ```
 new CardInfo(number)
 new CardInfo(number, options)
 ```
 
-* **`number`** номер карты, число или строка, в строке допустимы пробелы.
-* **`options`** объект с настройками.
+* **`number`** card number, number or string, spaces are allowed in the string.
+* **`options`** the object with the settings.
 
-## Экземпляр
-Если по первым 6 цифрам в номере карты не удалось определить данные о банке, поля bankAlias, bankName, bankNameEn, bankCountry, bankUrl, bankLogoPng, bankLogoSvg, bankLogo, bankLogoStyle, backgroundColor, backgroundColors, backgroundLightness, textColor, backgroundGradient будут иметь значение по умолчанию.
+## Instance
 
-Если по первым цифрам в номере карты не удалось определить данные о типе, поля brandAlias, brandName, brandLogoPng, brandLogoSvg, brandLogo, codeName, codeLength, numberLengths, numberGaps будут иметь значение по умолчанию.
+If the first 6 digits of the card number failed to determine the bank details, then the fields bankAlias, bankName, bankNameEn, bankCountry, bankUrl, bankLogoPng, bankLogoSvg, bankLogo, bankLogoStyle, backgroundColor, backgroundColors, backgroundLightness, textColor, backgroundGradient will have a default value.
 
-* **`bankAlias`** по умолчанию `null`  
-  Короткое название банка на английском, все буквы маленькие, без пробелов. Если банк не определён, значение `null`.
-* **`bankName`** по умолчанию `null`  
-  Название банка на языке той страны, в которой работает банк.
-* **`bankNameEn`** по умолчанию `null`  
-  Название банка на английском.
-* **`bankCountry`** по умолчанию `null`  
-  Код страны в которой работает этот банк. `'ru'` — Россия.
-* **`bankUrl`** по умолчанию `null`  
-  Ссылка на сайт банка.
-* **`bankLogo`** по умолчанию `null`  
-  Путь к логотипу банка. Для каждого банка в папке `/banks-logos` есть логотип в формате PNG. Имя файла определяется свойством экземпляра `bankAlias`. Путь к файлу определяется свойством настроек `banksLogosPath`. Пример: для банка «Тинькоф» значение будет `'/banks-logos/ru-tinkoff.png'`.
-* **`bankLogoSm`** по умолчанию `null`  
-  Путь к логотипу банка в малом варианте. Для каждого банка в папке `/banks-logos` есть логотип в формате PNG. Имя файла определяется свойством экземпляра `bankAlias` и `-sm`. Путь к файлу определяется свойством настроек `banksLogosPath`. Пример: для банка «Тинькоф» значение будет `'/banks-logos/ru-tinkoff-sm.png'`.
- **`bankLogoStyle`** по умолчанию `null`  
-  Если логотип преимущественно чёрный, то `"black"`, если белый, то `"white"`, если цветной, то `"colored"`.
-* **`backgroundColor`** по умолчанию `'#eeeeee'`  
-  Цвет, ассоциирующийся с банком. Если банк не определён, значение будет `'#eeeeee'`.
-* **`backgroundColors`** по умолчанию `['#eeeeee', '#dddddd']`  
-  Массив цветов ассоциирующихся с банком. Если банк не определён, значение будет `['#eeeeee', '#dddddd']`.
-* **`backgroundLightness`** по умолчанию `'light'`  
-  Если цвет фона светлый, то значением будет строка `'light'`, иначе `'dark'`.
-* **`backgroundGradient`** по умолчанию `linear-gradient(135deg, #eeeeee, #dddddd)`  
-  Содержит строку с CSS значением свойства `background`, установив которое, вы получите градиент из цветов указанны в поле `backgroundColors`. Угол можно указать в свойстве настроек `gradientDegrees`.
-* **`textColor`** по умолчанию `'#000'`  
-  Цвет текста, который хорошо будет виден на фоне указанном в свойстве `backgroundColor`.
-* **`brandAlias`** по умолчанию `null`  
-  Короткое название типа на английском, все буквы маленькие, без пробелов.
-* **`brandName`** по умолчанию `null`  
-  Полное название типа.
-* **`brandLogo`** по умолчанию `null`  
-  Путь к логотипу типа. Для каждого типа в папке `/brands-logos` есть логотип в формате PNG и в трёх стилях: чёрном, белом и цветном. Имя файла определяется свойством экземпляра `brandAlias`. Путь к файлу определяется свойством настроек `brandsLogosPath`. Стиль логотипа определяется свойством настроек `brandLogoPolicy`. Пример: для типа «Visa» значение будет `'/brands-logos/visa-colored.png'`.
-* **`codeName`** по умолчанию `null`  
-  Название кода на обратной стороне карты (CVC/CID/CVV/CVN).
-* **`codeLength`** по умолчанию `null`  
-  Ожидаемая длина кода безопасности. Обычно 3, но для карт American Express 4.
-* **`numberMask`** по умолчанию `0000 0000 0000 0000000`  
-  Маска для номера карты данного типа. Обычно маска 0000 0000 0000 0000, но некоторые типы карт имеют отличную от 16 символов длину номера карты, и пробелы расставляются в других местах. Например, для карт American Express маска будет 0000 000000 00000. Символы в маске могут быть изменены путем изменения настроек `maskDigitSymbol` и `maskDelimiterSymbol`. Используйте свойство `numberMask` для наложения маски на поле ввода номера карты.
-* **`numberGaps`** по умолчанию `[4, 8, 12]`  
-  Массив с числами, определяющими положение пробелов при создании маски.
-* **`numberBlocks`** по умолчанию `[4, 4, 4, 7]`  
-  Массив с числами, определяющими количество цифр в каждом блоке маски. Определяется на основании свойства `numberGaps` и максимального числа в `numberLengths`.
-* **`numberLengths`** по умолчанию `[12, 13, 14, 15, 16, 17, 18, 19]`  
-  Массив с числами, определяющими допустимое количество символов в номере карты.
+If the first digits in the card number failed to determine the brand information, the fields brandAlias, brandName, brandLogoPng, brandLogoSvg, brandLogo, codeName, codeLength, numberLengths, numberGaps will have a default value.
+
+* **`bankAlias`** by default `null`  
+  Short name of the bank in English, all letters are small, without spaces. If the bank is not defined, the value is `null`.
+* **`bankName`** by default `null`  
+  The name of the bank in the language of the country in which the bank operates.
+* **`bankNameEn`** by default `null`  
+  Name of the bank in English.
+* **`bankCountry`** by default `null`  
+  The country code in which this bank operates.  `'ru'` — Russia.
+* **`bankUrl`** by default `null`  
+  Link to the site of the bank.
+* **`bankLogo`** by default `null`  
+  The path to the bank's logo. For each bank in the folder `/banks-logos` there is a logo in PNG format. The name of the file is determined by the property of the instance of `bankAlias`. The path to the file is determined by the property of the settings `banksLogosPath`. Example: for the bank "Tinkoff" the value will be `/banks-logos/ru-tinkoff.png`.
+* **`bankLogoSm`** by default `null`  
+  The path to the bank's logo in small kind. for each bank in the folder `/banks-logos` there is a logo in PNG format. The name of the file is determined by the property of the instance of `bankAlias` and `-sm`. The path to the file is determined by the property of the settings `banksLogosPath`. Example: for the bank "Tinkoff" the value will be `/banks-logos/ru-tinkoff-sm.png`.
+ **`bankLogoStyle`** by default `null`  
+  If the logo is predominantly black, then `"black"`, if it is white, then `"white"`, if colored - `"colored"`.
+* **`backgroundColor`** by default `'#eeeeee'`  
+  The color associated with the bank. If the bank is not defined, the value will be `'#eeeeee'`.
+* **`backgroundColors`** by default `['#eeeeee', '#dddddd']`  
+  An array of colors associated with the bank. If the bank is not defined, the value will be `['#eeeeee', '#dddddd']`.
+* **`backgroundLightness`** by default `'light'`  
+  if the background color is light, then the value is `'light'`, otherwise `'dark'`.
+* **`backgroundGradient`** by default `linear-gradient(135deg, #eeeeee, #dddddd)`  
+  Contains a string with the CSS property of the `background` property, setting which, you will get a gradient from the colors specified in the field `backgroundColors`. The angle can be specified in the property of the settings `gradientDegrees`.
+* **`textColor`** by default `'#000'`  
+  Yje color of the text that will be will visible on the background specified in the `backgroundColor` property.
+* **`brandAlias`** by default `null`  
+  Short name of the brand in English, all letters are small, without spaces.
+* **`brandName`** by default `null`  
+  The full name of the brand.
+* **`brandLogo`** by default `null`  
+  The path to the logo brand. For each brand in the folder `/brands-logos` there is a logo in PNG and SVG format and in three styles: black, white and color. The name of the file is determined by the property of the instance `brandAlias`. The path to the file is determined by the properties of the `brandsLogosPath` settings. The style of the logo is determined by the property of the `brandLogoPolicy` settings. Example: for the "Visa" brand, the value will be `/brands-logos/visa-colored.png`.
+* **`codeName`** by default `null`  
+  The name of the code on the back of the card (CVC/CID/CVV/CVN).
+* **`codeLength`** by default `null`  
+  Expected length of the security code. Usually 3, but for American Express cards 4.
+* **`numberMask`** by default `0000 0000 0000 0000000`  
+  Mask for the card number of this brand. Usually the mask is 0000 0000 0000 0000, but some brands of cards have a different length of the card number than 16 characters, and spaces are placed in other places. For example, for American Express cards the mask will be 0000 000000 00000.  The characters in the mask can be changed by changing the settings of `maskDigitSymbol` and `maskDelimiterSymbol`. Use the `numberMask` property to apply a mask to the card number entry field.
+* **`numberGaps`** by default `[4, 8, 12]`  
+  An array with numbers that determines the position of spaces when creating a mask.
+* **`numberBlocks`** by default `[4, 4, 4, 7]`  
+  An array with numbers that determines the number if digits in each block of the mask. Is is defined on the basis of the property `numberGaps` and the maximum number in `numberLengths`.
+* **`numberLengths`** by default `[12, 13, 14, 15, 16, 17, 18, 19]`  
+  An array with numbers that defines the number of characters allowed in the card number.
 * **`numberNice`**  
-  Номер карты, приведённый к красивому виду. Маска определяется свойством `numberMask`. Пример: 4377730000000000 → 4377 7300 0000 0000, 437773 → 4377 73.
+  Card number, resulted in a beautiful view. The mask is defined by the property `numberMask`. Example: 4377730000000000 → 4377 7300 0000 0000, 437773 → 4377 73.
 * **`number`**  
-  Номер карты в виде строки с удалёнными пробелами. Если в переданном номере карты были какие-либо символы, кроме цифр и пробелов, будет пустая строка.
+  Card number as a string with deleted spaces. If there were any characters in the transmitted card number, except for digits and spaces, there will be an empty string.
 * **`numberSource`**  
-  Номер карты, переданный при создании экземпляра.
+  The card number that was sent when the instance was created.
 * **`options`**  
-  Настройки, использованные при создании экземпляра.
+  The settings used to create the instance.
 
-## Настройки
-Настройки передаются при создании нового экземпляра:
+## Settings
+Settings are transferred either when creating a new instance:
 ```js
 var cardInfo = new CardInfo('4377730000000000', {
   banksLogosPath: '/my/path/to/banks/logos',
@@ -91,37 +93,37 @@ var cardInfo = new CardInfo('4377730000000000', {
 });
 ```
 
-* **`banksLogosPath`** по умолчанию `'/banks-logos/'`  
-  Путь к файлам с логотипами банков.
-* **`brandsLogosPath`** по умолчанию `'/brands-logos/'`  
-  Путь к файлам с логотипами типов.
-* **`brandLogoPolicy`** по умолчанию `'auto'`  
-  Эта настройка определяет стиль логотипа типа. Доступные значения: 'black', 'white', 'colored', 'auto', 'mono'.
+* **`banksLogosPath`** by default `'/banks-logos/'`  
+  The path to files with bank logos.
+* **`brandsLogosPath`** by default `'/brands-logos/'`  
+  The path to files with brand logos.
+* **`brandLogoPolicy`** by default `'auto'`  
+  This setting determines the style of the logo brand. Available values are: 'black', 'white', 'colored', 'auto', 'mono'.
   * `'colored'`  
-    Логотип типа будет цветным
+    The brand logo will be colored
   * `'black'`  
-    Логотип типа будет чёрным
+    The brand logo will be black
   * `'white'`  
-    Логотип типа будет белым
+    The brand logo will be white
   * `'mono'`  
-    Логотип типа будет белым, если фон (`backgroundLightness`) тёмный (`'dark'`)
-    Логотип типа будет чёрным, если фон (`backgroundLightness`) светлый (`'light'`)
+    The brand logo will be white, if the background (`backgroundLightness`) is dark (`'dark'`).
+    The brand logo will be dark, if the background (`backgroundLightness`) is light (`'light'`).
   * `'auto'`  
-    Логотип типа будет цветным, если стиль логотипа банка (`bankLogoStyle`) цветной (`'colored'`)
-    Логотип типа будет белым, если стиль логотипа банка (`bankLogoStyle`) белый (`'white'`)
-    Логотип типа будет чёрным, если стиль логотипа банка (`bankLogoStyle`) чёрный (`'black'`)
-    Логотип типа будет цветным, если банк не определён
-* **`maskDigitSymbol`** по умолчанию `'#'`  
-  Символ, обозначающий цифру в маске номера карты, указанной в свойстве экземпляра `numberMask`.
-* **`maskDelimiterSymbol`** по умолчанию `' '`  
-  Символ, обозначающий разделитель в маске номера карты, указанной в свойстве экземпляра `numberMask`.
-* **`gradientDegrees`** по умолчанию `135`  
-  Градус, под которым идёт градиент указанный в свойстве экземпляра `backgroundGradient`.
+    The logo of the brand will be colored if the style of the bank logo (`bankLogoStyle`) is colored (`'colored'`).
+    The logo of the brand will be white if the style of the bank logo (`bankLogoStyle`) is white (`'white'`).
+    The logo of the brand will be black if the style of the bank logo (`bankLogoStyle`) is black (`'black'`).
+    The brand logo will be colored if the bank is not defined
+* **`maskDigitSymbol`** by default `'#'`  
+  A character indicating the number in the mask of the card number specified in the property of the instance `numberMask`.
+* **`maskDelimiterSymbol`** by default `' '`  
+  A symbol indicating the delimiter in the mask of the card number specified in the property of the `numberMask` instance.
+* **`gradientDegrees`** by default `135`  
+  Degree, under which there is a gradient specified in the property of the instance `backgroundGradient`.
 
-## Способы подключения
-Подключить в качестве модуля в своём коде
+## Ways of connecting
+Connect as a module in your code
 ```js
 const CardInfo = require('@/services/card-info')
-// или
+// or
 import CardInfo from '@/services/card-info'
 ```
