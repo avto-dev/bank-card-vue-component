@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <!--<Card is-new is-small @form-id="formBaseId = $event" />-->
-    <!--<Card is-new is-small :errors="errors" @form-id="formSmallId = $event" />-->
+    <!--<Card is-new is-small />-->
+    <!--<Card is-new is-small :errors="errors" />-->
     <!--<Card :number="number" />-->
     <VueBankCard is-new :is-reset="reset" @reset="reset = $event" />
   </div>
@@ -13,8 +13,6 @@ export default {
   data() {
     return {
       number: "4276163199737755",
-      formBaseId: "",
-      formSmallId: "",
       errors: {
         cardNumber: "Недостаточно средств на карте",
         expDateMonth: "Карта просрочена",
