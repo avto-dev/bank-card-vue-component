@@ -29,7 +29,7 @@ describe("VueBankCard", () => {
   it("isNew prop", () => {
     wrapper.setProps({ isNew: true });
 
-    expect(wrapper.vm.isNew).toBeTruthy();
+    expect(wrapper.props("isNew")).toBe(true);
   });
 
   describe("number prop", () => {
@@ -70,7 +70,7 @@ describe("VueBankCard", () => {
     };
     wrapper.setProps({ errors });
 
-    expect(wrapper.vm.errors).toEqual(errors);
+    expect(wrapper.props("errors")).toEqual(errors);
   });
 
   it("card info", () => {
