@@ -10,6 +10,9 @@
     "type": "git",
     "url": "https://github.com/avto-dev/bank-card-vue-component.git"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve ./demo/index.js",
     "build": "vue-cli-service build --target lib --name vue-bank-card ./src/index.js",
@@ -17,12 +20,7 @@
     "lint:fix": "vue-cli-service lint",
     "test": "jest"
   },
-  "dependencies": {
-    "core-js": "^2.6.5",
-    "vue": "^2.6.10",
-    "vue-the-mask": "^0.11.1",
-    "vuelidate": "^0.7.4"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",
     "@vue/cli-plugin-eslint": "^3.8.0",
@@ -33,14 +31,18 @@
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.8.0",
     "babel-preset-env": "^1.7.0",
+    "core-js": "^2.6.5",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "jest": "^24.8.0",
     "jest-transform-stub": "^2.0.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.1.0",
+    "vue": "^2.6.10",
     "vue-jest": "^3.0.4",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.10",
+    "vue-the-mask": "^0.11.1",
+    "vuelidate": "^0.7.4"
   },
   "gitHooks": {
     "pre-commit": "npm run lint:fix && npm run test && npm run build && git add ."

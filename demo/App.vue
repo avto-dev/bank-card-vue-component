@@ -1,30 +1,24 @@
 <template>
   <div id="app">
-    <!--<Card is-new is-small @form-id="formBaseId = $event" />-->
-    <!--<Card is-new is-small :errors="errors" @form-id="formSmallId = $event" />-->
+    <!--<Card is-new is-small />-->
+    <!--<Card is-new is-small :errors="errors" />-->
     <!--<Card :number="number" />-->
-    <Card is-new :number="number" />
+    <VueBankCard is-new :is-reset="reset" @reset="reset = $event" />
   </div>
 </template>
 
 <script>
-import Card from "@/components/VueBankCard";
-
 export default {
   name: "App",
-  components: {
-    Card
-  },
   data() {
     return {
       number: "4276163199737755",
-      formBaseId: "",
-      formSmallId: "",
       errors: {
         cardNumber: "Недостаточно средств на карте",
         expDateMonth: "Карта просрочена",
         cvv: "Неверный код cvv"
-      }
+      },
+      reset: false
     };
   },
   methods: {
@@ -37,9 +31,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css?family=PT+Sans&display=swap&subset=cyrillic");
-@import url("https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap&subset=cyrillic");
-
 *,
 *::after,
 *::before {

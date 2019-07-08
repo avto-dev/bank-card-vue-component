@@ -1,5 +1,5 @@
 import readBanks from "@/services/card-info/utils/read-banks";
-import { isArray, isObject } from "@/services/utils";
+import { isArray, isObject } from "@/utils/helpers";
 
 describe("readBanks", () => {
   const banks = readBanks();

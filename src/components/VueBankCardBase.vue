@@ -15,9 +15,7 @@
               <img
                 class="card__brand-logo"
                 :src="
-                  require(`@/assets/images/brands-logos/${
-                    brand.alias
-                  }-colored.png`)
+                  `${imagePath}/images/brands-logos/${brand.alias}-colored.png`
                 "
                 :alt="brand.name"
               />
@@ -28,7 +26,7 @@
             <div class="card__bank-logo-wrapper">
               <img
                 class="card__bank-logo"
-                :src="require(`@/assets/images/${cardInfo.bankLogo}`)"
+                :src="`${imagePath}/images/${cardInfo.bankLogo}`"
                 :alt="cardInfo.bankName"
               />
             </div>
@@ -36,7 +34,7 @@
             <div class="card__brand-logo-wrapper">
               <img
                 class="card__brand-logo"
-                :src="require(`@/assets/images/${cardInfo.brandLogo}`)"
+                :src="`${imagePath}/images/${cardInfo.brandLogo}`"
                 :alt="cardInfo.brandName"
               />
             </div>
@@ -64,6 +62,14 @@
           />
 
           <input type="hidden" data-cp="name" :value="cardHolderName" />
+
+          <button
+            v-if="!isFieldEmpty('cardNumber')"
+            class="card__field-icon"
+            @click="onReset"
+          >
+            <span class="card__field-icon-close"></span>
+          </button>
 
           <VueBankCardTooltip :is-show="$v.cardNumber.$error">
             Вам нужно заполнить это поле
@@ -282,6 +288,10 @@ export default {
             this.$v[type].$error || this.errorFiltered(type)
         }
       ];
+    },
+    onReset(event) {
+      event.preventDefault();
+      this.resetForm();
     }
   }
 };
@@ -410,6 +420,64 @@ $field-invalid-outline-color: #df4242;
       font-size: 16px;
       line-height: 20px;
       font-family: $field-font-family;
+    }
+
+    &-icon {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: block;
+      width: 30px;
+      height: 30px;
+      border: 0;
+      outline: none;
+      background-color: transparent;
+      cursor: pointer;
+
+      &:hover,
+      &:focus {
+        .card__field-icon-close {
+          &::before,
+          &::after {
+            background-color: lighten($field-color, 10%);
+          }
+        }
+      }
+
+      &-close {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+        display: block;
+        width: 20px;
+        height: 20px;
+
+        &::before,
+        &::after {
+          content: "";
+          position: absolute;
+          background-color: lighten($field-color, 50%);
+          transition: background-color 0.3s;
+        }
+
+        &::before {
+          top: 0;
+          left: 50%;
+          height: 100%;
+          transform: translateX(-50%);
+          width: 2px;
+        }
+
+        &::after {
+          top: 50%;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          transform: translateY(-50%);
+        }
+      }
     }
   }
 
