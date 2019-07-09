@@ -109,28 +109,6 @@ export default {
 </script>
 ```
 
-## Contributing
-
-```bash
-# install dependencies
-npm install
-
-# serve demo directory with hot reload at localhost:8080
-npm run serve
-
-# create UMD bundle into dist directory
-npm run build
-
-# run eslint
-npm run lint
-
-# run eslint with auto-fixes
-npm run lint:fix
-
-# run all tests
-npm run test
-```
-
 ## License
 
 [MIT](http://opensource.org/licenses/MIT)

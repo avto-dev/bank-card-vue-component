@@ -2,155 +2,141 @@
 
 All notable changes to this package will be documented in this file.
 
-The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this package adheres to [Semantic Versioning][semver].
+The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-> File maintenance rules
-> 
-> - Unpublished changes accumulate in the section `### Unrealesed`
-> - Description of every release begins from section like `## vX.X.X` _(`%major%.%minor%.%patch%`)_ and contains 5 optional sections _(but not less than 1 on release)_:
->   - `### Added` - Adding a functional
->   - `### Fixed` - Fixes
->   - `### Deprecated` - Functional marked as obsolete and to be removed soon
->   - `### Removed` - What was removed
->   - `### Changed` - Changes that are clearly not related to the previous three sections.
-> - The release section **can** be accompanied by a release date and look like `## vX.X.X - YYYY-MM-DD`, but it must be displayed just before the release
-> - The assignment of the value of the new version must comply with [Semantic Versioning][semver], with the exceptions:
->   - The reason for raising **major** version values is the presence of changes that are not backwards compatible with those that are currently on the product servers (a "soft" rollback is not possible). These can be - **migrations**, changes in namespaces of classes subject to **serialization** during the operation of the application, changes in the major version of the framework, appearance of dependency on any external service, and any other "dangerous" changes
-> - All links should be in the form of footnotes `[LINK]: https: // ...` and located strictly in the release unit
-> - Each entry **should** end with an indication of the link to the person who made these or other changes.
-
-
-## v0.0.17 - 2019-07-09
+## v0.0.17
 
 ### Added
 
-- CHANGELOG file ([@gnklv])
+- CONTRIBUTING.md file
+- CHANGELOG.md file
 
 ### Changed 
 
-- Change image cdn env ([@gnklv])
+- Updated README.md
+- Change image cdn env
 
-## v0.0.16 - 2019-07-08
+## v0.0.16
 
 ### Added
 
-- Test for VueBanCardBase, VueBankCardSmall, VueBankCardTooltip ([@gnklv])
-- Add reset button on field ([@gnklv])
+- Test for VueBanCardBase, VueBankCardSmall, VueBankCardTooltip
+- Add reset button on field
 
 ### Fixed
 
-- Package fixes ([@gnklv])
+- Package fixes
 
 ### Changed
 
-- Replace dependencies to dev ([@gnklv])
-- Update README to english of the component and of the card-info service ([@gnklv])
-- Change enable css export ([@gnklv])
+- Replace dependencies to dev
+- Update README to english of the component and of the card-info service
+- Change enable css export
 
-## v0.0.15 - 2019-07-05
+## v0.0.15
 
 ### Added
 
-- CDN image path ([@gnklv])
-- resetForm method ([@gnklv])
-- Reset property and event ([@gnklv])
-- Tests for VueBankCard component ([@gnklv])
+- CDN image path
+- resetForm method
+- Reset property and event
+- Tests for VueBankCard component
 
 ### Changed
 
-- Change install component ([@gnklv])
-- Change image loading for package ([@gnklv])
-- Reorganize utils ([@gnklv])
+- Change install component
+- Change image loading for package
+- Reorganize utils
 
-## v0.0.14 - 2019-07-04
+## v0.0.14
 
 ### Added
 
-- Pack component as a package ([@gnklv])
+- Pack component as a package
 
 ### Fixed
 
-- Pre commit hook ([@gnklv])
+- Pre commit hook
 
 ### Changed
 
-- Rename names in package ([@gnklv])
-- Rename child components ([@gnklv])
-- Replace error tooltip of number field to outside ([@gnklv])
-- Minor changes of render input in card small component ([@gnklv])
+- Rename names in package
+- Rename child components
+- Replace error tooltip of number field to outside
+- Minor changes of render input in card small component
 
-## v0.0.13 - 2019-07-03
+## v0.0.13
 
 ### Added
 
-- Tests for card-info service ([@gnklv])
-- Adding and setting `jest` and `@vue/test-utils` ([@gnklv])
-- Bubbling event on enter ([@gnklv])
+- Tests for card-info service
+- Adding and setting `jest` and `@vue/test-utils`
+- Bubbling event on enter
 
 ### Removed
 
-- Remove formId returning ([@gnklv])
+- Remove formId returning
 
 ### Changed
 
-- Update README ([@gnklv])
+- Update README
 
-## v0.0.12 - 2019-07-01
+## v0.0.12
 
 ### Added
 
-- Hiding cvv code on blur ([@gnklv])
-- Clear errors methods ([@gnklv])
-- Support card number as object ([@gnklv])
+- Hiding cvv code on blur
+- Clear errors methods
+- Support card number as object
 
 ### Fixed
 
-- Minor fixes toggle type field ([@gnklv])
+- Minor fixes toggle type field
 
 ### Removed
 
-- Click listener from card ([@gnklv])
+- Click listener from card
 
 ### Changed
 
-- Update README ([@gnklv])
-- Update handler of external errors as object ([@gnklv])
+- Update README
+- Update handler of external errors as object
 
-## v0.0.11 - 2019-06-28
+## v0.0.11
 
 ### Added
 
-- Encapsulate field data into component ([@gnklv])
-- Feature of render errors from outside ([@gnklv])
-- Click events to small full card component ([@gnklv])
-- Wrap fields in component and bubble formId to outside ([@gnklv])
-- README for card-info service ([@gnklv])
-- Finish changes to getting logo from `card-info` ([@gnklv])
+- Encapsulate field data into component
+- Feature of render errors from outside
+- Click events to small full card component
+- Wrap fields in component and bubble formId to outside
+- README for card-info service
+- Finish changes to getting logo from `card-info`
 
 ### Removed
 
-- Uninstall `card-info` package ([@gnklv])
-- Old images ([@gnklv])
+- Uninstall `card-info` package
+- Old images
 
 ### Changed
 
-- Minor changes ([@gnklv])
-- Naming in components and scripts from `Mobile` to `Small` and from `Desktop` to `Base` ([@gnklv])
-- Name logos from `-mob` to `-sm` ([@gnklv])
+- Minor changes
+- Naming in components and scripts from `Mobile` to `Small` and from `Desktop` to `Base`
+- Name logos from `-mob` to `-sm`
 
-## v0.0.10 - 2019-06-27
+## v0.0.10
 
 ### Added
 
-- Integrate package `card-info` into project ([@gnklv])
+- Integrate package `card-info` into project
 
-## v0.0.9 - 2019-06-26
+## v0.0.9
 
 ### Added
 
 - isNew state for card component
-- Generate unique id for labels and inputs ([@gnklv])
-- Autocomplete to month and year fields ([@gnklv])
+- Generate unique id for labels and inputs
+- Autocomplete to month and year fields
 
 ### Changed
 
@@ -158,62 +144,59 @@ The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 - Replace control of card field and options to outside
 - Minor reworks
 
-## v0.0.8 - 2019-06-25
+## v0.0.8
 
 ### Added
 
-- Mobile bank logos ([@gnklv])
+- Mobile bank logos
 
-## v0.0.7 - 2019-06-24
-
-### Added
-
-- JSDoc where it was not ([@gnklv])
-
-## v0.0.6 - 2019-06-21
+## v0.0.7
 
 ### Added
 
-- Validate on card mobile component ([@gnklv])
+- JSDoc where it was not
+
+## v0.0.6
+
+### Added
+
+- Validate on card mobile component
 
 ### Changed
 
-- Refactor card desktop and card mobile components ([@gnklv])
+- Refactor card desktop and card mobile components
 
-## v0.0.5 - 2019-06-20
+## v0.0.5
 
 ### Added
 
-- Create card mobile component ([@gnklv])
+- Create card mobile component
 
-## v0.0.4 - 2019-06-19
+## v0.0.4
 
 ### Changed
 
-- Code style and code naming minor changes ([@gnklv])
+- Code style and code naming minor changes
 
-## v0.0.3 - 2019-06-18
+## v0.0.3
 
 ### Added
 
-- Mask and validation to all fields of card ([@gnklv])
+- Mask and validation to all fields of card
 
 ### Changed
 
-- Separate card component into desktop and mobile view, init card mobile component ([@gnklv])
-- Replace data from card desktop to parent card component ([@gnklv])
+- Separate card component into desktop and mobile view, init card mobile component
+- Replace data from card desktop to parent card component
 
-## v.0.0.2 - 2019-06-14
-
-### Added
-
-- Create card component ([@gnklv])
-
-## v0.0.1 - 2019-06-13
+## v.0.0.2
 
 ### Added
 
-- Initial ([@gnklv])
+- Create card component
 
-[semver]:https://semver.org/spec/v2.0.0.html
-[@gnklv]:https://github.com/gnklv
+## v0.0.1
+
+### Added
+
+- Initial
