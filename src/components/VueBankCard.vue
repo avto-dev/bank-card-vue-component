@@ -109,7 +109,12 @@ export default {
     }
   },
   created() {
-    this.cardNumber = this.numberTransform;
+    this.init();
+  },
+  methods: {
+    init() {
+      this.cardNumber = this.numberTransform;
+    }
   }
 };
 </script>
