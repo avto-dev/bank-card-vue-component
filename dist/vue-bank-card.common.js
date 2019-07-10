@@ -3777,7 +3777,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var withParams = Object({"NODE_ENV":"production","VUE_APP_IMAGE_CDN":"//cdn.jsdelivr.net/gh/avto-dev/bank-card-vue-component@dev/public","BASE_URL":"/"}).BUILD === 'web' ? __webpack_require__("cb69").withParams : __webpack_require__("0234").withParams;
+var withParams = Object({"NODE_ENV":"production","VUE_APP_IMAGE_CDN":"//cdn.jsdelivr.net/gh/avto-dev/bank-card-vue-component/public","BASE_URL":"/"}).BUILD === 'web' ? __webpack_require__("cb69").withParams : __webpack_require__("0234").withParams;
 var _default = withParams;
 exports.default = _default;
 
@@ -5802,7 +5802,7 @@ var CamelToKebab = function CamelToKebab(value) {
      * General path for images
      */
     imagePath: function imagePath() {
-      return "//cdn.jsdelivr.net/gh/avto-dev/bank-card-vue-component@dev/public";
+      return "//cdn.jsdelivr.net/gh/avto-dev/bank-card-vue-component/public";
     }
   },
   methods: {
