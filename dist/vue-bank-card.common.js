@@ -7815,22 +7815,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var core_js_modules_es6_function_name__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("7f7f");
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return install; });
+/* harmony import */ var core_js_modules_es6_function_name__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("7f7f");
 /* harmony import */ var core_js_modules_es6_function_name__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es6_function_name__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_VueBankCard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("9f80");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _components_VueBankCard__WEBPACK_IMPORTED_MODULE_1__["a"]; });
 
 
-
-
-var install = function install(Vue) {
+function install(Vue) {
   if (install.installed) return;
   install.installed = true;
   Vue.component(_components_VueBankCard__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"].name, _components_VueBankCard__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"]);
-};
-
-/* harmony default export */ __webpack_exports__["b"] = (install);
-
+}
 var plugin = {
   install: install
 }; // Install by default if included from script tag
@@ -7846,6 +7841,8 @@ if (typeof window !== "undefined") {
 if (GlobalVue) {
   GlobalVue.use(plugin);
 }
+
+/* harmony default export */ __webpack_exports__["a"] = (_components_VueBankCard__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"]);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__("c8ba")))
 
 /***/ }),
@@ -8917,10 +8914,10 @@ if (typeof window !== 'undefined') {
 var src = __webpack_require__("b635");
 
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib.js
-/* concated harmony reexport VueBankCard */__webpack_require__.d(__webpack_exports__, "VueBankCard", function() { return src["a" /* VueBankCard */]; });
+/* concated harmony reexport install */__webpack_require__.d(__webpack_exports__, "install", function() { return src["b" /* install */]; });
 
 
-/* harmony default export */ var entry_lib = __webpack_exports__["default"] = (src["b" /* default */]);
+/* harmony default export */ var entry_lib = __webpack_exports__["default"] = (src["a" /* default */]);
 
 
 

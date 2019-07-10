@@ -14,31 +14,22 @@ or
 yarn add avto-dev/bank-card-vue-component
 ```
 
-You can import the library and use as a Vue plugin to enable the functionality globally on all components
+You can import the library and styles, then use it as a Vue plugin to enable the functionality globally on all components.
 
 ```javascript
 import Vue from "vue"
 import VueBankCard from "vue-bank-card"
 import "vue-bank-card/dist/vue-bank-card.css"
 
-Vue.use(VueBankCard)
-```
-
-Alternatively it is possible to import a component directly
-
-```javascript
-import Vue from "vue"
-import { VueBankCard } from "vue-bank-card"
-import "vue-bank-card/dist/vue-bank-card.css"
-
 Vue.component("VueBankCard", VueBankCard)
 ```
 
-The browser-ready bundle is also provided in the package.
+The browser-ready bundle is also provided in the package.  
+CDN: [jsDelivr](https://cdn.jsdelivr.net/gh/avto-dev/bank-card-vue-component@latest/dist/)
 
 ```html
-<link rel="stylesheet" href="vue-bank-card/dist/vue-bank-card.css" />
-<script src="vue-bank-card/dist/vue-bank-card.min.js"></script>
+<link rel="stylesheet" href="vue-bank-card/vue-bank-card.css" />
+<script src="vue-bank-card/vue-bank-card.umd.min.js"></script>
 ...
 <vue-bank-card></vue-bank-card>
 ...

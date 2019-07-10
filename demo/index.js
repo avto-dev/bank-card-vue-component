@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueBankCard from "../src/index";
 import App from "./App";
 
-Vue.use(VueBankCard);
+Vue.component("VueBankCard", VueBankCard);
 
 Vue.config.productionTip = false;
 

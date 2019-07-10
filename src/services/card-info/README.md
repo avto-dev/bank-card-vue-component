@@ -2,6 +2,8 @@
 
 CardInfo.js allows you to get the logo of the bank and brand, brand colors and etc. by card number. Use this data to make beautiful forms for bank cards. The database currently has 49 most popular Russian banks.
 
+[Resource](https://stevemorse.org/ssn/List_of_Bank_Identification_Numbers.html) with identifiers of all brands and banks in the world.
+
 ## Get Started
 
 Import class `CardInfo` and use it:
