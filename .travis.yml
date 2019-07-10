@@ -1,0 +1,35 @@
+language: node_js
+
+cache:
+  yarn: true
+  directories:
+    - node_modules
+
+node_js: stable
+
+matrix:
+  fast_finish: true
+
+sudo: false
+
+branches:
+  except:
+    - gh-pages
+    - /analysis-.*/
+
+install:
+  - yarn install
+
+script:
+  - yarn run lint
+  - yarn run test
+
+deploy:
+  - provider: pages
+    keep_history: true
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    local_dir: demo
+#    on:
+#      tags: true
+#      branch: master
