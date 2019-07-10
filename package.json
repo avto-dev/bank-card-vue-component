@@ -46,8 +46,5 @@
     "vue-template-compiler": "^2.6.10",
     "vue-the-mask": "^0.11.1",
     "vuelidate": "^0.7.4"
-  },
-  "gitHooks": {
-    "pre-commit": "npm run lint:fix && npm run test && npm run build && git add ."
   }
 }
