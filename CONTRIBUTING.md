@@ -48,10 +48,12 @@ npm run lint:fix
 npm run test
 ```
 
-## How to develop
+## How to release
 
-1. Make new branch from `master`
-2. Developing 
-3. Write tests for your new feature in `/tests`
-4. Add all changes in `CHANGELOG.md` 
-5. Create pull request into branch `dev`
+1. Do `npm build`
+2. Do git commit and push
+3. Merge feature branch to `master`, add changes to CHANGELOG.md and update version in package.json
+4. Make release with changes
+5. Publish changes to npm registry
+    1. Do `npm login` into npm account
+    2. Do `npm publish @avto-dev/bank-card-vue-component`
