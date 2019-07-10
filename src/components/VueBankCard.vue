@@ -1,44 +1,44 @@
 <template>
-  <article class="vue-bank-card__wrapper">
-    <VueBankCardBase
-      v-if="!isSmall"
-      :is-new="isNew"
-      :card-info="cardInfo"
-      :card-number="cardNumber"
-      :card-holder-name="cardHolderName"
-      :exp-date-month="expDateMonth"
-      :exp-date-year="expDateYear"
-      :cvv="cvv"
-      :errors="errors"
-      :is-reset="isReset"
-      @input-card-number="cardNumber = $event"
-      @input-exp-date-month="expDateMonth = $event"
-      @input-exp-date-year="expDateYear = $event"
-      @input-cvv="cvv = $event"
-      @enter="$emit('enter', $event)"
-      @clear-errors="$emit('clear-errors', $event)"
-      @reset="$emit('reset', $event)"
-    />
-    <VueBankCardSmall
-      v-else
-      :is-new="isNew"
-      :card-info="cardInfo"
-      :card-number="cardNumber"
-      :card-holder-name="cardHolderName"
-      :exp-date-month="expDateMonth"
-      :exp-date-year="expDateYear"
-      :cvv="cvv"
-      :errors="errors"
-      :is-reset="isReset"
-      @input-card-number="cardNumber = $event"
-      @input-exp-date-month="expDateMonth = $event"
-      @input-exp-date-year="expDateYear = $event"
-      @input-cvv="cvv = $event"
-      @enter="$emit('enter', $event)"
-      @clear-errors="$emit('clear-errors', $event)"
-      @reset="$emit('reset', $event)"
-    />
-  </article>
+    <article class="vue-bank-card__wrapper">
+        <VueBankCardBase
+            v-if="!isSmall"
+            :is-new="isNew"
+            :card-info="cardInfo"
+            :card-number="cardNumber"
+            :card-holder-name="cardHolderName"
+            :exp-date-month="expDateMonth"
+            :exp-date-year="expDateYear"
+            :cvv="cvv"
+            :errors="errors"
+            :is-reset="isReset"
+            @input-card-number="cardNumber = $event"
+            @input-exp-date-month="expDateMonth = $event"
+            @input-exp-date-year="expDateYear = $event"
+            @input-cvv="cvv = $event"
+            @enter="$emit('enter', $event)"
+            @clear-errors="$emit('clear-errors', $event)"
+            @reset="$emit('reset', $event)"
+        />
+        <VueBankCardSmall
+            v-else
+            :is-new="isNew"
+            :card-info="cardInfo"
+            :card-number="cardNumber"
+            :card-holder-name="cardHolderName"
+            :exp-date-month="expDateMonth"
+            :exp-date-year="expDateYear"
+            :cvv="cvv"
+            :errors="errors"
+            :is-reset="isReset"
+            @input-card-number="cardNumber = $event"
+            @input-exp-date-month="expDateMonth = $event"
+            @input-exp-date-year="expDateYear = $event"
+            @input-cvv="cvv = $event"
+            @enter="$emit('enter', $event)"
+            @clear-errors="$emit('clear-errors', $event)"
+            @reset="$emit('reset', $event)"
+        />
+    </article>
 </template>
 
 <script>
@@ -48,74 +48,74 @@ import VueBankCardBase from "./VueBankCardBase";
 import VueBankCardSmall from "./VueBankCardSmall";
 
 export default {
-  name: "VueBankCard",
-  components: {
-    VueBankCardBase,
-    VueBankCardSmall
-  },
-  props: {
-    isSmall: {
-      type: Boolean,
-      default: false
+    name: "VueBankCard",
+    components: {
+        VueBankCardBase,
+        VueBankCardSmall
     },
-    isNew: {
-      type: Boolean,
-      default: false
+    props: {
+        isSmall: {
+            type: Boolean,
+            default: false
+        },
+        isNew: {
+            type: Boolean,
+            default: false
+        },
+        number: {
+            type: [String, Object],
+            default: ""
+        },
+        errors: {
+            type: Object,
+            default: () => ({})
+        },
+        isReset: {
+            type: Boolean,
+            default: false
+        }
     },
-    number: {
-      type: [String, Object],
-      default: ""
+    data() {
+        return {
+            cardNumber: "",
+            expDateMonth: "",
+            expDateYear: "",
+            cvv: "",
+            cardHolderName: "CARDHOLDER NAME"
+        };
     },
-    errors: {
-      type: Object,
-      default: () => ({})
+    computed: {
+        /**
+         * Get card information by card number via card-info service
+         * @returns {Object}
+         */
+        cardInfo() {
+            return new CardInfo(this.cardNumber);
+        },
+        /**
+         * Transform number if it is an object
+         * @returns {String}
+         */
+        numberTransform() {
+            if (typeof this.number === "object") {
+                const cardInfo = new CardInfo(this.number.first_six);
+                let lengthNumber = 0;
+                const lengthKnown = 10;
+                cardInfo.numberBlocks.forEach(block => (lengthNumber += block));
+                const mask = "0".repeat(lengthNumber - lengthKnown);
+                return this.number.first_six + mask + this.number.last_four;
+            }
+            return this.number;
+        }
     },
-    isReset: {
-      type: Boolean,
-      default: false
+    created() {
+        this.init();
+    },
+    methods: {
+        init() {
+            this.cardNumber = this.numberTransform;
+        }
     }
-  },
-  data() {
-    return {
-      cardNumber: "",
-      expDateMonth: "",
-      expDateYear: "",
-      cvv: "",
-      cardHolderName: "CARDHOLDER NAME"
-    };
-  },
-  computed: {
-    /**
-     * Get card information by card number via card-info service
-     * @returns {Object}
-     */
-    cardInfo() {
-      return new CardInfo(this.cardNumber);
-    },
-    /**
-     * Transform number if it is an object
-     * @returns {String}
-     */
-    numberTransform() {
-      if (typeof this.number === "object") {
-        const cardInfo = new CardInfo(this.number.first_six);
-        let lengthNumber = 0;
-        const lengthKnown = 10;
-        cardInfo.numberBlocks.forEach(block => (lengthNumber += block));
-        const mask = "0".repeat(lengthNumber - lengthKnown);
-        return this.number.first_six + mask + this.number.last_four;
-      }
-      return this.number;
-    }
-  },
-  created() {
-    this.init();
-  },
-  methods: {
-    init() {
-      this.cardNumber = this.numberTransform;
-    }
-  }
 };
 </script>
 
@@ -124,6 +124,6 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap&subset=cyrillic");
 
 .vue-bank-card__wrapper {
-  width: 100%;
+    width: 100%;
 }
 </style>
