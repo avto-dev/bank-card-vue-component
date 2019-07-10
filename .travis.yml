@@ -21,16 +21,24 @@ install:
   - yarn install
 
 script:
-  - yarn run lint
-  - yarn run test
+  - yarn lint
+  - yarn test
 
 deploy:
-  - provider: pages
+  - provider: pages # <https://docs.travis-ci.com/user/deployment/pages/>
     keep_history: true
     skip_cleanup: true
     github_token: $GITHUB_TOKEN
     local_dir: demo
     on:
-#      tags: true
-#      branch: master
+      #tags: true
+      #branch: master
+      branch: dev
+
+  - provider: npm # <https://docs.travis-ci.com/user/deployment/npm/>
+    email: $NPM_DEPLOY_EMAIL
+    api_key: $NPM_DEPLOY_TOKEN
+    on:
+      #tags: true
+      #branch: master
       branch: dev

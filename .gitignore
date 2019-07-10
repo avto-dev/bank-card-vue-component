@@ -5,9 +5,11 @@
 ## Vendors
 /node_modules
 
-## Lock files
+## Lock files (use yarn only)
 /package-lock.json
-/yarn.lock
+
+## Dist
+/dist
 
 ## Temp dirs & trash
 /npm-debug.log

@@ -25,10 +25,10 @@ install: ## Install all dependencies
 	$(docker_bin) run $(RUN_ARGS) $(RUN_INTERACTIVE) "$(NODE_IMAGE)" yarn install
 
 test: ## Execute tests and linters
-	$(docker_bin) run $(RUN_ARGS) $(RUN_INTERACTIVE) "$(NODE_IMAGE)" bash -c "yarn run lint && yarn run test"
+	$(docker_bin) run $(RUN_ARGS) $(RUN_INTERACTIVE) "$(NODE_IMAGE)" bash -c "yarn lint && yarn test"
 
 fix: ## Execute sources fixing
-	$(docker_bin) run $(RUN_ARGS) $(RUN_INTERACTIVE) "$(NODE_IMAGE)" yarn run lint:fix
+	$(docker_bin) run $(RUN_ARGS) $(RUN_INTERACTIVE) "$(NODE_IMAGE)" yarn lint:fix
 
 shell: ## Start shell into container with node
 	$(docker_bin) run $(RUN_ARGS) $(RUN_INTERACTIVE) \
@@ -37,7 +37,7 @@ shell: ## Start shell into container with node
 
 watch: ## Start watching assets for changes
 	@printf "\n  \033[1;42m  %s  \033[0m\n\n" 'Navigate your browser to ⇒ http://127.0.0.1:$(FRONTEND_PORT)'
-	$(docker_bin) run $(RUN_ARGS) $(RUN_INTERACTIVE) -p "$(FRONTEND_PORT):8081" "$(NODE_IMAGE)" yarn run watch
+	$(docker_bin) run $(RUN_ARGS) $(RUN_INTERACTIVE) -p "$(FRONTEND_PORT):8081" "$(NODE_IMAGE)" yarn watch
 
 destroy: ## Kill all spawned (and probably disowned) docker-containers
 	$(docker_bin) kill `$(docker_bin) ps --filter "label=$(docker_containers_unique_label)" --format '{{.ID}}'`
@@ -46,7 +46,7 @@ clean: ## Make some clean
 	rm -Rf "$(shell pwd)/public" "$(shell pwd)/coverage"
 
 build: clean ## Build application bundle (and docker image)
-	$(docker_bin) run $(RUN_ARGS) $(RUN_INTERACTIVE) -e "NODE_ENV=production" "$(NODE_IMAGE)" yarn run build
+	$(docker_bin) run $(RUN_ARGS) $(RUN_INTERACTIVE) -e "NODE_ENV=production" "$(NODE_IMAGE)" yarn build
 
 pull: ## Pulling newer versions of used docker images
 	$(docker_bin) pull "$(NODE_IMAGE)"
