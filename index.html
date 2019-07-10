@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue Bank Card</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/avto-dev/bank-card-vue-component/dist/vue-bank-card.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdn.jsdelivr.net/gh/avto-dev/bank-card-vue-component/dist/vue-bank-card.umd.min.js"></script>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <vue-bank-card is-new></vue-bank-card>
+  <vue-bank-card is-new is-small></vue-bank-card>
+
+  <vue-bank-card :number="number"></vue-bank-card>
+  <vue-bank-card :number="number" is-small></vue-bank-card>
+</div>
+
+<script>
+new Vue({
+  el: "#app",
+  data() {
+    return {
+      number: "5536 9111 2222 3333"
+    }
+  }
+})
+</script>
+</body>
+</html>
