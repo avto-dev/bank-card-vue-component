@@ -126,4 +126,5 @@ This is open-sourced software licensed under the [MIT License][link_license].
 [link_pulls]:https://github.com/avto-dev/bank-card-vue-component/pulls
 [link_build_status]:https://travis-ci.org/avto-dev/bank-card-vue-component
 [link_npm]:https://www.npmjs.com/package/@avto-dev/bank-card-vue-component
+[link_create_issue]:https://github.com/avto-dev/bank-card-vue-component/issues/new/choose
 [link_license]:https://github.com/avto-dev/bank-card-vue-component/blob/master/LICENSE
