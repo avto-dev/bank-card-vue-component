@@ -4,13 +4,13 @@
  * @returns { Function } - curried function
  */
 export const length = type =>
-  /**
-   * @param { String } value - Value for comparing
-   * @param { Object } vm - Instance
-   * @returns { Boolean }
-   */
-  (value, vm) =>
-    value.replace(/\s/g, "").length === vm[type].replace(/\s/g, "").length;
+    /**
+     * @param { String } value - Value for comparing
+     * @param { Object } vm - Instance
+     * @returns { Boolean }
+     */
+    (value, vm) =>
+        value.replace(/\s/g, "").length === vm[type].replace(/\s/g, "").length;
 
 /**
  * Compare current value with minimum value
@@ -18,12 +18,12 @@ export const length = type =>
  * @returns { Function }
  */
 export const minValue = min =>
-  /**
-   * @param { String } value - Value for comparing
-   * @param { Object } vm - Instance
-   * @returns { Boolean }
-   */
-  (value, vm) => +value >= +vm[min];
+    /**
+     * @param { String } value - Value for comparing
+     * @param { Object } vm - Instance
+     * @returns { Boolean }
+     */
+    (value, vm) => +value >= +vm[min];
 
 /**
  * Compare current value with maximum value
@@ -31,9 +31,9 @@ export const minValue = min =>
  * @returns { Function }
  */
 export const maxValue = max =>
-  /**
-   * @param { String } value - Value for comparing
-   * @param { Object } vm - Instance
-   * @returns { Boolean }
-   */
-  (value, vm) => +value <= +vm[max];
+    /**
+     * @param { String } value - Value for comparing
+     * @param { Object } vm - Instance
+     * @returns { Boolean }
+     */
+    (value, vm) => +value <= +vm[max];

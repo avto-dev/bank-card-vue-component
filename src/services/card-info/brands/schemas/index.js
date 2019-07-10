@@ -9,13 +9,13 @@ import unionpay from "./unionpay";
 import visa from "./visa";
 
 export {
-  americanExpress,
-  dinersClub,
-  discover,
-  jcb,
-  maestro,
-  masterCard,
-  mir,
-  unionpay,
-  visa
+    americanExpress,
+    dinersClub,
+    discover,
+    jcb,
+    maestro,
+    masterCard,
+    mir,
+    unionpay,
+    visa
 };

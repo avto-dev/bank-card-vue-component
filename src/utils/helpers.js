@@ -1,11 +1,11 @@
 export const isString = value =>
-  typeof value === "string" || value instanceof String;
+    typeof value === "string" || value instanceof String;
 
 export const isObject = value =>
-  value && typeof value === "object" && value.constructor === Object;
+    value && typeof value === "object" && value.constructor === Object;
 
 export const isArray = value =>
-  value && typeof value === "object" && value.constructor === Array;
+    value && typeof value === "object" && value.constructor === Array;
 
 export const CamelToKebab = value =>
-  value.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
+    value.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();

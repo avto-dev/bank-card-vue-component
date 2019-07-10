@@ -1,11 +1,11 @@
 export default {
-  name: "Сетелем Банк",
-  nameEn: "Cetelem Bank",
-  url: "https://www.cetelem.ru/",
-  backgroundColor: "#ceecb7",
-  backgroundColors: ["#ceecb7", "#8bbb75"],
-  backgroundLightness: "light",
-  logoStyle: "colored",
-  text: "#167158",
-  prefixes: ["522592", "532326"]
+    name: "Сетелем Банк",
+    nameEn: "Cetelem Bank",
+    url: "https://www.cetelem.ru/",
+    backgroundColor: "#ceecb7",
+    backgroundColors: ["#ceecb7", "#8bbb75"],
+    backgroundLightness: "light",
+    logoStyle: "colored",
+    text: "#167158",
+    prefixes: ["522592", "532326"]
 };

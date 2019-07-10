@@ -5,123 +5,127 @@ import CardInfo from "@/services/card-info";
 import { isObject } from "@/utils/helpers";
 
 describe("VueBankCardBase", () => {
-  class Props {
-    constructor() {
-      this.cardNumber = "";
-      this.cardHolderName = "CARDHOLDER NAME";
-      this.expDateMonth = "";
-      this.expDateYear = "";
-      this.cvv = "";
-      this.errors = {};
-      this.isNew = false;
-      this.isReset = false;
-      this.cardInfo = new CardInfo(this.cardNumber);
+    class Props {
+        constructor() {
+            this.cardNumber = "";
+            this.cardHolderName = "CARDHOLDER NAME";
+            this.expDateMonth = "";
+            this.expDateYear = "";
+            this.cvv = "";
+            this.errors = {};
+            this.isNew = false;
+            this.isReset = false;
+            this.cardInfo = new CardInfo(this.cardNumber);
+        }
     }
-  }
-  const props = new Props();
+    const props = new Props();
 
-  const wrapper = shallowMount(VueBankCardBase, {
-    propsData: { ...props }
-  });
+    const wrapper = shallowMount(VueBankCardBase, {
+        propsData: { ...props }
+    });
 
-  describe("contains props", () => {
-    for (const [key, value] of Object.entries(props)) {
-      it(key, () => {
-        const method = isObject(value) ? "toEqual" : "toBe";
+    describe("contains props", () => {
+        for (const [key, value] of Object.entries(props)) {
+            it(key, () => {
+                const method = isObject(value) ? "toEqual" : "toBe";
 
-        expect(wrapper.props(key))[method](value);
-      });
-    }
-  });
-
-  describe("if isNew", () => {
-    const selector = ".card__extra";
-    it("true, then show new card", () => {
-      const isNew = true;
-      const wrapper = shallowMount(VueBankCardBase, {
-        propsData: {
-          ...props,
-          isNew
+                expect(wrapper.props(key))[method](value);
+            });
         }
-      });
-
-      expect(wrapper.contains(selector)).toBeTruthy();
     });
 
-    it("false, then show saved card", () => {
-      const isNew = false;
-      const cardNumber = "5536 9111 2222 3333";
-      const cardInfo = new CardInfo(cardNumber);
-      const wrapper = shallowMount(VueBankCardBase, {
-        propsData: {
-          ...props,
-          isNew,
-          cardNumber,
-          cardInfo
-        }
-      });
-      const numberCollapsed = "**** 3333";
+    describe("if isNew", () => {
+        const selector = ".card__extra";
+        it("true, then show new card", () => {
+            const isNew = true;
+            const wrapper = shallowMount(VueBankCardBase, {
+                propsData: {
+                    ...props,
+                    isNew
+                }
+            });
 
-      expect(wrapper.find(".card__field-mock").text()).toBe(numberCollapsed);
-      expect(wrapper.contains(selector)).toBeFalsy();
-    });
-  });
+            expect(wrapper.contains(selector)).toBeTruthy();
+        });
 
-  describe("if info about bank and brand is", () => {
-    const bankInfoSelector = ".card__bank-info";
-    const brandsPlaceholderSelector = ".card__brand-placeholder";
+        it("false, then show saved card", () => {
+            const isNew = false;
+            const cardNumber = "5536 9111 2222 3333";
+            const cardInfo = new CardInfo(cardNumber);
+            const wrapper = shallowMount(VueBankCardBase, {
+                propsData: {
+                    ...props,
+                    isNew,
+                    cardNumber,
+                    cardInfo
+                }
+            });
+            const numberCollapsed = "**** 3333";
 
-    describe("defined", () => {
-      const cardNumber = "5536 9111 2222 3333";
-      const cardInfo = new CardInfo(cardNumber);
-      const wrapper = shallowMount(VueBankCardBase, {
-        propsData: {
-          ...props,
-          cardNumber,
-          cardInfo
-        }
-      });
-
-      it("show correct color of bank in background", () => {
-        expect(wrapper.attributes("style")).toBe(
-          "background-color: rgb(51, 51, 51);"
-        );
-      });
-
-      it("show bank and brand logos", () => {
-        expect(wrapper.contains(brandsPlaceholderSelector)).toBeFalsy();
-        expect(wrapper.contains(bankInfoSelector)).toBeTruthy();
-      });
+            expect(wrapper.find(".card__field-mock").text()).toBe(
+                numberCollapsed
+            );
+            expect(wrapper.contains(selector)).toBeFalsy();
+        });
     });
 
-    describe("undefined", () => {
-      const cardNumber = "";
-      const cardInfo = new CardInfo(cardNumber);
-      const wrapper = shallowMount(VueBankCardBase, {
-        propsData: {
-          ...props,
-          cardNumber,
-          cardInfo
-        }
-      });
+    describe("if info about bank and brand is", () => {
+        const bankInfoSelector = ".card__bank-info";
+        const brandsPlaceholderSelector = ".card__brand-placeholder";
 
-      it("show brands placeholder", () => {
-        expect(wrapper.contains(brandsPlaceholderSelector)).toBeTruthy();
-        expect(wrapper.contains(bankInfoSelector)).toBeFalsy();
-      });
+        describe("defined", () => {
+            const cardNumber = "5536 9111 2222 3333";
+            const cardInfo = new CardInfo(cardNumber);
+            const wrapper = shallowMount(VueBankCardBase, {
+                propsData: {
+                    ...props,
+                    cardNumber,
+                    cardInfo
+                }
+            });
 
-      it("show default color in background", () => {
-        expect(wrapper.attributes("style")).toBe(undefined);
-      });
+            it("show correct color of bank in background", () => {
+                expect(wrapper.attributes("style")).toBe(
+                    "background-color: rgb(51, 51, 51);"
+                );
+            });
+
+            it("show bank and brand logos", () => {
+                expect(wrapper.contains(brandsPlaceholderSelector)).toBeFalsy();
+                expect(wrapper.contains(bankInfoSelector)).toBeTruthy();
+            });
+        });
+
+        describe("undefined", () => {
+            const cardNumber = "";
+            const cardInfo = new CardInfo(cardNumber);
+            const wrapper = shallowMount(VueBankCardBase, {
+                propsData: {
+                    ...props,
+                    cardNumber,
+                    cardInfo
+                }
+            });
+
+            it("show brands placeholder", () => {
+                expect(
+                    wrapper.contains(brandsPlaceholderSelector)
+                ).toBeTruthy();
+                expect(wrapper.contains(bankInfoSelector)).toBeFalsy();
+            });
+
+            it("show default color in background", () => {
+                expect(wrapper.attributes("style")).toBe(undefined);
+            });
+        });
+
+        describe("events", () => {
+            it("emit on enter", () => {
+                const formSelector = ".card-inner";
+                wrapper.find(formSelector).trigger("keydown.enter");
+
+                expect(wrapper.emitted().enter).toBeTruthy();
+            });
+        });
     });
-
-    describe("events", () => {
-      it("emit on enter", () => {
-        const formSelector = ".card-inner";
-        wrapper.find(formSelector).trigger("keydown.enter");
-
-        expect(wrapper.emitted().enter).toBeTruthy();
-      });
-    });
-  });
 });
