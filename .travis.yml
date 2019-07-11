@@ -24,7 +24,6 @@ install:
 script:
   - yarn lint
   - yarn test
-  - yarn build
 
 after_success:
   - codecov
@@ -43,7 +42,6 @@ deploy:
   - provider: npm # <https://docs.travis-ci.com/user/deployment/npm/>
     email: $NPM_DEPLOY_EMAIL
     api_key: $NPM_DEPLOY_TOKEN
-    skip_cleanup: true
     on:
       #tags: true
       #branch: master
