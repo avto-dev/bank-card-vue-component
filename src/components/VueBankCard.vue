@@ -11,6 +11,7 @@
             :cvv="cvv"
             :errors="errors"
             :is-reset="isReset"
+            :images-base-path="imagesBasePath"
             @input-card-number="cardNumber = $event"
             @input-exp-date-month="expDateMonth = $event"
             @input-exp-date-year="expDateYear = $event"
@@ -30,6 +31,7 @@
             :cvv="cvv"
             :errors="errors"
             :is-reset="isReset"
+            :images-base-path="imagesBasePath"
             @input-card-number="cardNumber = $event"
             @input-exp-date-month="expDateMonth = $event"
             @input-exp-date-year="expDateYear = $event"
@@ -73,6 +75,11 @@ export default {
         isReset: {
             type: Boolean,
             default: false
+        },
+        imagesBasePath: {
+            type: String,
+            default:
+                "//cdn.jsdelivr.net/gh/avto-dev/bank-card-vue-component@master/public"
         }
     },
     data() {

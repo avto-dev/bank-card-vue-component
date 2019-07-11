@@ -3,7 +3,8 @@ import { CamelToKebab } from "@/utils/helpers";
 export default {
     props: {
         errors: Object,
-        isReset: Boolean
+        isReset: Boolean,
+        imagesBasePath: String
     },
     watch: {
         isReset(value) {
@@ -28,7 +29,7 @@ export default {
          * General path for images
          */
         imagePath() {
-            return "//cdn.jsdelivr.net/gh/avto-dev/bank-card-vue-component@master/public/";
+            return this.imagesBasePath;
         }
     },
     methods: {
