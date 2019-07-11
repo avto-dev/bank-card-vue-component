@@ -103,7 +103,7 @@ export default {
             pckg: pjson,
             imagesPath: "images",
             readmePath:
-                "https://github.com/avto-dev/bank-card-vue-component/blob/dev/README.md",
+                "https://github.com/avto-dev/bank-card-vue-component/blob/master/README.md",
             number: "5536 9111 2222 3333",
             errors: {
                 cardNumber: "Недостаточно средств на карте",

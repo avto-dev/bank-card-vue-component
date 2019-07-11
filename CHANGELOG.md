@@ -4,6 +4,16 @@ All notable changes to this package will be documented in this file.
 
 The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v0.1.6
+
+### Changed
+
+- Changed link to readme.md in demo application
+
+### Fixed 
+
+- Fixed some typos in readme.md
+
 ## v0.1.5
 
 ### Changed

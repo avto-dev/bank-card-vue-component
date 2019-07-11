@@ -119,10 +119,11 @@ export default {
 </script>
 ```
 
-Now path to logotype would be `//your-own-cdn-or-host.com/path/to/assets/banks-logos/ru-sberbank.png`
+Now path to logotype would be `//your-own-cdn-or-host.com/path/to/assets/banks-logos/ru-sberbank.png`.
+
 So you must have two folders in your defined path:
- - `banks-logos` - Must contain bank logos
- - `brands-logos` - Must contain payment systems (VISA, Master card, e.t.c) logos
+ - `banks-logos` - Must contain bank logos;
+ - `brands-logos` - Must contain payment systems (VISA, Master Card, etc) logos.
   
 Name of files with logotypes should be the same that come with this package.
 
