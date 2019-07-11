@@ -45,10 +45,12 @@ destroy: ## Kill all spawned (and probably disowned) docker-containers
 clean: ## Make some clean
 	rm -Rf "$(shell pwd)/coverage"
 
-build: clean ## Build component bundle (and docker image)
+build: clean ## Build component bundle
+	rm -Rf "$(shell pwd)/dist"
 	$(docker_bin) run $(RUN_ARGS) $(RUN_INTERACTIVE) -e "NODE_ENV=production" "$(NODE_IMAGE)" yarn build
 
-build-demo: clean ## Build demo application bundle (and docker image)
+build-demo: clean ## Build demo application bundle
+	rm -Rf "$(shell pwd)/dist-demo"
 	$(docker_bin) run $(RUN_ARGS) $(RUN_INTERACTIVE) -e "NODE_ENV=production" "$(NODE_IMAGE)" yarn build:demo
 
 pull: ## Pulling newer versions of used docker images

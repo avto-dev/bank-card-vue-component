@@ -2,7 +2,7 @@ let buildConfig = {
     productionSourceMap: false
 };
 
-if (process.env.DEMO) {
+if (process.env.IS_DEMO) {
     buildConfig.publicPath = "";
     buildConfig.chainWebpack = config => {
         config.plugin("html").tap(args => {
