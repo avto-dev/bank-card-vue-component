@@ -43,9 +43,6 @@ deploy:
 
   - provider: releases
     api_key: $GITHUB_TOKEN
-    file:
-      - dist/*
-      - src/*
     skip_cleanup: true
     draft: true
     on:
