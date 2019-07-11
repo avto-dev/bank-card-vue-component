@@ -3,6 +3,7 @@
 [![Version (npm)][badge_npm_version]][link_npm]
 ![Vue.js version][badge_vue_version]
 [![Build Status][badge_build_status]][link_build_status]
+[![Coverage][badge_coverage]][link_coverage]
 [![License][badge_license]][link_license]
 
 > Vue Component for user data entry of the bank card
@@ -114,6 +115,7 @@ This is open-sourced software licensed under the [MIT License][link_license].
 [badge_npm_version]:https://img.shields.io/npm/v/@avto-dev/bank-card-vue-component.svg?maxAge=180
 [badge_vue_version]:https://img.shields.io/github/package-json/dependency-version/avto-dev/bank-card-vue-component/vue.svg
 [badge_build_status]:https://travis-ci.org/avto-dev/bank-card-vue-component.svg?branch=master
+[badge_coverage]:https://img.shields.io/codecov/c/github/avto-dev/bank-card-vue-component/master.svg?maxAge=60
 [badge_release_date]:https://img.shields.io/github/release-date/avto-dev/bank-card-vue-component.svg?style=flat-square&maxAge=180
 [badge_commits_since_release]:https://img.shields.io/github/commits-since/avto-dev/bank-card-vue-component/latest.svg?style=flat-square&maxAge=180
 [badge_issues]:https://img.shields.io/github/issues/avto-dev/bank-card-vue-component.svg?style=flat-square&maxAge=180
@@ -125,6 +127,7 @@ This is open-sourced software licensed under the [MIT License][link_license].
 [link_issues]:https://github.com/avto-dev/bank-card-vue-component/issues
 [link_pulls]:https://github.com/avto-dev/bank-card-vue-component/pulls
 [link_build_status]:https://travis-ci.org/avto-dev/bank-card-vue-component
+[link_coverage]:https://codecov.io/gh/avto-dev/bank-card-vue-component/
 [link_npm]:https://www.npmjs.com/package/@avto-dev/bank-card-vue-component
 [link_create_issue]:https://github.com/avto-dev/bank-card-vue-component/issues/new/choose
 [link_license]:https://github.com/avto-dev/bank-card-vue-component/blob/master/LICENSE
