@@ -4,16 +4,27 @@ All notable changes to this package will be documented in this file.
 
 The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v0.1.4
+
+### Changed
+
+- Images moved back to public folder
+- Changed dynamic path for images
+
+### Added
+
+- Added notes about base images path in readme file
+
 ## v0.1.3
 
-## Changed
+### Changed
 
 - Images moved from /public to /src/assets dir
 - Changed build config for including content of /src/assets/images dir in any dist directory (for demo app and lib)
 
 ## v0.1.2
 
-## Added
+### Added
 
 - Docker integrated
 - Travis integrated
@@ -23,7 +34,7 @@ The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 - Image base path property in component
 - Added test versions in package and changelog
 
-## Changed
+### Changed
 
 - Compressed all images
 - Update README

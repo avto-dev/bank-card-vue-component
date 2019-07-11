@@ -99,7 +99,7 @@ export default {
     data() {
         return {
             pckg: pjson,
-            imagesPath: "",
+            imagesPath: "images",
             readmePath:
                 "https://github.com/avto-dev/bank-card-vue-component/blob/dev/README.md",
             number: "5536 9111 2222 3333",

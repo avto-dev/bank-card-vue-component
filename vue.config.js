@@ -17,7 +17,7 @@ let buildConfig = {
         config.plugin("copy").use(require("copy-webpack-plugin"), [
             [
                 {
-                    from: path.resolve("./src/assets/images"),
+                    from: path.resolve("./public/images"),
                     to: path.resolve(outputDir, "images"),
                     toType: "dir",
                     ignore: [".DS_Store"]

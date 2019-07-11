@@ -47,7 +47,7 @@ Name      | Required | Type           | Default | Description
 `isNew`   | no       | Boolean        | `false` | View card controller: saved or new
 `errors`  | no       | Object         | `{}`    | Errors from outside the component. From server etc.
 `isReset` | no       | Boolean        | `false` | Trigger for reset form
-`imageBasePath` | no | String | [default](`https://cdn.jsdelivr.net/gh/avto-dev/bank-card-vue-component@master/public/`) | Base path for images
+`imagesBasePath` | no | String | [default](`https://cdn.jsdelivr.net/gh/avto-dev/bank-card-vue-component@master/public/images`) | Base path and banks or payment systems logotypes
 
 ## Events
 
@@ -96,6 +96,35 @@ export default {
 }
 </script>
 ```
+
+By default banks logos provided from CDN `https://cdn.jsdelivr.net/gh/avto-dev/bank-card-vue-component@%package_version%/public/images/%image_path%`.
+
+If you want to use your own logotypes you can pass base images path by prop `images-base-path`. For example:
+```vue
+<template>
+  <VueBankCard
+    is-new
+    :images-base-path="imagesPath"
+  ></VueBankCard>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      imagesPath: "//your-own-cdn-or-host.com/path/to/assets"
+    }
+  },
+}
+</script>
+```
+
+Now path to logotype would be `//your-own-cdn-or-host.com/path/to/assets/banks-logos/ru-sberbank.png`
+So you must have two folders in your defined path:
+ - `banks-logos` - Must contain bank logos
+ - `brands-logos` - Must contain payment systems (VISA, Master card, e.t.c) logos
+  
+Name of files with logotypes should be the same that come with this package.
 
 ## Testing
 

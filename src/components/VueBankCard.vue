@@ -79,7 +79,7 @@ export default {
         imagesBasePath: {
             type: String,
             default:
-                "//cdn.jsdelivr.net/gh/avto-dev/bank-card-vue-component@master/public"
+                "//cdn.jsdelivr.net/gh/avto-dev/bank-card-vue-component@master/public/images"
         }
     },
     data() {
