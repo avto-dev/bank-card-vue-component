@@ -4,7 +4,7 @@
         <ul>
             <li>
                 <h3>New base card</h3>
-                <VueBankCard is-new />
+                <VueBankCard :images-base-path="imagesPath" is-new />
 
                 <div class="highlight">
                     <!-- eslint-disable -->
@@ -18,7 +18,7 @@
             </li>
             <li>
                 <h3>Saved base card</h3>
-                <VueBankCard :number="number" />
+                <VueBankCard :images-base-path="imagesPath" :number="number" />
 
                 <div class="highlight">
                     <!-- eslint-disable -->
@@ -42,7 +42,7 @@
             </li>
             <li>
                 <h3>New small card</h3>
-                <VueBankCard is-new is-small />
+                <VueBankCard :images-base-path="imagesPath" is-new is-small />
 
                 <div class="highlight">
                     <!-- eslint-disable -->
@@ -57,7 +57,11 @@
             </li>
             <li>
                 <h3>Saved small card</h3>
-                <VueBankCard is-small :number="number" />
+                <VueBankCard
+                    :images-base-path="imagesPath"
+                    is-small
+                    :number="number"
+                />
 
                 <div class="highlight">
                     <!-- eslint-disable -->
@@ -95,6 +99,7 @@ export default {
     data() {
         return {
             pckg: pjson,
+            imagesPath: "",
             readmePath:
                 "https://github.com/avto-dev/bank-card-vue-component/blob/dev/README.md",
             number: "5536 9111 2222 3333",

@@ -1,5 +1,9 @@
 import Card from "@/services/card-info/card";
 
+const markdownContext = require("@/../CHANGELOG.md");
+const regex = new RegExp("^##[ \\[]+[vV]?(\\d+\\.\\d+\\.\\d+).*$", "m");
+console.log(regex.test(markdownContext));
+
 describe("Card", () => {
     it("has default properties", () => {
         const cardDefault = {
