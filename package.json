@@ -27,7 +27,7 @@
         "build": "vue-cli-service build --target lib --name bank-card-vue-component ./src/index.js",
         "lint": "vue-cli-service lint --no-fix",
         "lint:fix": "vue-cli-service lint",
-        "test": "jest"
+        "test": "jest --coverage"
     },
     "dependencies": {
         "vue": "^2.6.10"

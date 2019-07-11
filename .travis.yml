@@ -18,11 +18,15 @@ branches:
     - /analysis-.*/
 
 install:
+  - npm install -g codecov
   - yarn install
 
 script:
   - yarn lint
   - yarn test
+
+after_success:
+  - codecov
 
 deploy:
   - provider: pages # <https://docs.travis-ci.com/user/deployment/pages/>
@@ -31,14 +35,14 @@ deploy:
     github_token: $GITHUB_TOKEN
     local_dir: demo
     on:
-      tags: true
-      branch: master
-      #branch: dev
+      #tags: true
+      #branch: master
+      branch: dev
 
   - provider: npm # <https://docs.travis-ci.com/user/deployment/npm/>
     email: $NPM_DEPLOY_EMAIL
     api_key: $NPM_DEPLOY_TOKEN
     on:
-      tags: true
-      branch: master
-      #branch: dev
+      #tags: true
+      #branch: master
+      branch: dev
