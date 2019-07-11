@@ -1,11 +1,14 @@
-module.exports = {
-    productionSourceMap: false,
-    chainWebpack: config => {
+let buildConfig = {
+    productionSourceMap: false
+};
+
+if (process.env.DEMO) {
+    buildConfig.chainWebpack = config => {
         config.plugin("html").tap(args => {
-            if (process.env.DEMO) {
-                args[0].template = "./demo/index.html";
-            }
+            args[0].template = "./demo/index.html";
             return args;
         });
-    }
-};
+    };
+}
+
+module.exports = buildConfig;
