@@ -75,7 +75,7 @@
                     />
 
                     <button
-                        v-if="!isFieldEmpty('cardNumber')"
+                        v-if="isNew && !isFieldEmpty('cardNumber')"
                         class="card__field-icon"
                         @click="onReset"
                     >

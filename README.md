@@ -33,7 +33,7 @@ Vue.component("VueBankCard", VueBankCard)
 ## Basic usage
 
 ```vue
-<VueBankCard is-small is-new />
+<VueBankCard is-new />
 ```
 
 ## Properties
@@ -92,6 +92,15 @@ export default {
   }
 }
 </script>
+```
+
+## Testing
+
+For package testing we use `jest` framework and `docker-ce` + `docker-compose` as develop environment. So, just write into your terminal after repository cloning:
+
+```shell
+$ make install
+$ make test
 ```
 
 ## Changes log

@@ -1,9 +1,6 @@
 <template>
     <div id="app">
-        <!--<Card is-new is-small />-->
-        <!--<Card is-new is-small :errors="errors" />-->
-        <!--<Card :number="number" />-->
-        <VueBankCard is-new :is-reset="reset" @reset="reset = $event" />
+        <VueBankCard number="5536 9111 2222 3333"/>
     </div>
 </template>
 
