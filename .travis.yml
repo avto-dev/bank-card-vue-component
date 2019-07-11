@@ -41,6 +41,18 @@ deploy:
       #branch: master
       branch: dev
 
+  - provider: releases
+    api_key: $GITHUB_TOKEN
+    file:
+      - dist/*
+      - src/*
+    skip_cleanup: true
+    draft: true
+    on:
+      #tags: true
+      #branch: master
+      branch: dev
+
   - provider: npm # <https://docs.travis-ci.com/user/deployment/npm/>
     email: $NPM_DEPLOY_EMAIL
     api_key: $NPM_DEPLOY_TOKEN
