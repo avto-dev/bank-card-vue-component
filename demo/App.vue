@@ -86,8 +86,10 @@
             </li>
         </ul>
 
-        <h2>v{{ pckg.version }}</h2>
-        <p>Documentation can be found <a :href="readmePath">here</a></p>
+        <p>
+            v{{ pckg.version }} | Documentation can be found
+            <a :href="readmePath">here</a>
+        </p>
     </div>
 </template>
 
