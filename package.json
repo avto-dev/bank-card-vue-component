@@ -1,6 +1,6 @@
 {
     "name": "@avto-dev/bank-card-vue-component",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Vue Component - bank card",
     "author": "https://github.com/avto-dev",
     "license": "MIT",
@@ -17,14 +17,15 @@
         "card"
     ],
     "files": [
-        "dist"
+        "dist",
+        "src"
     ],
     "publishConfig": {
         "access": "public"
     },
     "scripts": {
         "watch": "vue-cli-service serve ./demo/index.js",
-        "build": "vue-cli-service build --target lib --name bank-card-vue-component ./src/index.js",
+        "build": "vue-cli-service build --target lib ./src/index.js",
         "lint": "vue-cli-service lint --no-fix",
         "lint:fix": "vue-cli-service lint",
         "test": "jest --coverage"
