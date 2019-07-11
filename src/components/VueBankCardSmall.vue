@@ -309,7 +309,7 @@ export default {
                 ? brandLogo
                 : cardIcon;
 
-            return `${this.imagePath}/images/${dynamicPath}`;
+            return `${this.imagesBasePath}/images/${dynamicPath}`;
         },
         /**
          * CCS classes for card number element

@@ -47,6 +47,7 @@ Name      | Required | Type           | Default | Description
 `isNew`   | no       | Boolean        | `false` | View card controller: saved or new
 `errors`  | no       | Object         | `{}`    | Errors from outside the component. From server etc.
 `isReset` | no       | Boolean        | `false` | Trigger for reset form
+`imageBasePath` | no | String | [default](`https://cdn.jsdelivr.net/gh/avto-dev/bank-card-vue-component@master/public/`) | Base path for images
 
 ## Events
 

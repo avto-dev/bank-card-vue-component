@@ -4,6 +4,23 @@ All notable changes to this package will be documented in this file.
 
 The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v0.1.2
+
+## Added
+
+- Docker integrated
+- Travis integrated
+- Npm package publish
+- Demo page
+- Deploy demo application to gh-pages branch
+- Image base path property in component
+- Added test versions in package and changelog
+
+## Changed
+
+- Compressed all images
+- Update README
+
 ## v0.0.17
 
 ### Added

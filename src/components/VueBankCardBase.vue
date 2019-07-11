@@ -18,7 +18,7 @@
                             <img
                                 class="card__brand-logo"
                                 :src="
-                                    `${imagePath}/images/brands-logos/${brand.alias}-colored.png`
+                                    `${imagesBasePath}/images/brands-logos/${brand.alias}-colored.png`
                                 "
                                 :alt="brand.name"
                             />
@@ -30,7 +30,7 @@
                             <img
                                 class="card__bank-logo"
                                 :src="
-                                    `${imagePath}/images/${cardInfo.bankLogo}`
+                                    `${imagesBasePath}/images/${cardInfo.bankLogo}`
                                 "
                                 :alt="cardInfo.bankName"
                             />
@@ -40,7 +40,7 @@
                             <img
                                 class="card__brand-logo"
                                 :src="
-                                    `${imagePath}/images/${cardInfo.brandLogo}`
+                                    `${imagesBasePath}/images/${cardInfo.brandLogo}`
                                 "
                                 :alt="cardInfo.brandName"
                             />
