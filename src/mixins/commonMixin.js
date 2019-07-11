@@ -24,12 +24,6 @@ export default {
             } else {
                 return "";
             }
-        },
-        /**
-         * General path for images
-         */
-        imagePath() {
-            return this.imagesBasePath;
         }
     },
     methods: {

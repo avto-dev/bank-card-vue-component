@@ -52,6 +52,7 @@
         "eslint-plugin-vue": "^5.0.0",
         "jest": "^24.8.0",
         "jest-transform-stub": "^2.0.0",
+        "markdown-loader-jest": "^0.1.1",
         "node-sass": "^4.9.0",
         "sass-loader": "^7.1.0",
         "vue-jest": "^3.0.4",
