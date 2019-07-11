@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <VueBankCard number="5536 9111 2222 3333"/>
+        <VueBankCard number="5536 9111 2222 3333" />
     </div>
 </template>
 
