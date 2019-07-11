@@ -24,8 +24,8 @@ You can import the library and styles, then use it as a Vue plugin to enable the
 
 ```js
 import Vue from "vue"
-import VueBankCard from "bank-card-vue-component"
-import "bank-card-vue-component/dist/bank-card-vue-component.css"
+import VueBankCard from "@avto-dev/bank-card-vue-component"
+import "@avto-dev/bank-card-vue-component/dist/bank-card-vue-component.css"
 
 Vue.component("VueBankCard", VueBankCard)
 ```

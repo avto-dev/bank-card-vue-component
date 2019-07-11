@@ -25,7 +25,8 @@
     },
     "scripts": {
         "watch": "vue-cli-service serve ./demo/index.js",
-        "build": "vue-cli-service build --target lib ./src/index.js",
+        "build": "vue-cli-service build --name bank-card-vue-component --target lib ./src/index.js",
+        "build:demo":  "DEMO=true vue-cli-service build --name bank-card-vue-component-demo --target app --dest ./dist-demo ./demo/index.js",
         "lint": "vue-cli-service lint --no-fix",
         "lint:fix": "vue-cli-service lint",
         "test": "jest --coverage"

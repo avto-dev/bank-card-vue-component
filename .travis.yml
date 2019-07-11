@@ -25,6 +25,7 @@ script:
   - yarn lint
   - yarn test
   - yarn build
+  - yarn build:demo
 
 after_success:
   - codecov
@@ -34,7 +35,7 @@ deploy:
     keep_history: true
     skip_cleanup: true
     github_token: $GITHUB_TOKEN
-    local_dir: demo
+    local_dir: dist-demo
     on:
       #tags: true
       #branch: master

@@ -10,6 +10,7 @@
 
 ## Dist
 /dist
+/dist-demo
 
 ## Temp dirs & trash
 /npm-debug.log

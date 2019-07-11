@@ -28,7 +28,7 @@ export default {
          * General path for images
          */
         imagePath() {
-            return process.env.VUE_APP_IMAGE_CDN;
+            return "//cdn.jsdelivr.net/gh/avto-dev/bank-card-vue-component@master/public/";
         }
     },
     methods: {
