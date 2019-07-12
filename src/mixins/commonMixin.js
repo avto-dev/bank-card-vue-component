@@ -2,11 +2,61 @@ import { camelToKebab } from "@/utils/helpers";
 
 export default {
     props: {
+        isNew: Boolean,
+        cardInfo: {
+            type: Object,
+            default: null
+        },
+        number: {
+            type: String,
+            required: true
+        },
+        name: {
+            type: String,
+            required: true
+        },
+        month: {
+            type: String,
+            required: true
+        },
+        year: {
+            type: String,
+            required: true
+        },
+        code: {
+            type: String,
+            required: true
+        },
         errors: Object,
         isReset: Boolean,
         imagesBasePath: String
     },
+    data() {
+        return {
+            cardNumber: this.number,
+            cardHolderName: this.name,
+            expDateMonth: this.month,
+            expDateYear: this.year,
+            cvv: this.code,
+            reseting: false
+        };
+    },
     watch: {
+        cardNumber(value, oldValue) {
+            console.log("val", value);
+            console.log("old", oldValue);
+            console.log(this.reseting);
+            this.watchFields({ value, oldValue, type: "cardNumber" });
+        },
+        expDateMonth(value, oldValue) {
+            this.watchFields({ value, oldValue, type: "expDateMonth" });
+        },
+        expDateYear(value, oldValue) {
+            this.watchFields({ value, oldValue, type: "expDateYear" });
+        },
+        cvv(value, oldValue) {
+            this.watchFields({ value, oldValue, type: "cvv" });
+        },
         isReset(value) {
             value && this.resetForm();
         }
@@ -46,6 +96,7 @@ export default {
                 const field = e.target.dataset.cp;
                 const value = "0" + e.target.value;
 
+                this[field] = value;
                 this.$emit(`input-${camelToKebab(field)}`, value);
             }
         },
@@ -68,7 +119,7 @@ export default {
         clearErrors(type) {
             this.$v[type].$reset();
             const errors = this.errors;
-            delete errors[type];
+            errors[type] && delete errors[type];
             this.$emit("clear-errors", errors);
         },
         /**
@@ -84,12 +135,52 @@ export default {
          * Reset all fields in form
          */
         resetForm() {
+            this.reseting = true;
             for (const field of this.fields) {
-                const value = field.ref;
-                this.$emit(`input-${camelToKebab(value)}`, "");
+                this[field.ref] = "";
             }
             this.isSmall && (this.cardNumberCollapsed = false);
             this.$emit("reset", false);
+            this.reseting = false;
+        },
+        /**
+         * Moving caret to the next or previous field
+         * @param { String } direction - Direction of moving
+         * @param { String } current - Key of element in model and data
+         */
+        moveCaretTo(direction, current) {
+            let lengthCondition, orderItemCondition, goToItemIndex;
+
+            if (direction === "forward") {
+                lengthCondition = this.isFieldFull(current);
+                orderItemCondition = this.isItemLast(current, this.fields);
+                goToItemIndex = this.itemIndex(current, this.fields) + 1;
+            } else if (direction === "backward") {
+                lengthCondition = this[current].length === 0;
+                orderItemCondition = this.isItemFirst(current, this.fields);
+                goToItemIndex = this.itemIndex(current, this.fields) - 1;
+            }
+
+            if (lengthCondition && !orderItemCondition) {
+                const currentItem = this.fields.find(
+                    field => field.ref === current
+                );
+                const goToItem = this.fields[goToItemIndex];
+
+                currentItem.collapsible && (this[`${current}Collapsed`] = true);
+                goToItem.collapsible &&
+                    (this[`${goToItem.ref}Collapsed`] = false);
+
+                this.focusOnField(goToItem.ref);
+            }
+        },
+        watchFields({ value, oldValue, type }) {
+            const direction =
+                value.toString().length > oldValue.toString().length
+                    ? "forward"
+                    : "backward";
+            this.$emit(`input-${camelToKebab(type)}`, value);
+            !this.reseting && this.moveCaretTo(direction, type);
         }
     }
 };
