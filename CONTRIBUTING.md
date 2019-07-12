@@ -44,6 +44,8 @@ $ make build-demo
 $ make test
  # kill all spawned (and probably disowned) docker-containers
 $ make destroy
+ # install (reinstall) git hooks (required after repository cloning)
+$ make git-hooks
  # show all available Makefile targets
 $ make help 
 ```
@@ -51,6 +53,7 @@ $ make help
  ## How to develop
 
 1. Make new branch from `master`
+2. Install git-hooks using `$ make git-hooks` command
 2. Developing 
 3. Write tests for your new feature in `/tests`
 4. Add all changes in `CHANGELOG.md` 
