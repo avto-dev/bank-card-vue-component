@@ -6,6 +6,11 @@ export default {
         isReset: Boolean,
         imagesBasePath: String
     },
+    data() {
+        return {
+            isCvvSecured: false
+        };
+    },
     watch: {
         isReset(value) {
             value && this.resetForm();
@@ -70,15 +75,6 @@ export default {
             const errors = this.errors;
             delete errors[type];
             this.$emit("clear-errors", errors);
-        },
-        /**
-         * Toggling type of field
-         * @params {Object} e - Event object
-         */
-        toggleType(e) {
-            let type = this.$parent.isSmall ? "tel" : "text";
-            if (e.target.type === type) type = "password";
-            e.target.type = type;
         },
         /**
          * Reset all fields in form

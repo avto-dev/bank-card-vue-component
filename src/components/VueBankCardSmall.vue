@@ -192,7 +192,7 @@
 
                     <input
                         class="card__field"
-                        type="password"
+                        type="tel"
                         ref="cvv"
                         data-cp="cvv"
                         v-mask="cvvMask"
@@ -201,12 +201,12 @@
                         @input="$emit('input-cvv', $event.target.value)"
                         @keydown.delete="moveCaretTo('back', 'cvv')"
                         @focus="
-                            toggleType($event);
                             clearErrors('cvv');
+                            isCvvSecured = false;
                         "
                         @blur="
-                            toggleType($event);
                             $v.cvv.$touch();
+                            isCvvSecured = true;
                         "
                     />
 
@@ -366,6 +366,10 @@ export default {
                 {
                     "card__field-wrapper--invalid":
                         this.$v.cvv.$error || !!this.errorFiltered("cvv")
+                },
+                {
+                    "card__field-wrapper--secured":
+                        this.isCvvSecured && !this.isFieldEmpty("cvv")
                 }
             ];
         }
@@ -424,6 +428,7 @@ export default {
 <style lang="scss" scoped>
 $base-font-family: "PT Sans", Arial, sans-serif;
 $field-font-family: "Roboto Mono", Arial, sans-serif;
+$security-font-family: "text-security-disc";
 
 $base-color: #343434;
 $invalid-color: #df4242;
@@ -591,6 +596,12 @@ $invalid-color: #df4242;
                             color: $invalid-color;
                         }
                     }
+                }
+            }
+
+            &--secured {
+                .card__field {
+                    font-family: $security-font-family;
                 }
             }
         }

@@ -131,6 +131,19 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=PT+Sans&display=swap&subset=cyrillic");
 @import url("https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap&subset=cyrillic");
 
+$font-path: "https://cdn.jsdelivr.net/gh/noppa/text-security@master/dist/";
+
+@font-face {
+    font-family: "text-security-disc";
+    src: url("#{$font-path}text-security-disc.eot");
+    src: url("#{$font-path}text-security-disc.eot?#iefix")
+            format("embedded-opentype"),
+        url("#{$font-path}text-security-disc.woff2") format("woff2"),
+        url("#{$font-path}text-security-disc.woff") format("woff"),
+        url("#{$font-path}text-security-disc.ttf") format("truetype"),
+        url("#{$font-path}text-security-disc.svg#text-security") format("svg");
+}
+
 .vue-bank-card__wrapper {
     width: 100%;
 }

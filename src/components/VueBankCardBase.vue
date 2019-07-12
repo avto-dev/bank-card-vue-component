@@ -188,22 +188,28 @@
                     </p>
 
                     <input
-                        type="password"
+                        type="text"
                         data-cp="cvv"
                         ref="cvv"
                         v-mask="cvvMask"
                         :value="cvv"
                         :placeholder="cardInfo.codeName || 'CVV'"
-                        :class="fieldCssClasses('cvv')"
+                        :class="[
+                            ...fieldCssClasses('cvv'),
+                            {
+                                'card__field--secured':
+                                    isCvvSecured && !isFieldEmpty('cvv')
+                            }
+                        ]"
                         @input="$emit('input-cvv', $event.target.value)"
                         @keydown.delete="moveCaretTo('back', 'cvv')"
                         @focus="
-                            toggleType($event);
                             clearErrors('cvv');
+                            isCvvSecured = false;
                         "
                         @blur="
-                            toggleType($event);
                             $v.cvv.$touch();
+                            isCvvSecured = true;
                         "
                     />
 
@@ -329,6 +335,7 @@ export default {
 <style lang="scss" scoped>
 $base-font-family: "PT Sans", Arial, sans-serif;
 $field-font-family: "Roboto Mono", Arial, sans-serif;
+$security-font-family: "text-security-disc";
 
 $card-bg-color: #e5e5e5;
 
@@ -416,6 +423,10 @@ $field-invalid-outline-color: #df4242;
 
         &--invalid {
             border-color: $field-invalid-outline-color;
+        }
+
+        &--secured {
+            font-family: $security-font-family;
         }
 
         &-label {
