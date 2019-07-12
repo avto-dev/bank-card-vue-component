@@ -4,6 +4,17 @@ All notable changes to this package will be documented in this file.
 
 The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v0.1.7
+
+### Changed
+
+- Switch running deploy stage for `TravisCI` only for `master` branch and pushes with tags
+- Return additional content of `CONTRIBUTING.md` file
+- Some changes in `README.md`
+- Ignoring `./dist/demo.html` file for npm package
+- Make control of npm package content using `.npmignore` instead of `files` section in `package.json`
+- Add defining needed env vars in build config
+
 ## v0.1.6
 
 ### Changed

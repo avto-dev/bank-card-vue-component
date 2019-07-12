@@ -96,8 +96,9 @@ export default {
 }
 </script>
 ```
+## Use your own logotypes
 
-By default banks logos provided from CDN `https://cdn.jsdelivr.net/gh/avto-dev/bank-card-vue-component@%package_version%/public/images/%image_path%`.
+By default banks logos provided from CDN: `https://cdn.jsdelivr.net/gh/avto-dev/bank-card-vue-component@%package_version%/public/images/%image_path%`.
 
 If you want to use your own logotypes you can pass base images path by prop `images-base-path`. For example:
 ```vue

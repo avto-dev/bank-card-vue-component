@@ -87,20 +87,20 @@
         </ul>
 
         <p>
-            v{{ pckg.version }} | Documentation can be found
+            v{{ componentVersion }} | Documentation can be found
             <a :href="readmePath">here</a>
         </p>
     </div>
 </template>
 
 <script>
-import pjson from "../package";
-
 export default {
     name: "App",
     data() {
         return {
-            pckg: pjson,
+            componentVersion: String(
+                process.env.BANK_CARD_VUE_COMPONENT_VERSION
+            ),
             imagesPath: "images",
             readmePath:
                 "https://github.com/avto-dev/bank-card-vue-component/blob/master/README.md",
