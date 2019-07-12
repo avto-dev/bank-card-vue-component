@@ -16,7 +16,6 @@ The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ### Changed
 
-- Switch running deploy stage for `TravisCI` only for `master` branch and pushes with tags
 - Return additional content of `CONTRIBUTING.md` file
 - Some changes in `README.md`
 - Ignoring `./dist/demo.html` file for npm package

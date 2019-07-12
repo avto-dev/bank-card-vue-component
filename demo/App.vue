@@ -75,7 +75,10 @@
                         <span class="pl-k">export</span>&nbsp;<span class="pl-sl">default</span> {<br />
                         &nbsp;&nbsp;<span class="pl-e">data</span>() { <br />
                         &nbsp;&nbsp;&nbsp;&nbsp;<span class="pl-k">return</span> { <br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number<span class="pl-k">:</span> <span class="pl-pds">"5536 9111 2222 3333"</span> <br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;number<span class="pl-k">:</span> {<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;first_six: <span class="pl-pds">"553691"</span>, <br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;last_four: <span class="pl-pds">"3333"</span> <br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br />
                         &nbsp;&nbsp;&nbsp;&nbsp;}; <br />
                         &nbsp;&nbsp;} <br />
                         } <br />
@@ -104,7 +107,10 @@ export default {
             imagesPath: "images",
             readmePath:
                 "https://github.com/avto-dev/bank-card-vue-component/blob/master/README.md",
-            number: "5536 9111 2222 3333",
+            number: {
+                first_six: "553691",
+                last_four: "3333"
+            },
             errors: {
                 cardNumber: "Недостаточно средств на карте",
                 expDateMonth: "Карта просрочена",
@@ -145,10 +151,10 @@ ul li {
 .highlight {
     margin: 15px 0;
     padding: 16px;
+    border-radius: 3px;
     background-color: #f6f8fa;
 
-    pre {
-        border-radius: 3px;
+    code {
         word-wrap: normal;
         word-break: normal;
     }

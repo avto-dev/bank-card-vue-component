@@ -1,4 +1,4 @@
-import { CamelToKebab } from "@/utils/helpers";
+import { camelToKebab } from "@/utils/helpers";
 
 export default {
     props: {
@@ -46,7 +46,7 @@ export default {
                 const field = e.target.dataset.cp;
                 const value = "0" + e.target.value;
 
-                this.$emit(`input-${CamelToKebab(field)}`, value);
+                this.$emit(`input-${camelToKebab(field)}`, value);
             }
         },
         /**
@@ -86,7 +86,7 @@ export default {
         resetForm() {
             for (const field of this.fields) {
                 const value = field.ref;
-                this.$emit(`input-${CamelToKebab(value)}`, "");
+                this.$emit(`input-${camelToKebab(value)}`, "");
             }
             this.isSmall && (this.cardNumberCollapsed = false);
             this.$emit("reset", false);
