@@ -16,10 +16,6 @@
         "bank",
         "card"
     ],
-    "files": [
-        "dist",
-        "src"
-    ],
     "publishConfig": {
         "access": "public"
     },
