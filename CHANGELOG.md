@@ -4,6 +4,101 @@ All notable changes to this package will be documented in this file.
 
 The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.0.0
+
+- Initial release
+
+## v0.1.11
+
+### Changed
+
+- Update securing cvv field from changing types to changing ccs classes with text-secure-font
+- Changed "stars" to "bull" in collapsed number
+- Fix double input events
+- Optimize components and mixins
+- Fix focus on fields after reset
+
+## v0.1.10
+
+### Deprecated
+
+- Changed images paths to dev, while there is not release
+
+## v0.1.9
+
+### Fixed
+
+- Fix paths while installing git hooks.
+
+## v0.1.8
+
+### Added
+
+- Added git hooks
+- Added Makefile target for installing git-hooks
+- Added info about git-hooks to `CONTRIBUTING.md`
+
+## v0.1.7
+
+### Changed
+
+- Return additional content of `CONTRIBUTING.md` file
+- Some changes in `README.md`
+- Ignoring `./dist/demo.html` file for npm package
+- Make control of npm package content using `.npmignore` instead of `files` section in `package.json`
+- Add defining needed env vars in build config
+
+## v0.1.6
+
+### Changed
+
+- Changed link to readme.md in demo application
+
+### Fixed 
+
+- Fixed some typos in readme.md
+
+## v0.1.5
+
+### Changed
+
+- Change version number position in demo app
+
+## v0.1.4
+
+### Changed
+
+- Images moved back to public folder
+- Changed dynamic path for images
+
+### Added
+
+- Added notes about base images path in readme file
+
+## v0.1.3
+
+### Changed
+
+- Images moved from /public to /src/assets dir
+- Changed build config for including content of /src/assets/images dir in any dist directory (for demo app and lib)
+
+## v0.1.2
+
+### Added
+
+- Docker integrated
+- Travis integrated
+- Npm package publish
+- Demo page
+- Deploy demo application to gh-pages branch
+- Image base path property in component
+- Added test versions in package and changelog
+
+### Changed
+
+- Compressed all images
+- Update README
+
 ## v0.0.17
 
 ### Added

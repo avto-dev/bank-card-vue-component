@@ -18,7 +18,7 @@
                             <img
                                 class="card__brand-logo"
                                 :src="
-                                    `${imagePath}/images/brands-logos/${brand.alias}-colored.png`
+                                    `${imagesBasePath}/brands-logos/${brand.alias}-colored.png`
                                 "
                                 :alt="brand.name"
                             />
@@ -29,9 +29,7 @@
                         <div class="card__bank-logo-wrapper">
                             <img
                                 class="card__bank-logo"
-                                :src="
-                                    `${imagePath}/images/${cardInfo.bankLogo}`
-                                "
+                                :src="`${imagesBasePath}/${cardInfo.bankLogo}`"
                                 :alt="cardInfo.bankName"
                             />
                         </div>
@@ -39,9 +37,7 @@
                         <div class="card__brand-logo-wrapper">
                             <img
                                 class="card__brand-logo"
-                                :src="
-                                    `${imagePath}/images/${cardInfo.brandLogo}`
-                                "
+                                :src="`${imagesBasePath}/${cardInfo.brandLogo}`"
                                 :alt="cardInfo.brandName"
                             />
                         </div>
@@ -59,11 +55,9 @@
                         ref="cardNumber"
                         placeholder="0000 0000 0000 0000"
                         v-mask="cardNumberMask"
-                        :value="cardNumber"
+                        v-model="cardNumber"
                         :class="fieldCssClasses('cardNumber')"
                         :readonly="!isNew"
-                        @input="$emit('input-card-number', $event.target.value)"
-                        @keydown.delete="moveCaretTo('back', 'cardNumber')"
                         @focus="clearErrors('cardNumber')"
                         @blur="$v.cardNumber.$touch()"
                     />
@@ -75,7 +69,7 @@
                     />
 
                     <button
-                        v-if="!isFieldEmpty('cardNumber')"
+                        v-if="isNew && !isFieldEmpty('cardNumber')"
                         class="card__field-icon"
                         @click="onReset"
                     >
@@ -110,17 +104,8 @@
                                 ref="expDateMonth"
                                 placeholder="ММ"
                                 v-mask="expDateMonthMask"
-                                :value="expDateMonth"
+                                v-model="expDateMonth"
                                 :class="fieldCssClasses('expDateMonth')"
-                                @input="
-                                    $emit(
-                                        'input-exp-date-month',
-                                        $event.target.value
-                                    )
-                                "
-                                @keydown.delete="
-                                    moveCaretTo('back', 'expDateMonth')
-                                "
                                 @focus="clearErrors('expDateMonth')"
                                 @blur="
                                     autocompleteDate($event);
@@ -143,17 +128,8 @@
                                 ref="expDateYear"
                                 placeholder="ГГ"
                                 v-mask="expDateYearMask"
-                                :value="expDateYear"
+                                v-model="expDateYear"
                                 :class="fieldCssClasses('expDateYear')"
-                                @input="
-                                    $emit(
-                                        'input-exp-date-year',
-                                        $event.target.value
-                                    )
-                                "
-                                @keydown.delete="
-                                    moveCaretTo('back', 'expDateYear')
-                                "
                                 @focus="clearErrors('expDateYear')"
                                 @blur="
                                     autocompleteDate($event);
@@ -192,22 +168,26 @@
                     </p>
 
                     <input
-                        type="password"
+                        type="text"
                         data-cp="cvv"
                         ref="cvv"
                         v-mask="cvvMask"
-                        :value="cvv"
+                        v-model="cvv"
                         :placeholder="cardInfo.codeName || 'CVV'"
-                        :class="fieldCssClasses('cvv')"
-                        @input="$emit('input-cvv', $event.target.value)"
-                        @keydown.delete="moveCaretTo('back', 'cvv')"
+                        :class="[
+                            ...fieldCssClasses('cvv'),
+                            {
+                                'card__field--secured':
+                                    isCvvSecured && !isFieldEmpty('cvv')
+                            }
+                        ]"
                         @focus="
-                            toggleType($event);
                             clearErrors('cvv');
+                            isCvvSecured = false;
                         "
                         @blur="
-                            toggleType($event);
                             $v.cvv.$touch();
+                            isCvvSecured = true;
                         "
                     />
 
@@ -227,14 +207,9 @@
 <script>
 import { mask } from "vue-the-mask";
 import { validationMixin } from "vuelidate";
+
 import getBrands from "@/services/card-info/utils/get-brands";
-import {
-    commonMixin,
-    validatorsMixin,
-    moveCaretMixin,
-    helpersMixin
-} from "@/mixins";
-import clickOutside from "@/utils/click-outside-directive";
+import { commonMixin, validatorsMixin, helpersMixin } from "@/mixins";
 import VueBankCardTooltip from "./VueBankCardTooltip";
 
 export default {
@@ -242,41 +217,8 @@ export default {
     components: {
         VueBankCardTooltip
     },
-    directives: { mask, clickOutside },
-    mixins: [
-        commonMixin,
-        validationMixin,
-        validatorsMixin,
-        moveCaretMixin,
-        helpersMixin
-    ],
-    props: {
-        isNew: Boolean,
-        cardInfo: {
-            type: Object,
-            default: null
-        },
-        cardNumber: {
-            type: String,
-            required: true
-        },
-        cardHolderName: {
-            type: String,
-            required: true
-        },
-        expDateMonth: {
-            type: String,
-            required: true
-        },
-        expDateYear: {
-            type: String,
-            required: true
-        },
-        cvv: {
-            type: String,
-            required: true
-        }
-    },
+    directives: { mask },
+    mixins: [commonMixin, validationMixin, validatorsMixin, helpersMixin],
     data() {
         return {
             fields: [
@@ -333,6 +275,7 @@ export default {
 <style lang="scss" scoped>
 $base-font-family: "PT Sans", Arial, sans-serif;
 $field-font-family: "Roboto Mono", Arial, sans-serif;
+$security-font-family: "text-security-disc";
 
 $card-bg-color: #e5e5e5;
 
@@ -420,6 +363,12 @@ $field-invalid-outline-color: #df4242;
 
         &--invalid {
             border-color: $field-invalid-outline-color;
+        }
+
+        &--secured {
+            font-family: $security-font-family;
+            font-size: 12px;
+            letter-spacing: 0.35em;
         }
 
         &-label {

@@ -24,6 +24,8 @@ install:
 script:
   - yarn lint
   - yarn test
+  - yarn build
+  - yarn build:demo
 
 after_success:
   - codecov
@@ -33,16 +35,15 @@ deploy:
     keep_history: true
     skip_cleanup: true
     github_token: $GITHUB_TOKEN
-    local_dir: demo
+    local_dir: dist-demo
     on:
-      #tags: true
-      #branch: master
-      branch: dev
+      tags: true
+      branch: master
 
   - provider: npm # <https://docs.travis-ci.com/user/deployment/npm/>
     email: $NPM_DEPLOY_EMAIL
     api_key: $NPM_DEPLOY_TOKEN
+    skip_cleanup: true
     on:
-      #tags: true
-      #branch: master
-      branch: dev
+      tags: true
+      branch: master

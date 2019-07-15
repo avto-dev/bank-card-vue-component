@@ -4,13 +4,14 @@
             v-if="!isSmall"
             :is-new="isNew"
             :card-info="cardInfo"
-            :card-number="cardNumber"
-            :card-holder-name="cardHolderName"
-            :exp-date-month="expDateMonth"
-            :exp-date-year="expDateYear"
-            :cvv="cvv"
+            :number="cardNumber"
+            :name="cardHolderName"
+            :month="expDateMonth"
+            :year="expDateYear"
+            :code="cvv"
             :errors="errors"
             :is-reset="isReset"
+            :images-base-path="imagesBasePath"
             @input-card-number="cardNumber = $event"
             @input-exp-date-month="expDateMonth = $event"
             @input-exp-date-year="expDateYear = $event"
@@ -23,13 +24,14 @@
             v-else
             :is-new="isNew"
             :card-info="cardInfo"
-            :card-number="cardNumber"
-            :card-holder-name="cardHolderName"
-            :exp-date-month="expDateMonth"
-            :exp-date-year="expDateYear"
-            :cvv="cvv"
+            :number="cardNumber"
+            :name="cardHolderName"
+            :month="expDateMonth"
+            :year="expDateYear"
+            :code="cvv"
             :errors="errors"
             :is-reset="isReset"
+            :images-base-path="imagesBasePath"
             @input-card-number="cardNumber = $event"
             @input-exp-date-month="expDateMonth = $event"
             @input-exp-date-year="expDateYear = $event"
@@ -73,6 +75,12 @@ export default {
         isReset: {
             type: Boolean,
             default: false
+        },
+        imagesBasePath: {
+            type: String,
+            default: String(
+                process.env.BANK_CARD_VUE_COMPONENT_IMAGES_BASE_PATH
+            )
         }
     },
     data() {
@@ -122,6 +130,19 @@ export default {
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css?family=PT+Sans&display=swap&subset=cyrillic");
 @import url("https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap&subset=cyrillic");
+
+$font-path: "https://cdn.jsdelivr.net/gh/noppa/text-security@master/dist/";
+
+@font-face {
+    font-family: "text-security-disc";
+    src: url("#{$font-path}text-security-disc.eot");
+    src: url("#{$font-path}text-security-disc.eot?#iefix")
+            format("embedded-opentype"),
+        url("#{$font-path}text-security-disc.woff2") format("woff2"),
+        url("#{$font-path}text-security-disc.woff") format("woff"),
+        url("#{$font-path}text-security-disc.ttf") format("truetype"),
+        url("#{$font-path}text-security-disc.svg#text-security") format("svg");
+}
 
 .vue-bank-card__wrapper {
     width: 100%;
