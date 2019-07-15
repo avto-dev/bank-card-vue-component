@@ -1,5 +1,6 @@
 const os = require("os");
 const path = require("path");
+
 const outputDir = path.resolve(process.env.IS_DEMO ? "dist-demo" : "dist");
 const packageJson = require("./package");
 
