@@ -55,3 +55,10 @@ build-demo: clean ## Build demo application bundle
 
 pull: ## Pulling newer versions of used docker images
 	$(docker_bin) pull "$(NODE_IMAGE)"
+
+git-hooks: ## Install (reinstall) git hooks (required after repository cloning)
+	-rm -f "$(shell pwd)/.git/hooks/pre-push" "$(shell pwd)/.git/hooks/pre-commit" "$(shell pwd)/.git/hooks/post-merge"
+	ln -s "$(shell pwd)/.github/git-hooks/pre-push.sh" "$(shell pwd)/.git/hooks/pre-push"
+	ln -s "$(shell pwd)/.github/git-hooks/pre-commit.sh" "$(shell pwd)/.git/hooks/pre-commit"
+	ln -s "$(shell pwd)/.github/git-hooks/post-merge.sh" "$(shell pwd)/.git/hooks/post-merge"
+

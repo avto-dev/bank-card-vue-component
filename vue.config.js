@@ -1,9 +1,12 @@
 const os = require("os");
 const path = require("path");
 const outputDir = path.resolve(process.env.IS_DEMO ? "dist-demo" : "dist");
+/*eslint-disable-next-line no-unused-vars*/
 const packageJson = require("./package");
+/*eslint-enable*/
 
-const BANK_CARD_VUE_COMPONENT_VERSION = packageJson.version;
+/* TODO: should remove 'dev' before release */
+const BANK_CARD_VUE_COMPONENT_VERSION = /*packageJson.version*/ "dev";
 const DEFAULT_BANK_CARD_VUE_COMPONENT_IMAGES_BASE_PATH = `//cdn.jsdelivr.net/gh/avto-dev/bank-card-vue-component@${BANK_CARD_VUE_COMPONENT_VERSION}/public/images`;
 
 let buildConfig = {
