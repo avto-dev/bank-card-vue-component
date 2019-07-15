@@ -602,6 +602,8 @@ $invalid-color: #df4242;
             &--secured {
                 .card__field {
                     font-family: $security-font-family;
+                    font-size: 12px;
+                    letter-spacing: 0.35em;
                 }
             }
         }

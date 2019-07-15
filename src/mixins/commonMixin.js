@@ -23,7 +23,7 @@ export default {
          */
         numberCollapsed() {
             if (this.isFieldFull("cardNumber")) {
-                const mask = "**** ";
+                const mask = "•••• ";
                 const number = this.cardNumber.slice(-4);
                 return mask + number;
             } else {

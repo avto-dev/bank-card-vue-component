@@ -427,6 +427,8 @@ $field-invalid-outline-color: #df4242;
 
         &--secured {
             font-family: $security-font-family;
+            font-size: 12px;
+            letter-spacing: 0.35em;
         }
 
         &-label {

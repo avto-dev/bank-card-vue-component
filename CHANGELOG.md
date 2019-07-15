@@ -9,6 +9,7 @@ The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 ### Changed
 
 - Update securing cvv field from changing types to changing ccs classes with text-secure-font
+- Changed "stars" to "bull" in collapsed number
 
 ## v0.1.10
 
