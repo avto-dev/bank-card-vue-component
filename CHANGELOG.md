@@ -4,6 +4,26 @@ All notable changes to this package will be documented in this file.
 
 The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v0.1.10
+
+### Deprecated
+
+- Changed images paths to dev, while there is not release
+
+## v0.1.9
+
+### Fixed
+
+- Fix paths while installing git hooks.
+
+## v0.1.8
+
+### Added
+
+- Added git hooks
+- Added Makefile target for installing git-hooks
+- Added info about git-hooks to `CONTRIBUTING.md`
+
 ## v0.1.7
 
 ### Changed
