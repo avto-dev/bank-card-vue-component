@@ -60,7 +60,7 @@ describe("VueBankCardBase", () => {
                     cardInfo
                 }
             });
-            const numberCollapsed = "**** 3333";
+            const numberCollapsed = "•••• 3333";
 
             expect(wrapper.find(".card__field-mock").text()).toBe(
                 numberCollapsed

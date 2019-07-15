@@ -62,7 +62,7 @@ describe("VueBankCardSmall", () => {
                     cardInfo
                 }
             });
-            const numberCollapsed = "**** 3333";
+            const numberCollapsed = "•••• 3333";
             const numberCollapsedEl = wrapper.find(".card__number-caption");
 
             expect(wrapper.contains(labelSelector)).toBeFalsy();
