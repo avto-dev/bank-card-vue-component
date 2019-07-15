@@ -43,9 +43,6 @@ export default {
     },
     watch: {
         cardNumber(value, oldValue) {
-            console.log("val", value);
-            console.log("old", oldValue);
-            console.log(this.reseting);
             this.watchFields({ value, oldValue, type: "cardNumber" });
         },
         expDateMonth(value, oldValue) {
@@ -97,7 +94,6 @@ export default {
                 const value = "0" + e.target.value;
 
                 this[field] = value;
-                this.$emit(`input-${camelToKebab(field)}`, value);
             }
         },
         /**
@@ -139,9 +135,11 @@ export default {
             for (const field of this.fields) {
                 this[field.ref] = "";
             }
-            this.isSmall && (this.cardNumberCollapsed = false);
+            this.$parent.isSmall && (this.cardNumberCollapsed = false);
             this.$emit("reset", false);
-            this.reseting = false;
+            this.$nextTick(() => {
+                this.reseting = false;
+            });
         },
         /**
          * Moving caret to the next or previous field
