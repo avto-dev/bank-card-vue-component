@@ -7,15 +7,15 @@ import { isObject } from "@/utils/helpers";
 describe("VueBankCardBase", () => {
     class Props {
         constructor() {
-            this.cardNumber = "";
-            this.cardHolderName = "CARDHOLDER NAME";
-            this.expDateMonth = "";
-            this.expDateYear = "";
-            this.cvv = "";
+            this.number = "";
+            this.name = "CARDHOLDER NAME";
+            this.month = "";
+            this.year = "";
+            this.code = "";
             this.errors = {};
             this.isNew = false;
             this.isReset = false;
-            this.cardInfo = new CardInfo(this.cardNumber);
+            this.cardInfo = new CardInfo(this.number);
         }
     }
     const props = new Props();
@@ -50,13 +50,13 @@ describe("VueBankCardBase", () => {
 
         it("false, then show saved card", () => {
             const isNew = false;
-            const cardNumber = "5536 9111 2222 3333";
-            const cardInfo = new CardInfo(cardNumber);
+            const number = "5536 9111 2222 3333";
+            const cardInfo = new CardInfo(number);
             const wrapper = shallowMount(VueBankCardBase, {
                 propsData: {
                     ...props,
                     isNew,
-                    cardNumber,
+                    number,
                     cardInfo
                 }
             });

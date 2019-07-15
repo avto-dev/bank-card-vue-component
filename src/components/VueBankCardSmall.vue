@@ -47,7 +47,7 @@
                     <label
                         v-if="isNew"
                         class="card__field-label"
-                        :for="generateId('expDateMonth')"
+                        :for="generateId('cardNumber')"
                     >
                         Номер карты
                     </label>
@@ -59,11 +59,9 @@
                         data-cp="cardNumber"
                         ref="cardNumber"
                         v-mask="cardNumberMask"
+                        v-model="cardNumber"
                         :id="generateId('cardNumber')"
-                        :value="cardNumber"
                         :readonly="!isNew"
-                        @input="$emit('input-card-number', $event.target.value)"
-                        @keydown.delete="moveCaretTo('back', 'cardNumber')"
                         @focus="clearErrors('cardNumber')"
                         @blur="$v.cardNumber.$touch()"
                     />
@@ -110,17 +108,8 @@
                             ref="expDateMonth"
                             data-cp="expDateMonth"
                             v-mask="expDateMonthMask"
+                            v-model="expDateMonth"
                             :id="generateId('expDateMonth')"
-                            :value="expDateMonth"
-                            @input="
-                                $emit(
-                                    'input-exp-date-month',
-                                    $event.target.value
-                                )
-                            "
-                            @keydown.delete="
-                                moveCaretTo('back', 'expDateMonth')
-                            "
                             @focus="clearErrors('expDateMonth')"
                             @blur="
                                 autocompleteDate($event);
@@ -144,14 +133,7 @@
                             ref="expDateYear"
                             data-cp="expDateYear"
                             v-mask="expDateYearMask"
-                            :value="expDateYear"
-                            @input="
-                                $emit(
-                                    'input-exp-date-year',
-                                    $event.target.value
-                                )
-                            "
-                            @keydown.delete="moveCaretTo('back', 'expDateYear')"
+                            v-model="expDateYear"
                             @focus="clearErrors('expDateYear')"
                             @blur="
                                 autocompleteDate($event);
@@ -196,10 +178,8 @@
                         ref="cvv"
                         data-cp="cvv"
                         v-mask="cvvMask"
+                        v-model="cvv"
                         :id="generateId('cvv')"
-                        :value="cvv"
-                        @input="$emit('input-cvv', $event.target.value)"
-                        @keydown.delete="moveCaretTo('back', 'cvv')"
                         @focus="
                             clearErrors('cvv');
                             isCvvSecured = false;
@@ -232,12 +212,8 @@
 <script>
 import { mask } from "vue-the-mask";
 import { validationMixin } from "vuelidate";
-import {
-    commonMixin,
-    validatorsMixin,
-    moveCaretMixin,
-    helpersMixin
-} from "@/mixins";
+
+import { commonMixin, validatorsMixin, helpersMixin } from "@/mixins";
 import clickOutside from "@/utils/click-outside-directive";
 import VueBankCardTooltip from "./VueBankCardTooltip";
 
@@ -247,40 +223,7 @@ export default {
         VueBankCardTooltip
     },
     directives: { mask, clickOutside },
-    mixins: [
-        commonMixin,
-        validationMixin,
-        validatorsMixin,
-        moveCaretMixin,
-        helpersMixin
-    ],
-    props: {
-        isNew: Boolean,
-        cardInfo: {
-            type: Object,
-            default: null
-        },
-        cardNumber: {
-            type: String,
-            required: true
-        },
-        cardHolderName: {
-            type: String,
-            required: true
-        },
-        expDateMonth: {
-            type: String,
-            required: true
-        },
-        expDateYear: {
-            type: String,
-            required: true
-        },
-        cvv: {
-            type: String,
-            required: true
-        }
-    },
+    mixins: [commonMixin, validationMixin, validatorsMixin, helpersMixin],
     data() {
         return {
             cardFocused: false,
