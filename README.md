@@ -1,4 +1,8 @@
-# Vue Bank Card
+<p align="center">
+  <img src="https://hsto.org/webt/hr/bv/wn/hrbvwnbouxlcak5inmxeccaohf0.png" alt="" />
+</p>
+
+# Vue Bank Card (component)
 
 [![Version (npm)][badge_npm_version]][link_npm]
 ![Vue.js version][badge_vue_version]
@@ -8,7 +12,7 @@
 
 > Vue Component for user data entry of the bank card
 
-[DEMO](https://avto-dev.github.io/bank-card-vue-component/)
+**Demonstration is [available here](https://avto-dev.github.io/bank-card-vue-component/).**
 
 ## Installation
 
@@ -163,7 +167,7 @@ This is open-sourced software licensed under the [MIT License][link_license].
 [badge_commits_since_release]:https://img.shields.io/github/commits-since/avto-dev/bank-card-vue-component/latest.svg?style=flat-square&maxAge=180
 [badge_issues]:https://img.shields.io/github/issues/avto-dev/bank-card-vue-component.svg?style=flat-square&maxAge=180
 [badge_pulls]:https://img.shields.io/github/issues-pr/avto-dev/bank-card-vue-component.svg?style=flat-square&maxAge=180
-[badge_license]:https://img.shields.io/packagist/l/avto-dev/bank-card-vue-component.svg?longCache=true
+[badge_license]:https://img.shields.io/github/license/avto-dev/bank-card-vue-component.svg?longCache=true
 [link_releases]:https://github.com/avto-dev/bank-card-vue-component/releases
 [link_commits]:https://github.com/avto-dev/bank-card-vue-component/commits
 [link_changes_log]:https://github.com/avto-dev/bank-card-vue-component/blob/master/CHANGELOG.md
