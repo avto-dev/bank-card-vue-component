@@ -59,12 +59,13 @@
                         data-cp="cardNumber"
                         ref="cardNumber"
                         v-mask="cardNumberMask"
-                        v-model="cardNumber"
+                        :value="cardNumber"
                         :id="generateId('cardNumber')"
                         :readonly="!isNew"
-                        @focus="clearErrors('cardNumber')"
-                        @blur="$v.cardNumber.$touch()"
-                        @keydown.delete="moveCaretTo('backward', 'cardNumber')"
+                        @input="onInput($event, 'cardNumber')"
+                        @focus="onFocus($event, 'cardNumber')"
+                        @blur="onBlur($event, 'cardNumber')"
+                        @keydown.delete="onDel($event, 'cardNumber')"
                     />
 
                     <span
@@ -109,16 +110,12 @@
                             ref="expDateMonth"
                             data-cp="expDateMonth"
                             v-mask="expDateMonthMask"
-                            v-model="expDateMonth"
+                            :value="expDateMonth"
                             :id="generateId('expDateMonth')"
-                            @focus="clearErrors('expDateMonth')"
-                            @blur="
-                                autocompleteDate($event);
-                                $v.expDateMonth.$touch();
-                            "
-                            @keydown.delete="
-                                moveCaretTo('backward', 'expDateMonth')
-                            "
+                            @input="onInput($event, 'expDateMonth')"
+                            @focus="onFocus($event, 'expDateMonth')"
+                            @blur="onBlur($event, 'expDateMonth')"
+                            @keydown.delete="onDel($event, 'expDateMonth')"
                         />
 
                         <span
@@ -137,15 +134,11 @@
                             ref="expDateYear"
                             data-cp="expDateYear"
                             v-mask="expDateYearMask"
-                            v-model="expDateYear"
-                            @focus="clearErrors('expDateYear')"
-                            @blur="
-                                autocompleteDate($event);
-                                $v.expDateYear.$touch();
-                            "
-                            @keydown.delete="
-                                moveCaretTo('backward', 'expDateYear')
-                            "
+                            :value="expDateYear"
+                            @input="onInput($event, 'expDateYear')"
+                            @focus="onFocus($event, 'expDateYear')"
+                            @blur="onBlur($event, 'expDateYear')"
+                            @keydown.delete="onDel($event, 'expDateYear')"
                         />
                     </div>
 
@@ -185,17 +178,12 @@
                         ref="cvv"
                         data-cp="cvv"
                         v-mask="cvvMask"
-                        v-model="cvv"
+                        :value="cvv"
                         :id="generateId('cvv')"
-                        @focus="
-                            clearErrors('cvv');
-                            isCvvSecured = false;
-                        "
-                        @blur="
-                            $v.cvv.$touch();
-                            isCvvSecured = true;
-                        "
-                        @keydown.delete="moveCaretTo('backward', 'cvv')"
+                        @input="onInput($event, 'cvv')"
+                        @focus="onFocus($event, 'cvv')"
+                        @blur="onBlur($event, 'cvv')"
+                        @keydown.delete="onDel($event, 'cvv')"
                     />
 
                     <VueBankCardTooltip
