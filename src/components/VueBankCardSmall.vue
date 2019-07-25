@@ -64,6 +64,7 @@
                         :readonly="!isNew"
                         @focus="clearErrors('cardNumber')"
                         @blur="$v.cardNumber.$touch()"
+                        @keydown.delete="moveCaretTo('backward', 'cardNumber')"
                     />
 
                     <span
@@ -115,6 +116,9 @@
                                 autocompleteDate($event);
                                 $v.expDateMonth.$touch();
                             "
+                            @keydown.delete="
+                                moveCaretTo('backward', 'expDateMonth')
+                            "
                         />
 
                         <span
@@ -138,6 +142,9 @@
                             @blur="
                                 autocompleteDate($event);
                                 $v.expDateYear.$touch();
+                            "
+                            @keydown.delete="
+                                moveCaretTo('backward', 'expDateYear')
                             "
                         />
                     </div>
@@ -188,6 +195,7 @@
                             $v.cvv.$touch();
                             isCvvSecured = true;
                         "
+                        @keydown.delete="moveCaretTo('backward', 'cvv')"
                     />
 
                     <VueBankCardTooltip

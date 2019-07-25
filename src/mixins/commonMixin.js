@@ -165,12 +165,11 @@ export default {
             }
         },
         watchFields({ value, oldValue, type }) {
-            const direction =
-                value.toString().length > oldValue.toString().length
-                    ? "forward"
-                    : "backward";
+            const isForward =
+                value.toString().length > oldValue.toString().length;
+
             this.$emit(`input-${camelToKebab(type)}`, value);
-            !this.reseting && this.moveCaretTo(direction, type);
+            !this.reseting && isForward && this.moveCaretTo("forward", type);
         }
     }
 };
