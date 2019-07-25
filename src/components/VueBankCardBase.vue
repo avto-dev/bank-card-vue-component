@@ -6,22 +6,35 @@
         <form class="card-inner" @keydown.enter="$emit('enter', $event)">
             <div class="card__main">
                 <div class="card__info">
-                    <div
-                        class="card__brand-placeholder"
-                        v-if="!cardInfo.bankName"
-                    >
+                    <div v-if="!cardInfo.bankName">
                         <div
-                            class="card__brand-logo-wrapper"
-                            v-for="brand in brandsPlaceholder"
-                            :key="`brand-placeholder-${brand.alias}`"
+                            v-if="!cardInfo.brandName"
+                            class="card__brand-placeholder"
                         >
-                            <img
-                                class="card__brand-logo"
-                                :src="
-                                    `${imagesBasePath}/brands-logos/${brand.alias}-colored.png`
-                                "
-                                :alt="brand.name"
-                            />
+                            <div
+                                class="card__brand-logo-wrapper"
+                                v-for="brand in brandsPlaceholder"
+                                :key="`brand-placeholder-${brand.alias}`"
+                            >
+                                <img
+                                    class="card__brand-logo"
+                                    :src="
+                                        `${imagesBasePath}/brands-logos/${brand.alias}-colored.png`
+                                    "
+                                    :alt="brand.name"
+                                />
+                            </div>
+                        </div>
+                        <div v-else class="card__brand-placeholder">
+                            <div class="card__brand-logo-wrapper">
+                                <img
+                                    class="card__brand-logo"
+                                    :src="
+                                        `${imagesBasePath}/brands-logos/${cardInfo.brandAlias}-colored.png`
+                                    "
+                                    :alt="cardInfo.brandName"
+                                />
+                            </div>
                         </div>
                     </div>
 
@@ -352,10 +365,6 @@ $field-invalid-outline-color: #df4242;
         color: $field-color;
         line-height: 20px;
         transition: border-color 0.3s;
-
-        &::placeholder {
-            color: $field-color;
-        }
 
         &:focus {
             border-color: $field-focus-outline-color;

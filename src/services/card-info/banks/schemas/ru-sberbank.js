@@ -8,6 +8,7 @@ export default {
     logoStyle: "white",
     text: "#fff",
     prefixes: [
+        "220220",
         "402333",
         "417398",
         "423078",

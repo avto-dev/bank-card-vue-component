@@ -7,5 +7,5 @@ export default {
     backgroundLightness: "light",
     logoStyle: "colored",
     text: "#001689",
-    prefixes: ["405990", "405991", "405992", "405993"]
+    prefixes: ["405990", "405991", "405992", "405993", "220077"]
 };
