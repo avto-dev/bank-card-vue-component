@@ -325,8 +325,9 @@ export default {
             ];
         }
     },
-    created() {
+    mounted() {
         !this.isNew && (this.cardNumberCollapsed = true);
+        this.isFocus && this.isNew && this.$refs.card.click();
     },
     methods: {
         /**

@@ -262,6 +262,9 @@ export default {
             return brands.filter(brand => aliases.includes(brand.alias));
         }
     },
+    mounted() {
+        this.isFocus && this.isNew && this.$refs.cardNumber.focus();
+    },
     methods: {
         /**
          * Returns special css property for banks depending by cardInfo

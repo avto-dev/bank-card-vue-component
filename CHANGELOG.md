@@ -10,6 +10,7 @@ The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 - New prefixes for banks: `Otkritie`, `Pochta bank`, `Sberbank`, `Sovkom Bank`, `Tinkoff bank`
 - Shows brand logo after brand definition and before bank definition
+- New prop `isFocus`
 
 ### Changed
 

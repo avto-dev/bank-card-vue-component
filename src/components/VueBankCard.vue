@@ -11,6 +11,7 @@
             :code="cvv"
             :errors="errors"
             :is-reset="isReset"
+            :is-focus="isFocus"
             :images-base-path="imagesBasePath"
             @input-card-number="cardNumber = $event"
             @input-exp-date-month="expDateMonth = $event"
@@ -31,6 +32,7 @@
             :code="cvv"
             :errors="errors"
             :is-reset="isReset"
+            :is-focus="isFocus"
             :images-base-path="imagesBasePath"
             @input-card-number="cardNumber = $event"
             @input-exp-date-month="expDateMonth = $event"
@@ -73,6 +75,10 @@ export default {
             default: () => ({})
         },
         isReset: {
+            type: Boolean,
+            default: false
+        },
+        isFocus: {
             type: Boolean,
             default: false
         },

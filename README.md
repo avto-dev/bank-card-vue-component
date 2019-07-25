@@ -47,6 +47,7 @@ Name      | Required | Type           | Default | Description
 `isNew`   | no       | Boolean        | `false` | View card controller: saved or new
 `errors`  | no       | Object         | `{}`    | Errors from outside the component. From server etc.
 `isReset` | no       | Boolean        | `false` | Trigger for reset form
+`isFocus` | no       | Boolean        | `false` | Card number field focus when component mounted (available if `isNew` is true)
 `imagesBasePath` | no | String | [default](`https://cdn.jsdelivr.net/gh/avto-dev/bank-card-vue-component@master/public/images`) | Base path and banks or payment systems logotypes
 
 ## Events
@@ -64,6 +65,7 @@ Name           | Type     | Parameters | Description
   <VueBankCard
     is-small
     is-new
+    is-focus
     :errors="errors"
     :is-reset="resetForm"
     @enter="onEnter"

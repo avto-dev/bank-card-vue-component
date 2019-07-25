@@ -29,6 +29,7 @@ export default {
         },
         errors: Object,
         isReset: Boolean,
+        isFocus: Boolean,
         imagesBasePath: String
     },
     data() {
