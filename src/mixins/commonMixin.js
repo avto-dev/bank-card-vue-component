@@ -84,6 +84,7 @@ export default {
                 const value = "0" + e.target.value;
 
                 this[field] = value;
+                this.$emit(`input-${camelToKebab(field)}`, value);
             }
         },
         /**
@@ -115,6 +116,7 @@ export default {
             this.reseting = true;
             for (const field of this.fields) {
                 this[field.ref] = "";
+                this.$emit(`input-${camelToKebab(field.ref)}`, "");
             }
             this.$parent.isSmall && (this.cardNumberCollapsed = false);
             this.$emit("reset", false);
