@@ -52,7 +52,7 @@ describe("Card-info", () => {
             it("brand", () => {
                 const brandInfo = {
                     brandAlias: "master-card",
-                    brandLogo: "brands-logos/master-card-white.png",
+                    brandLogo: "brands-logos/master-card-white.svg",
                     brandName: "MasterCard"
                 };
 

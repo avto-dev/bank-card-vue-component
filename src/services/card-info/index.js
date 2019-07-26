@@ -114,7 +114,15 @@ export default class CardInfo extends Card {
     }
 
     _getLogo(dirname, basename) {
-        return basename ? dirname + basename + ".png" : null;
+        let ext = ".png";
+        const svgLogos = ["jcb", "master-card", "maestro", "visa", "mir"];
+        for (const logo of svgLogos) {
+            if (basename.includes(logo)) {
+                ext = ".svg";
+                break;
+            }
+        }
+        return basename ? dirname + basename + ext : null;
     }
 
     _getGradient(backgroundColors, gradientDegrees) {

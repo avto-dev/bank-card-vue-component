@@ -52,7 +52,7 @@ Name      | Required | Type           | Default | Description
 `errors`  | no       | Object         | `{}`    | Errors from outside the component. From server etc.
 `isReset` | no       | Boolean        | `false` | Trigger for reset form
 `isFocus` | no       | Boolean        | `false` | Card number field focus when component mounted (available if `isNew` is true)
-`imagesBasePath` | no | String | [default](`https://cdn.jsdelivr.net/gh/avto-dev/bank-card-vue-component@master/public/images`) | Base path and banks or payment systems logotypes
+`imagesBasePath` | no | String | [default](`https://cdn.jsdelivr.net/gh/avto-dev/bank-card-vue-component@master/public/images/`) | Base path and banks or payment systems logotypes
 
 ## Events
 
@@ -119,7 +119,7 @@ If you want to use your own logotypes you can pass base images path by prop `ima
 export default {
   data() {
     return {
-      imagesPath: "//your-own-cdn-or-host.com/path/to/assets"
+      imagesPath: "//your-own-cdn-or-host.com/path/to/assets/"
     }
   },
 }

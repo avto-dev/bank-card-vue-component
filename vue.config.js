@@ -5,7 +5,7 @@ const outputDir = path.resolve(process.env.IS_DEMO ? "dist-demo" : "dist");
 const packageJson = require("./package");
 
 const BANK_CARD_VUE_COMPONENT_VERSION = packageJson.version;
-const DEFAULT_BANK_CARD_VUE_COMPONENT_IMAGES_BASE_PATH = `//cdn.jsdelivr.net/gh/avto-dev/bank-card-vue-component@${BANK_CARD_VUE_COMPONENT_VERSION}/public/images`;
+const DEFAULT_BANK_CARD_VUE_COMPONENT_IMAGES_BASE_PATH = `//cdn.jsdelivr.net/gh/avto-dev/bank-card-vue-component@${BANK_CARD_VUE_COMPONENT_VERSION}/public/images/`;
 
 let buildConfig = {
     publicPath: "",
