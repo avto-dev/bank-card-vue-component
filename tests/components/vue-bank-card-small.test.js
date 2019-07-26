@@ -85,7 +85,7 @@ describe("VueBankCardSmall", () => {
                     }
                 });
                 const iconEl = wrapper.find(".card__icon");
-                const icon = "master-card-colored.png";
+                const icon = "master-card-colored.svg";
 
                 expect(iconEl.attributes().style.includes(icon)).toBeTruthy();
             });

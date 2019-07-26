@@ -13,15 +13,15 @@
                         >
                             <div
                                 class="card__brand-logo-wrapper"
-                                v-for="brand in brandsPlaceholder"
-                                :key="`brand-placeholder-${brand.alias}`"
+                                v-for="brand in availableBrands"
+                                :key="`brand-placeholder-${brand}`"
                             >
                                 <img
                                     class="card__brand-logo"
                                     :src="
-                                        `${imagesBasePath}/brands-logos/${brand.alias}-colored.png`
+                                        `${imagesBasePath}${cardInfo.options.brandsLogosPath}${brand}-colored.svg`
                                     "
-                                    :alt="brand.name"
+                                    :alt="brand"
                                 />
                             </div>
                         </div>
@@ -30,7 +30,7 @@
                                 <img
                                     class="card__brand-logo"
                                     :src="
-                                        `${imagesBasePath}/brands-logos/${cardInfo.brandAlias}-colored.png`
+                                        `${imagesBasePath}${cardInfo.brandLogo}`
                                     "
                                     :alt="cardInfo.brandName"
                                 />
@@ -42,7 +42,7 @@
                         <div class="card__bank-logo-wrapper">
                             <img
                                 class="card__bank-logo"
-                                :src="`${imagesBasePath}/${cardInfo.bankLogo}`"
+                                :src="`${imagesBasePath}${cardInfo.bankLogo}`"
                                 :alt="cardInfo.bankName"
                             />
                         </div>
@@ -50,7 +50,7 @@
                         <div class="card__brand-logo-wrapper">
                             <img
                                 class="card__brand-logo"
-                                :src="`${imagesBasePath}/${cardInfo.brandLogo}`"
+                                :src="`${imagesBasePath}${cardInfo.brandLogo}`"
                                 :alt="cardInfo.brandName"
                             />
                         </div>
@@ -217,7 +217,6 @@
 import { mask } from "vue-the-mask";
 import { validationMixin } from "vuelidate";
 
-import getBrands from "@/services/card-info/utils/get-brands";
 import { commonMixin, validatorsMixin, helpersMixin } from "@/mixins";
 import VueBankCardTooltip from "./VueBankCardTooltip";
 
@@ -235,20 +234,9 @@ export default {
                 { ref: "expDateMonth" },
                 { ref: "expDateYear" },
                 { ref: "cvv" }
-            ]
+            ],
+            availableBrands: ["master-card", "maestro", "visa", "mir"]
         };
-    },
-    computed: {
-        /**
-         * Create array of brands for placeholder in empty card
-         * @returns {Array}
-         */
-        brandsPlaceholder() {
-            const brands = Object.values(getBrands());
-            const aliases = ["visa", "master-card", "maestro", "mir"];
-
-            return brands.filter(brand => aliases.includes(brand.alias));
-        }
     },
     mounted() {
         this.isFocus && this.isNew && this.$refs.cardNumber.focus();
@@ -474,13 +462,20 @@ $field-invalid-outline-color: #df4242;
     &__brand {
         &-placeholder {
             display: flex;
+
+            .card__brand-logo-wrapper {
+                align-items: center;
+            }
         }
 
         &-logo {
+            width: 100%;
             max-height: 30px;
 
             &-wrapper {
                 display: flex;
+                align-items: flex-start;
+                max-width: 40px;
 
                 &:not(:last-child) {
                     margin-right: 10px;

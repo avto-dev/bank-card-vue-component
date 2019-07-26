@@ -104,7 +104,7 @@ export default {
             componentVersion: String(
                 process.env.BANK_CARD_VUE_COMPONENT_VERSION
             ),
-            imagesPath: "images",
+            imagesPath: "images/",
             readmePath:
                 "https://github.com/avto-dev/bank-card-vue-component/blob/master/README.md",
             number: {
