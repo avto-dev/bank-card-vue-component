@@ -44,18 +44,6 @@ export default {
         };
     },
     watch: {
-        cardNumber(value, oldValue) {
-            this.watchFields({ value, oldValue, type: "cardNumber" });
-        },
-        expDateMonth(value, oldValue) {
-            this.watchFields({ value, oldValue, type: "expDateMonth" });
-        },
-        expDateYear(value, oldValue) {
-            this.watchFields({ value, oldValue, type: "expDateYear" });
-        },
-        cvv(value, oldValue) {
-            this.watchFields({ value, oldValue, type: "cvv" });
-        },
         isReset(value) {
             value && this.resetForm();
         }
@@ -96,6 +84,7 @@ export default {
                 const value = "0" + e.target.value;
 
                 this[field] = value;
+                this.$emit(`input-${camelToKebab(field)}`, value);
             }
         },
         /**
@@ -127,6 +116,7 @@ export default {
             this.reseting = true;
             for (const field of this.fields) {
                 this[field.ref] = "";
+                this.$emit(`input-${camelToKebab(field.ref)}`, "");
             }
             this.$parent.isSmall && (this.cardNumberCollapsed = false);
             this.$emit("reset", false);
@@ -165,12 +155,44 @@ export default {
                 this.focusOnField(goToItem.ref);
             }
         },
-        watchFields({ value, oldValue, type }) {
-            const isForward =
-                value.toString().length > oldValue.toString().length;
-
-            this.$emit(`input-${camelToKebab(type)}`, value);
-            !this.reseting && isForward && this.moveCaretTo("forward", type);
+        /**
+         * Handle @input event on input
+         * @param { Object } event
+         * @param { String } type - Unique name of field
+         */
+        onInput(event, type) {
+            if (event.isTrusted) return;
+            this[type] = event.target.value;
+            this.$emit(`input-${camelToKebab(type)}`, event.target.value);
+            !this.reseting && this.moveCaretTo("forward", type);
+        },
+        /**
+         * Handle @focus event on input
+         * @param { Object } event
+         * @param { String } type - Unique name of field
+         */
+        onFocus(event, type) {
+            this.clearErrors(type);
+            type === "cvv" && (this.isCvvSecured = false);
+        },
+        /**
+         * Handle @blur event on input
+         * @param { Object } event
+         * @param { String } type - Unique name of field
+         */
+        onBlur(event, type) {
+            (type === "expDateMonth" || type === "expDateYear") &&
+                this.autocompleteDate(event);
+            this.$v[type].$touch();
+            type === "cvv" && (this.isCvvSecured = true);
+        },
+        /**
+         * Handle @keydown.delete event on input
+         * @param { Object } event
+         * @param { String } type - Unique name of field
+         */
+        onDel(event, type) {
+            this.moveCaretTo("backward", type);
         }
     }
 };
