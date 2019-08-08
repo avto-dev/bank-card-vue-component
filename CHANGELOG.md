@@ -4,6 +4,12 @@ All notable changes to this package will be documented in this file.
 
 The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.0.4
+
+### Fixed
+
+- Fixed brands icons and width of date text fields in Mozilla
+
 ## v1.0.3
 
 ### Changed

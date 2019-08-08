@@ -469,6 +469,10 @@ $invalid-color: #df4242;
             justify-content: space-between;
             align-items: center;
         }
+
+        &-inner .card__field {
+            width: 22px;
+        }
     }
 
     &__cvv {
