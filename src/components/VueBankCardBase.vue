@@ -469,8 +469,7 @@ $field-invalid-outline-color: #df4242;
         }
 
         &-logo {
-            width: 100%;
-            max-height: 30px;
+            width: 40px;
 
             &-wrapper {
                 display: flex;
