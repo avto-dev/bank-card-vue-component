@@ -9,3 +9,6 @@ export const isArray = value =>
 
 export const camelToKebab = value =>
     value.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
+
+export const isObjectEmpty = obj =>
+    Object.entries(obj).length === 0 && obj.constructor === Object;
