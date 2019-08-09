@@ -1,4 +1,4 @@
-import { camelToKebab } from "@/utils/helpers";
+import { camelToKebab, isObjectEmpty } from "@/utils/helpers";
 
 export default {
     props: {
@@ -7,23 +7,23 @@ export default {
             type: Object,
             default: null
         },
-        number: {
+        cardNumber: {
             type: String,
             required: true
         },
-        name: {
+        cardHolderName: {
             type: String,
             required: true
         },
-        month: {
+        expDateMonth: {
             type: String,
             required: true
         },
-        year: {
+        expDateYear: {
             type: String,
             required: true
         },
-        code: {
+        cvv: {
             type: String,
             required: true
         },
@@ -34,11 +34,6 @@ export default {
     },
     data() {
         return {
-            cardNumber: this.number,
-            cardHolderName: this.name,
-            expDateMonth: this.month,
-            expDateYear: this.year,
-            cvv: this.code,
             reseting: false,
             isCvvSecured: false
         };
@@ -69,9 +64,11 @@ export default {
          * @param { String } refName - Ref name of text field element
          */
         focusOnField(refName) {
-            this.$nextTick(() => {
-                this.$refs[refName] && this.$refs[refName].focus();
-            });
+            setTimeout(() => {
+                if (this.$refs[refName]) {
+                    this.$refs[refName].focus();
+                }
+            }, 0);
         },
         /**
          * Autocomplete a date (month or year) after blur on half-filled field
@@ -104,7 +101,6 @@ export default {
          * @params {String} type - Name of field
          */
         clearErrors(type) {
-            this.$v[type].$reset();
             const errors = this.errors;
             errors[type] && delete errors[type];
             this.$emit("clear-errors", errors);
@@ -115,7 +111,6 @@ export default {
         resetForm() {
             this.reseting = true;
             for (const field of this.fields) {
-                this[field.ref] = "";
                 this.$emit(`input-${camelToKebab(field.ref)}`, "");
             }
             this.$parent.isSmall && (this.cardNumberCollapsed = false);
@@ -162,9 +157,12 @@ export default {
          */
         onInput(event, type) {
             if (event.isTrusted) return;
-            this[type] = event.target.value;
             this.$emit(`input-${camelToKebab(type)}`, event.target.value);
-            !this.reseting && this.moveCaretTo("forward", type);
+            this.$nextTick(() => {
+                if (this.isFieldFull(type) && !this.reseting) {
+                    this.moveCaretTo("forward", type);
+                }
+            });
         },
         /**
          * Handle @focus event on input
@@ -172,7 +170,8 @@ export default {
          * @param { String } type - Unique name of field
          */
         onFocus(event, type) {
-            this.clearErrors(type);
+            this.$v[type].$reset();
+            !isObjectEmpty(this.errors) && this.clearErrors(type);
             type === "cvv" && (this.isCvvSecured = false);
         },
         /**
@@ -181,9 +180,9 @@ export default {
          * @param { String } type - Unique name of field
          */
         onBlur(event, type) {
+            this.$v[type].$touch();
             (type === "expDateMonth" || type === "expDateYear") &&
                 this.autocompleteDate(event);
-            this.$v[type].$touch();
             type === "cvv" && (this.isCvvSecured = true);
         },
         /**
@@ -192,7 +191,9 @@ export default {
          * @param { String } type - Unique name of field
          */
         onDel(event, type) {
-            this.moveCaretTo("backward", type);
+            this.$nextTick(() => {
+                this.moveCaretTo("backward", type);
+            });
         }
     }
 };
