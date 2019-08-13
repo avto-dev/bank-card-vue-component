@@ -71,6 +71,7 @@
                     <span
                         v-show="cardNumberCollapsed"
                         class="card__number-caption"
+                        :class="{ 'card__number-caption--saved': !isNew }"
                         @click="onClickCollapsed"
                     >
                         {{ numberCollapsed }}
@@ -411,7 +412,7 @@ $invalid-color: #df4242;
         display: flex;
         align-items: center;
         margin: -1px;
-        padding: 0 10px;
+        padding: 5px 10px 0;
         border: 1px solid transparent;
         border-top-right-radius: 2px;
         border-bottom-right-radius: 2px;
@@ -422,6 +423,7 @@ $invalid-color: #df4242;
         }
 
         &-inner {
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -430,7 +432,7 @@ $invalid-color: #df4242;
         }
 
         &-title {
-            margin: 0;
+            margin: -5px 0 0;
             font-size: 16px;
             line-height: 21px;
             font-family: $base-font-family;
@@ -452,12 +454,18 @@ $invalid-color: #df4242;
         }
 
         &-caption {
+            display: block;
+            height: 19px;
             margin: 0;
             font-family: $field-font-family;
             font-size: 16px;
             line-height: 19px;
             color: $base-color;
             white-space: nowrap;
+
+            &--saved {
+                margin-top: -5px;
+            }
         }
     }
 
@@ -487,12 +495,12 @@ $invalid-color: #df4242;
         background-color: transparent;
         font-family: $field-font-family;
         font-size: 16px;
-        line-height: 19px;
+        line-height: 1;
         color: $base-color;
 
         &-label {
             position: absolute;
-            top: 0;
+            top: 10px;
             font-family: $base-font-family;
             font-size: 16px;
             line-height: 19px;
@@ -501,6 +509,8 @@ $invalid-color: #df4242;
         }
 
         &-divider {
+            display: block;
+            height: 19px;
             font-family: $field-font-family;
             font-size: 16px;
             line-height: 19px;
@@ -508,8 +518,7 @@ $invalid-color: #df4242;
         }
 
         &-wrapper {
-            position: relative;
-            margin-top: 10px;
+            display: flex;
 
             &.card__number {
                 margin-top: 0;
@@ -517,13 +526,12 @@ $invalid-color: #df4242;
 
             &--focused {
                 &.card__number {
-                    margin-top: 10px;
                 }
 
                 .card__field-label {
                     font-size: 10px;
                     line-height: 13px;
-                    transform: translateY(-13px);
+                    transform: translateY(-12px);
                 }
             }
 
