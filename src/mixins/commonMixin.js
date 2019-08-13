@@ -163,7 +163,6 @@ export default {
                     this.moveCaretTo("forward", type);
                 }
             }, 0);
-
         },
         /**
          * Handle @focus event on input
