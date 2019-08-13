@@ -64,11 +64,11 @@ export default {
          * @param { String } refName - Ref name of text field element
          */
         focusOnField(refName) {
-            setTimeout(() => {
+            this.$nextTick(() => {
                 if (this.$refs[refName]) {
                     this.$refs[refName].focus();
                 }
-            }, 0);
+            });
         },
         /**
          * Autocomplete a date (month or year) after blur on half-filled field
@@ -158,11 +158,11 @@ export default {
         onInput(event, type) {
             if (event.isTrusted) return;
             this.$emit(`input-${camelToKebab(type)}`, event.target.value);
-            this.$nextTick(() => {
+            setTimeout(() => {
                 if (this.isFieldFull(type) && !this.reseting) {
                     this.moveCaretTo("forward", type);
                 }
-            });
+            }, 0);
         },
         /**
          * Handle @focus event on input
