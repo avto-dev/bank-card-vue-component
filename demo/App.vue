@@ -61,6 +61,7 @@
                     :images-base-path="imagesPath"
                     is-small
                     :number="number"
+                    @delete-card="onDelete"
                 />
 
                 <div class="highlight">
@@ -122,6 +123,9 @@ export default {
     methods: {
         onEnter(event) {
             event.preventDefault();
+        },
+        onDelete(event) {
+            console.log(event);
         }
     }
 };

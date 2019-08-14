@@ -71,7 +71,6 @@
                     <span
                         v-show="cardNumberCollapsed"
                         class="card__number-caption"
-                        :class="{ 'card__number-caption--saved': !isNew }"
                         @click="onClickCollapsed"
                     >
                         {{ numberCollapsed }}
@@ -203,6 +202,14 @@
                 </div>
             </div>
         </form>
+        <button
+            v-if="!isNew"
+            class="card-button__delete"
+            title="Удалить данные карты"
+            @click="$emit('delete-card', $event)"
+        >
+            <img :src="`${imagesBasePath}trash-icon.svg`" alt="Trash" />
+        </button>
     </div>
 </template>
 
@@ -412,7 +419,7 @@ $invalid-color: #df4242;
         display: flex;
         align-items: center;
         margin: -1px;
-        padding: 5px 10px 0;
+        padding: 0 10px 0;
         border: 1px solid transparent;
         border-top-right-radius: 2px;
         border-bottom-right-radius: 2px;
@@ -432,7 +439,7 @@ $invalid-color: #df4242;
         }
 
         &-title {
-            margin: -5px 0 0;
+            margin: 0;
             font-size: 16px;
             line-height: 21px;
             font-family: $base-font-family;
@@ -462,10 +469,6 @@ $invalid-color: #df4242;
             line-height: 19px;
             color: $base-color;
             white-space: nowrap;
-
-            &--saved {
-                margin-top: -5px;
-            }
         }
     }
 
@@ -500,7 +503,7 @@ $invalid-color: #df4242;
 
         &-label {
             position: absolute;
-            top: 10px;
+            top: 0;
             font-family: $base-font-family;
             font-size: 16px;
             line-height: 19px;
@@ -518,7 +521,11 @@ $invalid-color: #df4242;
         }
 
         &-wrapper {
+            position: relative;
             display: flex;
+            max-height: 21px;
+            height: 100%;
+            margin-top: 10px;
 
             &.card__number {
                 margin-top: 0;
@@ -526,6 +533,7 @@ $invalid-color: #df4242;
 
             &--focused {
                 &.card__number {
+                    margin-top: 10px;
                 }
 
                 .card__field-label {
@@ -558,6 +566,21 @@ $invalid-color: #df4242;
                     letter-spacing: 0.35em;
                 }
             }
+        }
+    }
+
+    &-button__delete {
+        display: flex;
+        width: 43px;
+        height: 100%;
+        padding: 0;
+        border: 0;
+        outline: none;
+        background-color: transparent;
+
+        img {
+            display: block;
+            margin: auto;
         }
     }
 }

@@ -41,6 +41,7 @@
             @enter="$emit('enter', $event)"
             @clear-errors="$emit('clear-errors', $event)"
             @reset="$emit('reset', $event)"
+            @delete-card="$emit('delete-card', $event)"
         />
     </article>
 </template>

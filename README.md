@@ -61,6 +61,7 @@ Name           | Type     | Parameters | Description
 `enter`        | Function | `event` - Event of keydown | Handler of keydown on enter event
 `clear-errors` | Function | `errors` - Object of errors | Clearing errors from outside
 `reset`        | Function | `isReset` - State of isReset property, type Boolean | Turn off isReset property
+`delete-card`  | Function | `event` - Event of click | Handler of click on trash button
 
 ## Example
 
