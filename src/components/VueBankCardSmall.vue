@@ -208,7 +208,22 @@
             title="Удалить данные карты"
             @click="$emit('delete-card', $event)"
         >
-            <img :src="`${imagesBasePath}trash-icon.svg`" alt="Trash" />
+            <svg
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M0.5 4.7826C0.5 3.73797 1.34667 2.8913 2.3913 2.8913H13.1087C14.1533 2.8913 15 3.73797 15 4.7826"
+                />
+                <path
+                    d="M10.5871 2.8913H4.28271C4.28271 1.84667 5.12939 1 6.17402 1H8.69576C9.74039 1 10.5871 1.84667 10.5871 2.8913Z"
+                />
+                <path d="M13.1085 4.15216V15.5H2.39111V4.15216" />
+                <path d="M4.91309 6.04346V13.6087" />
+                <path d="M8.06543 6.04346V13.6087" />
+                <path d="M11.2173 6.04346V13.6087" />
+            </svg>
         </button>
     </div>
 </template>
@@ -575,12 +590,28 @@ $invalid-color: #df4242;
         height: 100%;
         padding: 0;
         border: 0;
+        border-left: 1px solid #e5e5e5;
         outline: none;
         background-color: transparent;
+        cursor: pointer;
 
-        img {
+        svg {
             display: block;
+            width: 15px;
+            height: 15px;
             margin: auto;
+            stroke: lighten($invalid-color, 5%);
+            stroke-miterlimit: 10;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: stroke 0.3s;
+        }
+
+        &:hover,
+        &:focus {
+            svg {
+                stroke: darken($invalid-color, 5%);
+            }
         }
     }
 }
