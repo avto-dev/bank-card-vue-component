@@ -71,7 +71,6 @@
                     <span
                         v-show="cardNumberCollapsed"
                         class="card__number-caption"
-                        :class="{ 'card__number-caption--saved': !isNew }"
                         @click="onClickCollapsed"
                     >
                         {{ numberCollapsed }}
@@ -383,7 +382,6 @@ $base-color: #343434;
 $invalid-color: #df4242;
 
 .card {
-    position: relative;
     display: flex;
     flex-wrap: nowrap;
     width: 100%;
@@ -421,7 +419,7 @@ $invalid-color: #df4242;
         display: flex;
         align-items: center;
         margin: -1px;
-        padding: 5px 10px 0;
+        padding: 0 10px 0;
         border: 1px solid transparent;
         border-top-right-radius: 2px;
         border-bottom-right-radius: 2px;
@@ -441,7 +439,7 @@ $invalid-color: #df4242;
         }
 
         &-title {
-            margin: -5px 0 0;
+            margin: 0;
             font-size: 16px;
             line-height: 21px;
             font-family: $base-font-family;
@@ -471,10 +469,6 @@ $invalid-color: #df4242;
             line-height: 19px;
             color: $base-color;
             white-space: nowrap;
-
-            &--saved {
-                margin-top: -5px;
-            }
         }
     }
 
@@ -509,7 +503,7 @@ $invalid-color: #df4242;
 
         &-label {
             position: absolute;
-            top: 10px;
+            top: 0;
             font-family: $base-font-family;
             font-size: 16px;
             line-height: 19px;
@@ -527,7 +521,11 @@ $invalid-color: #df4242;
         }
 
         &-wrapper {
+            position: relative;
             display: flex;
+            max-height: 21px;
+            height: 100%;
+            margin-top: 10px;
 
             &.card__number {
                 margin-top: 0;
@@ -535,6 +533,7 @@ $invalid-color: #df4242;
 
             &--focused {
                 &.card__number {
+                    margin-top: 10px;
                 }
 
                 .card__field-label {
