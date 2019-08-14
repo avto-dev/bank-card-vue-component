@@ -203,6 +203,14 @@
                 </div>
             </div>
         </form>
+        <button
+            v-if="!isNew"
+            class="card-button__delete"
+            title="Удалить данные карты"
+            @click="$emit('delete-card', $event)"
+        >
+            <img :src="`${imagesBasePath}trash-icon.svg`" alt="Trash" />
+        </button>
     </div>
 </template>
 
@@ -375,6 +383,7 @@ $base-color: #343434;
 $invalid-color: #df4242;
 
 .card {
+    position: relative;
     display: flex;
     flex-wrap: nowrap;
     width: 100%;
@@ -558,6 +567,21 @@ $invalid-color: #df4242;
                     letter-spacing: 0.35em;
                 }
             }
+        }
+    }
+
+    &-button__delete {
+        display: flex;
+        width: 43px;
+        height: 100%;
+        padding: 0;
+        border: 0;
+        outline: none;
+        background-color: transparent;
+
+        img {
+            display: block;
+            margin: auto;
         }
     }
 }
