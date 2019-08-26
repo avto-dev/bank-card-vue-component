@@ -9,8 +9,19 @@ export const length = type =>
      * @param { Object } vm - Instance
      * @returns { Boolean }
      */
-    (value, vm) =>
-        value.replace(/\s/g, "").length === vm[type].replace(/\s/g, "").length;
+    (value, vm) => {
+        // Crutch of variables of card number length for maestro
+        if (
+            vm.cardInfo.brandAlias === "maestro" &&
+            value.replace(/\s/g, "").length >= 18
+        ) {
+            return true;
+        }
+        return (
+            value.replace(/\s/g, "").length ===
+            vm[type].replace(/\s/g, "").length
+        );
+    };
 
 /**
  * Compare current value with minimum value

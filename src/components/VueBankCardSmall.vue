@@ -66,6 +66,7 @@
                         @focus="onFocus($event, 'cardNumber')"
                         @blur="onBlur($event, 'cardNumber')"
                         @keydown.delete="onDel($event, 'cardNumber')"
+                        @keydown.enter="onCardNumberEnter"
                     />
 
                     <span
@@ -383,6 +384,17 @@ export default {
          */
         generateId(id) {
             return `${id}-${this._uid}`;
+        },
+        /**
+         * Card number handler on enter
+         */
+        onCardNumberEnter() {
+            const name = "cardNumber";
+
+            if (this.isFieldFull(name)) {
+                this.cardNumberCollapsed = true;
+                this.moveCaretTo("forward", name);
+            }
         }
     }
 };
@@ -477,11 +489,11 @@ $invalid-color: #df4242;
 
         &-caption {
             display: block;
-            height: 19px;
+            height: 100%;
             margin: 0;
             font-family: $field-font-family;
             font-size: 16px;
-            line-height: 19px;
+            line-height: 21px;
             color: $base-color;
             white-space: nowrap;
         }
@@ -507,6 +519,7 @@ $invalid-color: #df4242;
 
     &__field {
         width: 100%;
+        height: 100%;
         padding: 0;
         border: 0;
         outline: none;

@@ -4,6 +4,16 @@ All notable changes to this package will be documented in this file.
 
 The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.0.9
+
+### Added
+
+- Added `enter` handler in card number field in small type
+
+### Fixed
+
+- Fixed variable card number length of maestro
+
 ## v1.0.8
 
 ### Changed
