@@ -123,12 +123,12 @@ export default {
             return this.number;
         }
     },
-    created() {
-        this.init();
-    },
-    methods: {
-        init() {
-            this.cardNumber = this.numberTransform;
+    watch: {
+        numberTransform: {
+            immediate: true,
+            handler(v) {
+                this.cardNumber = v;
+            }
         }
     }
 };
