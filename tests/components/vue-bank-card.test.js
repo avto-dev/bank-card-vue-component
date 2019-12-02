@@ -44,7 +44,6 @@ describe("VueBankCard", () => {
         it("string", () => {
             const number = "4242424242424242";
             wrapper.setProps({ number });
-            wrapper.vm.create();
 
             expect(wrapper.vm.cardNumber).toBe(number);
         });
@@ -56,7 +55,6 @@ describe("VueBankCard", () => {
             };
             const numberTransformed = "4242420000004242";
             wrapper.setProps({ number });
-            wrapper.vm.create();
 
             expect(wrapper.vm.cardNumber).toBe(numberTransformed);
         });
