@@ -6,44 +6,44 @@ import VueBankCardSmall from "@/components/VueBankCardSmall";
 import CardInfo from "@/services/card-info";
 
 describe("VueBankCard", () => {
-    const wrapper = shallowMount(VueBankCard);
-
     it("is an instance of Vue", () => {
+        const wrapper = shallowMount(VueBankCard);
+
         expect(wrapper.isVueInstance()).toBeTruthy();
     });
 
     describe("isSmall prop", () => {
         it("if true, show small", () => {
-            wrapper.setProps({ isSmall: true });
+            const wrapper = shallowMount(VueBankCard, {
+                propsData: { isSmall: true }
+            });
 
             expect(wrapper.contains(VueBankCardSmall)).toBeTruthy();
         });
 
         it("if false, show base", () => {
-            wrapper.setProps({ isSmall: false });
+            const wrapper = shallowMount(VueBankCard, {
+                propsData: { isSmall: false }
+            });
 
             expect(wrapper.contains(VueBankCardBase)).toBeTruthy();
         });
     });
 
     it("isNew prop", () => {
-        wrapper.setProps({ isNew: true });
+        const wrapper = shallowMount(VueBankCard, {
+            propsData: { isNew: true }
+        });
 
         expect(wrapper.props("isNew")).toBe(true);
     });
 
     describe("number prop", () => {
-        const wrapper = shallowMount(VueBankCard, {
-            methods: {
-                create() {
-                    this.init();
-                }
-            }
-        });
-
         it("string", () => {
             const number = "4242424242424242";
-            wrapper.setProps({ number });
+            const wrapper = shallowMount(VueBankCard, {
+                propsData: { number }
+            });
 
             expect(wrapper.vm.cardNumber).toBe(number);
         });
@@ -54,7 +54,9 @@ describe("VueBankCard", () => {
                 last_four: "4242"
             };
             const numberTransformed = "4242420000004242";
-            wrapper.setProps({ number });
+            const wrapper = shallowMount(VueBankCard, {
+                propsData: { number }
+            });
 
             expect(wrapper.vm.cardNumber).toBe(numberTransformed);
         });
@@ -66,12 +68,15 @@ describe("VueBankCard", () => {
             expDateMonth: "Карта просрочена",
             cvv: "Неверный код cvv"
         };
-        wrapper.setProps({ errors });
+        const wrapper = shallowMount(VueBankCard, {
+            propsData: { errors }
+        });
 
         expect(wrapper.props("errors")).toEqual(errors);
     });
 
     it("card info", () => {
+        const wrapper = shallowMount(VueBankCard);
         expect(wrapper.vm.cardInfo instanceof CardInfo).toBeTruthy();
     });
 });

@@ -309,8 +309,8 @@ export default {
                     "card__field-wrapper--invalid":
                         this.$v.expDateMonth.$error ||
                         this.$v.expDateYear.$error ||
-                        (!!this.errorFiltered("expDateMonth") ||
-                            !!this.errorFiltered("expDateYear"))
+                        !!this.errorFiltered("expDateMonth") ||
+                        !!this.errorFiltered("expDateYear")
                 }
             ];
         },
@@ -334,8 +334,10 @@ export default {
             ];
         }
     },
-    mounted() {
+    created() {
         !this.isNew && (this.cardNumberCollapsed = true);
+    },
+    mounted() {
         this.isFocus && this.isNew && this.$refs.card.click();
     },
     methods: {
