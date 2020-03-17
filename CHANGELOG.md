@@ -9,6 +9,7 @@ The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 ### Fixed
 
 - Fixed tests after dependencies update 
+- Fixed rerender parts of small card component
 
 ### Changed
 
