@@ -5,16 +5,17 @@
 docker_bin := $(shell command -v docker 2> /dev/null)
 project_id := $(shell basename $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST)))))
 docker_containers_unique_label := $(project_id)-unique-label
+cwd = $(shell pwd)
 
 SHELL = /bin/bash
 NODE_IMAGE = tarampampam/node:12-alpine
 FRONTEND_PORT = 8081
-RUN_ARGS = --label "$(docker_containers_unique_label)" --rm -v "$(shell pwd):/src:cached" \
+RUN_ARGS = --label "$(docker_containers_unique_label)" --rm -v "$(cwd):/src:cached" \
            --workdir "/src" -u "$(shell id -u):$(shell id -g)"
 RUN_INTERACTIVE ?= --tty --interactive
 
-.PHONY : help install test fix build shell watch clean push destroy pull
-.SILENT : help install test fix build shell watch push destroy
+.PHONY : help install test fix update build watch clean push destroy pull
+.SILENT : help install test fix update build watch push destroy
 .DEFAULT_GOAL : help
 
 # This will output the help for each task. thanks to https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
@@ -43,22 +44,23 @@ destroy: ## Kill all spawned (and probably disowned) docker-containers
 	$(docker_bin) kill `$(docker_bin) ps --filter "label=$(docker_containers_unique_label)" --format '{{.ID}}'`
 
 clean: ## Make some clean
-	rm -Rf "$(shell pwd)/coverage"
+	rm -Rf "$(cwd)/coverage" "$(cwd)/dist" "$(cwd)/dist-demo"
+
+update: ## Update all dependencies
+	$(docker_bin) run $(RUN_ARGS) $(RUN_INTERACTIVE) "$(NODE_IMAGE)" yarn upgrade --no-progress --non-interactive
 
 build: clean ## Build component bundle
-	rm -Rf "$(shell pwd)/dist"
 	$(docker_bin) run $(RUN_ARGS) $(RUN_INTERACTIVE) -e "NODE_ENV=production" "$(NODE_IMAGE)" yarn build
 
 build-demo: clean ## Build demo application bundle
-	rm -Rf "$(shell pwd)/dist-demo"
 	$(docker_bin) run $(RUN_ARGS) $(RUN_INTERACTIVE) -e "NODE_ENV=production" "$(NODE_IMAGE)" yarn build:demo
 
 pull: ## Pulling newer versions of used docker images
 	$(docker_bin) pull "$(NODE_IMAGE)"
 
 git-hooks: ## Install (reinstall) git hooks (required after repository cloning)
-	-rm -f "$(shell pwd)/.git/hooks/pre-push" "$(shell pwd)/.git/hooks/pre-commit" "$(shell pwd)/.git/hooks/post-merge"
-	ln -s "$(shell pwd)/.github/git-hooks/pre-push.sh" "$(shell pwd)/.git/hooks/pre-push"
-	ln -s "$(shell pwd)/.github/git-hooks/pre-commit.sh" "$(shell pwd)/.git/hooks/pre-commit"
-	ln -s "$(shell pwd)/.github/git-hooks/post-merge.sh" "$(shell pwd)/.git/hooks/post-merge"
+	-rm -f "$(cwd)/.git/hooks/pre-push" "$(cwd)/.git/hooks/pre-commit" "$(cwd)/.git/hooks/post-merge"
+	ln -s "$(cwd)/.github/git-hooks/pre-push.sh" "$(cwd)/.git/hooks/pre-push"
+	ln -s "$(cwd)/.github/git-hooks/pre-commit.sh" "$(cwd)/.git/hooks/pre-commit"
+	ln -s "$(cwd)/.github/git-hooks/post-merge.sh" "$(cwd)/.git/hooks/post-merge"
 
