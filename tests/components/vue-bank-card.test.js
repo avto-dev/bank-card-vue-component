@@ -18,7 +18,6 @@ describe("VueBankCard", () => {
                 propsData: { isSmall: true }
             });
 
-            console.log(wrapper.html());
             expect(wrapper.contains(VueBankCardSmall)).toBeTruthy();
         });
 
