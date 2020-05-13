@@ -210,6 +210,7 @@
             @click.stop="$emit('delete-card', $event)"
         >
             <svg
+                :class = "{ disabled: disableDelete }"
                 width="15"
                 height="17"
                 viewBox="0 0 15 17"
@@ -406,6 +407,7 @@ $security-font-family: "text-security-disc";
 
 $base-color: #343434;
 $invalid-color: #ff0624;
+$disabled-color: #e5e9ed;
 
 .card {
     display: flex;
@@ -614,6 +616,10 @@ $invalid-color: #ff0624;
             margin: auto;
             fill: lighten($invalid-color, 5%);
             transition: fill 0.3s;
+
+            &.disabled {
+                fill: $disabled-color;
+            }
         }
 
         &:hover,
