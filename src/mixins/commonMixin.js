@@ -3,6 +3,7 @@ import { camelToKebab, isObjectEmpty } from "@/utils/helpers";
 export default {
     props: {
         isNew: Boolean,
+        disableDelete: Boolean,
         cardInfo: {
             type: Object,
             default: null
