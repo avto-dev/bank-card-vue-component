@@ -105,9 +105,9 @@ export default {
         };
     },
     methods: {
-        deleteCard() {
+        deleteCard(event) {
             if (!this.disableDelete) {
-                $emit('delete-card', $event);
+                this.$emit("delete-card", event);
             }
         }
     },

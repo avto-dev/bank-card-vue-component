@@ -206,11 +206,11 @@
         <button
             v-if="!isNew"
             class="card-button__delete"
+            :class="{ 'card-button__delete--disable': disableDelete }"
             title="Удалить данные карты"
             @click.stop="$emit('delete-card', $event)"
         >
             <svg
-                :class = "{ disabled: disableDelete }"
                 width="15"
                 height="17"
                 viewBox="0 0 15 17"
@@ -609,6 +609,10 @@ $disabled-color: #e5e9ed;
         background-color: transparent;
         cursor: pointer;
 
+        &--disabled {
+            fill: $disabled-color;
+        }
+
         svg {
             display: block;
             width: 15px;
@@ -616,10 +620,6 @@ $disabled-color: #e5e9ed;
             margin: auto;
             fill: lighten($invalid-color, 5%);
             transition: fill 0.3s;
-
-            &.disabled {
-                fill: $disabled-color;
-            }
         }
 
         &:hover,
