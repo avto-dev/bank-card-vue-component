@@ -206,6 +206,7 @@
         <button
             v-if="!isNew"
             class="card-button__delete"
+            :class="{ 'card-button__delete--disabled': disableDelete }"
             title="Удалить данные карты"
             @click.stop="$emit('delete-card', $event)"
         >
@@ -406,6 +407,7 @@ $security-font-family: "text-security-disc";
 
 $base-color: #343434;
 $invalid-color: #ff0624;
+$disabled-color: #e5e9ed;
 
 .card {
     display: flex;
@@ -620,6 +622,19 @@ $invalid-color: #ff0624;
         &:focus {
             svg {
                 fill: darken($invalid-color, 5%);
+            }
+        }
+
+        &--disabled {
+            svg {
+                fill: $disabled-color;
+            }
+
+            &:hover,
+            &:focus {
+                svg {
+                    fill: $disabled-color;
+                }
             }
         }
     }

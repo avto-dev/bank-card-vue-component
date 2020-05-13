@@ -31,6 +31,7 @@
             :exp-date-year="expDateYear"
             :cvv="cvv"
             :errors="errors"
+            :disable-delete="disableDelete"
             :is-reset="isReset"
             :is-focus="isFocus"
             :images-base-path="imagesBasePath"
@@ -41,7 +42,7 @@
             @enter="$emit('enter', $event)"
             @clear-errors="$emit('clear-errors', $event)"
             @reset="$emit('reset', $event)"
-            @delete-card="$emit('delete-card', $event)"
+            @delete-card="deleteCard"
         />
     </article>
 </template>
@@ -64,6 +65,10 @@ export default {
             default: false
         },
         isNew: {
+            type: Boolean,
+            default: false
+        },
+        disableDelete: {
             type: Boolean,
             default: false
         },
@@ -98,6 +103,13 @@ export default {
             cvv: "",
             cardHolderName: "CARDHOLDER NAME"
         };
+    },
+    methods: {
+        deleteCard(event) {
+            if (!this.disableDelete) {
+                this.$emit("delete-card", event);
+            }
+        }
     },
     computed: {
         /**

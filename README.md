@@ -49,6 +49,7 @@ Name      | Required | Type           | Default | Description
 `number`  | no       | String, Object | `""`    | Number of card
 `isSmall` | no       | Boolean        | `false` | View card controller: base or small
 `isNew`   | no       | Boolean        | `false` | View card controller: saved or new
+`disableDelete`   | no       | Boolean        | `false` | Disable delete option on small card
 `errors`  | no       | Object         | `{}`    | Errors from outside the component. From server etc.
 `isReset` | no       | Boolean        | `false` | Trigger for reset form
 `isFocus` | no       | Boolean        | `false` | Card number field focus when component mounted (available if `isNew` is true)
