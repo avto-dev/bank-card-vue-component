@@ -3,6 +3,10 @@ name: release
 on:
   release: # Docs: <https://git.io/JeBz1#release-event-release>
     types: [published]
+  pull_request: # @todo: just for a test - remove before merging
+
+env:
+  NODE_VERSION: '12'
 
 jobs:
   npmjs:
@@ -15,25 +19,82 @@ jobs:
       - name: Setup NodeJS
         uses: actions/setup-node@v1 # Action page: <https://github.com/actions/setup-node>
         with:
-          node-version: '12'
+          node-version: ${{ env.NODE_VERSION }}
           registry-url: 'https://registry.npmjs.org'
           scope: '@avto-dev'
 
       - name: Generate version value
         run: echo "::set-env name=PACKAGE_VERSION::${GITHUB_REF##*/v}"
 
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
       - name: Install dependencies
         run: yarn install
-
-      - name: Make build
-        run: yarn build
 
       - name: Set package version
         run: yarn version --no-git-tag-version --no-commit-hooks --new-version "$PACKAGE_VERSION"
 
-      - name: Publish package
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: yarn publish --access public --non-interactive
+      - name: Build component
+        run: yarn build
 
-  # @todo: github pages
+  #      - name: Publish package
+  #        env:
+  #          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  #        run: yarn publish --access public --non-interactive
+
+  demo:
+    name: Update demonstration, hosted on github pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Setup NodeJS
+        uses: actions/setup-node@v1 # Action page: <https://github.com/actions/setup-node>
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build component demo
+        run: yarn build:demo
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: demo
+          path: dist-demo/
+
+      - name: Switch to github pages branch
+        uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: demo
+
+      - name: Setup git
+        run: |
+          git config --global user.name "$GITHUB_ACTOR"
+          git config --global user.email 'actions@github.com'
+          git remote add github "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
+
+      - name: Stage changes
+        run: git add .
+
+      - name: Commit changes
+        run: git commit -m "Deploying ${GITHUB_SHA} to Github Pages"
+
+      - name: Push changes
+        run: git push github --force

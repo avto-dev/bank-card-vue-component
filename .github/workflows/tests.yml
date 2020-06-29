@@ -32,9 +32,9 @@ jobs: # Docs: <https://git.io/JvxXE>
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
       - name: Install dependencies
-        run: yarn install --prefer-offline
+        run: yarn install
 
-      - name: Execute tests
+      - name: Run tests
         run: yarn test
 
       - uses: codecov/codecov-action@v1 # Docs: <https://github.com/codecov/codecov-action>
@@ -61,9 +61,9 @@ jobs: # Docs: <https://git.io/JvxXE>
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
       - name: Install dependencies
-        run: yarn install --prefer-offline
+        run: yarn install
 
-      - name: Execute tests
+      - name: Run linter
         run: yarn lint
 
   build:
@@ -85,10 +85,13 @@ jobs: # Docs: <https://git.io/JvxXE>
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
       - name: Install dependencies
-        run: yarn install --prefer-offline
+        run: yarn install
 
-      - name: Execute tests
+      - name: Build component
         run: yarn build
+
+      - name: Build demo
+        run: yarn build:demo
 
   lint-changelog:
     name: Lint changelog file
