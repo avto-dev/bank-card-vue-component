@@ -3,7 +3,6 @@ name: release
 on:
   release: # Docs: <https://git.io/JeBz1#release-event-release>
     types: [published]
-  pull_request: # @todo: just for a test - remove before merging
 
 env:
   NODE_VERSION: '12'
@@ -40,10 +39,10 @@ jobs:
       - name: Build component
         run: yarn build
 
-  #      - name: Publish package
-  #        env:
-  #          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-  #        run: yarn publish --access public --non-interactive
+      - name: Publish package
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: yarn publish --access public --non-interactive
 
   demo:
     name: Update demonstration, hosted on github pages
@@ -57,6 +56,9 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
+      - name: Generate version value
+        run: echo "::set-env name=PACKAGE_VERSION::${GITHUB_REF##*/v}"
+
       - uses: actions/cache@v2
         with:
           path: '**/node_modules'
@@ -64,6 +66,9 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
+
+      - name: Set package version
+        run: yarn version --no-git-tag-version --no-commit-hooks --new-version "$PACKAGE_VERSION"
 
       - name: Build component demo
         run: yarn build:demo
