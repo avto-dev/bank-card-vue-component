@@ -9,6 +9,13 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 ### Changed
 
 - CI completely moved from "Travis CI" to "Github Actions" _(travis builds disabled)_ [#27]
+- PNG images compressed using `tinypng.com` _(`88 KiB` saved, -16.41%)_ [#27]
+- Development environment now uses `docker-compose` instead pure `docker` calls from `Makefile` [#27]
+- Package version will be set during release process (manual updating of `package.json['version']` is not required longer) [#27]
+
+### Removed
+
+- Git hooks (make sure your **local** git hooks removed) [#27]
 
 [#27]:https://github.com/avto-dev/bank-card-vue-component/pull/27
 
