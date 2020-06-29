@@ -14,7 +14,7 @@ The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ### Fixed
 
-- Fixed tests after dependencies update 
+- Fixed tests after dependencies update
 - Fixed rerender parts of small card component
 
 ### Changed
@@ -58,8 +58,8 @@ The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ### Fixed
 
- - Fixed "flying" labels in small card
- - Fixed focus in small card for iOS
+- Fixed "flying" labels in small card
+- Fixed focus in small card for iOS
 
 ## v1.0.5
 
@@ -126,7 +126,7 @@ The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ### Fixed
 
-- Fix paths while installing git hooks.
+- Fix paths while installing git hooks
 
 ## v0.1.8
 
@@ -152,7 +152,7 @@ The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 - Changed link to readme.md in demo application
 
-### Fixed 
+### Fixed
 
 - Fixed some typos in readme.md
 
@@ -204,7 +204,7 @@ The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 - CONTRIBUTING.md file
 - CHANGELOG.md file
 
-### Changed 
+### Changed
 
 - Updated README.md
 - Change image cdn env
@@ -382,7 +382,7 @@ The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 - Separate card component into desktop and mobile view, init card mobile component
 - Replace data from card desktop to parent card component
 
-## v.0.0.2
+## v0.0.2
 
 ### Added
 
