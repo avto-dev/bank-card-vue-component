@@ -1,0 +1,39 @@
+name: release
+
+on:
+  release: # Docs: <https://git.io/JeBz1#release-event-release>
+    types: [published]
+
+jobs:
+  npmjs:
+    name: Publish JS package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Setup NodeJS
+        uses: actions/setup-node@v1 # Action page: <https://github.com/actions/setup-node>
+        with:
+          node-version: '12'
+          registry-url: 'https://registry.npmjs.org'
+          scope: '@avto-dev'
+
+      - name: Generate version value
+        run: echo "::set-env name=PACKAGE_VERSION::${GITHUB_REF##*/v}"
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Make build
+        run: yarn build
+
+      - name: Set package version
+        run: yarn version --no-git-tag-version --no-commit-hooks --new-version "$PACKAGE_VERSION"
+
+      - name: Publish package
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: yarn publish --access public --non-interactive
+
+  # @todo: github pages

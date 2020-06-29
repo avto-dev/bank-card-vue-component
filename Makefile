@@ -8,7 +8,7 @@ docker_containers_unique_label := $(project_id)-unique-label
 cwd = $(shell pwd)
 
 SHELL = /bin/bash
-NODE_IMAGE = tarampampam/node:12-alpine
+NODE_IMAGE = node:12-alpine
 FRONTEND_PORT = 8081
 RUN_ARGS = --label "$(docker_containers_unique_label)" --rm -v "$(cwd):/src:cached" \
            --workdir "/src" -u "$(shell id -u):$(shell id -g)"
@@ -57,10 +57,3 @@ build-demo: clean ## Build demo application bundle
 
 pull: ## Pulling newer versions of used docker images
 	$(docker_bin) pull "$(NODE_IMAGE)"
-
-git-hooks: ## Install (reinstall) git hooks (required after repository cloning)
-	-rm -f "$(cwd)/.git/hooks/pre-push" "$(cwd)/.git/hooks/pre-commit" "$(cwd)/.git/hooks/post-merge"
-	ln -s "$(cwd)/.github/git-hooks/pre-push.sh" "$(cwd)/.git/hooks/pre-push"
-	ln -s "$(cwd)/.github/git-hooks/pre-commit.sh" "$(cwd)/.git/hooks/pre-commit"
-	ln -s "$(cwd)/.github/git-hooks/post-merge.sh" "$(cwd)/.git/hooks/post-merge"
-

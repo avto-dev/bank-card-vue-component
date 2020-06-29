@@ -1,6 +1,0 @@
-* text=auto
-
-/tests    export-ignore
-/*.md     export-ignore
-/LICENSE* export-ignore
-/.*       export-ignore
