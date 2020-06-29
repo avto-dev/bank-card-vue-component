@@ -133,7 +133,7 @@ Now path to logotype would be `//your-own-cdn-or-host.com/path/to/assets/banks-l
 So you must have two folders in your defined path:
  - `banks-logos` - Must contain bank logos;
  - `brands-logos` - Must contain payment systems (VISA, Master Card, etc) logos.
-  
+
 Name of files with logotypes should be the same that come with this package.
 
 ## Testing
@@ -165,7 +165,7 @@ This is open-sourced software licensed under the [MIT License][link_license].
 
 [badge_npm_version]:https://img.shields.io/npm/v/@avto-dev/bank-card-vue-component.svg?maxAge=180
 [badge_vue_version]:https://img.shields.io/github/package-json/dependency-version/avto-dev/bank-card-vue-component/vue.svg
-[badge_build_status]:https://travis-ci.org/avto-dev/bank-card-vue-component.svg?branch=master
+[badge_build_status]:https://img.shields.io/github/workflow/status/avto-dev/bank-card-vue-component/tests/master
 [badge_coverage]:https://img.shields.io/codecov/c/github/avto-dev/bank-card-vue-component/master.svg?maxAge=60
 [badge_release_date]:https://img.shields.io/github/release-date/avto-dev/bank-card-vue-component.svg?style=flat-square&maxAge=180
 [badge_commits_since_release]:https://img.shields.io/github/commits-since/avto-dev/bank-card-vue-component/latest.svg?style=flat-square&maxAge=180

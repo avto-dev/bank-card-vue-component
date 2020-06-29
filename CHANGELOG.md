@@ -2,7 +2,23 @@
 
 All notable changes to this package will be documented in this file.
 
-The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) and this package adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
+
+## v1.0.13
+
+### Changed
+
+- CI completely moved from "Travis CI" to "Github Actions" _(travis builds disabled)_ [#27]
+- PNG images compressed using `tinypng.com` _(`88 KiB` saved, -16.41%)_ [#27]
+- Development environment now uses `docker-compose` instead pure `docker` calls from `Makefile` [#27]
+- Package version will be set during release process (manual updating of `package.json['version']` is not required longer) [#27]
+
+### Removed
+
+- Git hooks (make sure your **local** git hooks removed) [#27]
+- `tests/app-version.test.js` (is not required longer) [#27]
+
+[#27]:https://github.com/avto-dev/bank-card-vue-component/pull/27
 
 ## v1.0.12
 
@@ -14,7 +30,7 @@ The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ### Fixed
 
-- Fixed tests after dependencies update 
+- Fixed tests after dependencies update
 - Fixed rerender parts of small card component
 
 ### Changed
@@ -58,8 +74,8 @@ The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ### Fixed
 
- - Fixed "flying" labels in small card
- - Fixed focus in small card for iOS
+- Fixed "flying" labels in small card
+- Fixed focus in small card for iOS
 
 ## v1.0.5
 
@@ -126,7 +142,7 @@ The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 ### Fixed
 
-- Fix paths while installing git hooks.
+- Fix paths while installing git hooks
 
 ## v0.1.8
 
@@ -152,7 +168,7 @@ The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 
 - Changed link to readme.md in demo application
 
-### Fixed 
+### Fixed
 
 - Fixed some typos in readme.md
 
@@ -204,7 +220,7 @@ The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 - CONTRIBUTING.md file
 - CHANGELOG.md file
 
-### Changed 
+### Changed
 
 - Updated README.md
 - Change image cdn env
@@ -382,7 +398,7 @@ The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 - Separate card component into desktop and mobile view, init card mobile component
 - Replace data from card desktop to parent card component
 
-## v.0.0.2
+## v0.0.2
 
 ### Added
 
@@ -393,3 +409,6 @@ The format os based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) 
 ### Added
 
 - Initial
+
+[keepachangelog]:https://keepachangelog.com/en/1.0.0/
+[semver]:https://semver.org/spec/v2.0.0.html
