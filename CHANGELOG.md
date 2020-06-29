@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 ### Removed
 
 - Git hooks (make sure your **local** git hooks removed) [#27]
+- `tests/app-version.test.js` (is not required longer) [#27]
 
 [#27]:https://github.com/avto-dev/bank-card-vue-component/pull/27
 
