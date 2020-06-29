@@ -35,7 +35,6 @@ jobs: # Docs: <https://git.io/JvxXE>
           restore-keys: ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install --prefer-offline
 
       - name: Execute tests
@@ -71,7 +70,6 @@ jobs: # Docs: <https://git.io/JvxXE>
           restore-keys: ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install --prefer-offline
 
       - name: Execute tests
@@ -102,7 +100,6 @@ jobs: # Docs: <https://git.io/JvxXE>
           restore-keys: ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install --prefer-offline
 
       - name: Execute tests
