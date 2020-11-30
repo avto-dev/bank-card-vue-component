@@ -28,30 +28,31 @@
         "test": "jest --coverage"
     },
     "dependencies": {
-        "core-js": "^2.6.5",
+        "core-js": "^3.8.0",
         "vue": "^2.6.10",
         "vue-the-mask": "^0.11.1",
-        "vuelidate": "^0.7.4"
+        "vuelidate": "^0.7.6"
     },
     "devDependencies": {
-        "@vue/cli-plugin-babel": "^3.8.0",
-        "@vue/cli-plugin-eslint": "^3.8.0",
-        "@vue/cli-service": "^3.8.0",
-        "@vue/eslint-config-prettier": "^4.0.1",
-        "@vue/test-utils": "^1.0.0-beta.29",
+        "@vue/cli-plugin-babel": "^4.5.9",
+        "@vue/cli-plugin-eslint": "^4.5.9",
+        "@vue/cli-service": "^4.5.9",
+        "@vue/eslint-config-prettier": "^6.0.0",
+        "@vue/test-utils": "^1.1.1",
         "babel-core": "^6.26.3",
         "babel-eslint": "^10.0.1",
-        "babel-jest": "^24.8.0",
+        "babel-jest": "^26.6.3",
         "babel-preset-env": "^1.7.0",
-        "cross-env": "^5.2.0",
-        "eslint": "^5.16.0",
-        "eslint-plugin-vue": "^5.0.0",
-        "jest": "^25.3.0",
+        "cross-env": "^7.0.2",
+        "eslint": "^7.14.0",
+        "eslint-plugin-prettier": "^3.1.4",
+        "eslint-plugin-vue": "^7.1.0",
+        "jest": "^26.6.3",
         "jest-transform-stub": "^2.0.0",
         "markdown-loader-jest": "^0.1.1",
-        "node-sass": "^4.9.0",
-        "sass-loader": "^7.1.0",
-        "vue-jest": "^3.0.4",
+        "node-sass": "^5.0.0",
+        "sass-loader": "^10.1.0",
+        "vue-jest": "^3.0.7",
         "vue-template-compiler": "^2.6.10"
     }
 }
