@@ -167,3 +167,13 @@ $font-path: "https://cdn.jsdelivr.net/gh/noppa/text-security@master/dist/";
     width: 100%;
 }
 </style>
+
+<style lang="scss">
+.vue-bank-card__wrapper {
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+}
+</style>
