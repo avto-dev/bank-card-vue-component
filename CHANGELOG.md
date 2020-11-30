@@ -12,7 +12,9 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ### Fixed
 
-- Added `box-sizing: border-box` for all elements of Bank Card component
+- Added `box-sizing: border-box` for all elements of Bank Card component [#30]
+
+[#30]:https://github.com/avto-dev/bank-card-vue-component/pull/33
 
 ## v1.0.13
 
