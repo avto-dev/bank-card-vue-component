@@ -133,12 +133,6 @@ export default {
 </script>
 
 <style lang="scss">
-*,
-*::after,
-*::before {
-    box-sizing: border-box;
-}
-
 body {
     font-family: sans-serif;
 }
