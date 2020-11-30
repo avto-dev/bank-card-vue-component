@@ -4,6 +4,12 @@ All notable changes to this package will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## Unreleased
+
+### Fixed
+
+- Added `box-sizing: border-box` for all elements of Bank Card component
+
 ## v1.0.13
 
 ### Changed
