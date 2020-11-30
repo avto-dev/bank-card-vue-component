@@ -23,6 +23,8 @@ jobs:
           scope: '@avto-dev'
 
       - name: Generate version value
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
         run: echo "::set-env name=PACKAGE_VERSION::${GITHUB_REF##*/v}"
 
       - uses: actions/cache@v2
@@ -57,6 +59,8 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: Generate version value
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
         run: echo "::set-env name=PACKAGE_VERSION::${GITHUB_REF##*/v}"
 
       - uses: actions/cache@v2
