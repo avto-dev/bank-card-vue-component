@@ -201,7 +201,7 @@
                         @focus="onFocus($event, 'cvv')"
                         @blur="onBlur($event, 'cvv')"
                         @keydown.delete="onDel($event, 'cvv')"
-                        @keydown.enter.prevent="onInputEnter($event)"
+                        @keydown.enter.prevent="onInputEnter"
                     />
 
                     <VueBankCardTooltip :is-show="$v.cvv.$error">

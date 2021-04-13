@@ -8,11 +8,11 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ### Added
 
-- Validate when pressing on input
+- Validate when pressing `enter` on input
 
 ### Fixed
 
-- Removed form reset when pressing enter on input
+- Removed form reset when pressing `enter` on input
 
 ## v1.0.14
 
