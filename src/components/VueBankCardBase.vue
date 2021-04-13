@@ -170,7 +170,7 @@
                     >
                         {{
                             errorFiltered("expDateMonth") ||
-                            errorFiltered("expDateYear")
+                                errorFiltered("expDateYear")
                         }}
                     </VueBankCardTooltip>
                 </div>
