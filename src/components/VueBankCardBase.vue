@@ -3,7 +3,7 @@
         class="card"
         :style="{ backgroundColor: cssPropertySpecial('backgroundColor') }"
     >
-        <form class="card-inner" @keydown.enter="$emit('enter', $event)">
+        <form class="card-inner">
             <div class="card__main">
                 <div class="card__info">
                     <div v-if="!cardInfo.bankName">
@@ -75,6 +75,7 @@
                         @focus="onFocus($event, 'cardNumber')"
                         @blur="onBlur($event, 'cardNumber')"
                         @keydown.delete="onDel($event, 'cardNumber')"
+                        @keydown.enter.prevent="onInputEnter"
                     />
 
                     <input
@@ -86,7 +87,7 @@
                     <button
                         v-if="isNew && !isFieldEmpty('cardNumber')"
                         class="card__field-icon"
-                        @click="onReset"
+                        @click.prevent.stop="onReset"
                     >
                         <span class="card__field-icon-close"></span>
                     </button>
@@ -125,6 +126,7 @@
                                 @focus="onFocus($event, 'expDateMonth')"
                                 @blur="onBlur($event, 'expDateMonth')"
                                 @keydown.delete="onDel($event, 'expDateMonth')"
+                                @keydown.enter.prevent="onInputEnter"
                             />
                         </div>
 
@@ -148,6 +150,7 @@
                                 @focus="onFocus($event, 'expDateYear')"
                                 @blur="onBlur($event, 'expDateYear')"
                                 @keydown.delete="onDel($event, 'expDateYear')"
+                                @keydown.enter.prevent="onInputEnter"
                             />
                         </div>
                     </div>
@@ -198,6 +201,7 @@
                         @focus="onFocus($event, 'cvv')"
                         @blur="onBlur($event, 'cvv')"
                         @keydown.delete="onDel($event, 'cvv')"
+                        @keydown.enter.prevent="onInputEnter"
                     />
 
                     <VueBankCardTooltip :is-show="$v.cvv.$error">
@@ -264,9 +268,13 @@ export default {
                 }
             ];
         },
-        onReset(event) {
-            event.preventDefault();
+        onReset() {
             this.resetForm();
+        },
+        onInputEnter(event) {
+            event.target.blur();
+            this.$v.$touch();
+            this.$emit("enter", event);
         }
     }
 };

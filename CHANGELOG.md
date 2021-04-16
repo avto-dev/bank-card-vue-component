@@ -4,6 +4,16 @@ All notable changes to this package will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## v1.0.15
+
+### Added
+
+- Validate when pressing `enter` on input
+
+### Fixed
+
+- Removed form reset when pressing `enter` on input
+
 ## v1.0.14
 
 ### Changed

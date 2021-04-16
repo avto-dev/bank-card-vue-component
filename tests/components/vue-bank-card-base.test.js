@@ -120,10 +120,34 @@ describe("VueBankCardBase", () => {
         });
 
         describe("events", () => {
-            it("emit on enter", () => {
-                const formSelector = ".card-inner";
-                wrapper.find(formSelector).trigger("keydown.enter");
+            const wrapper = shallowMount(VueBankCardBase, {
+                propsData: {
+                    ...props,
+                    isNew: true
+                }
+            });
 
+            it("emit card number input on enter", () => {
+                const formSelector = '[data-cp="cardNumber"]';
+                wrapper.find(formSelector).trigger("keydown.enter");
+                expect(wrapper.emitted().enter).toBeTruthy();
+            });
+
+            it("emit expDateMonth input on enter", () => {
+                const formSelector = '[data-cp="expDateMonth"]';
+                wrapper.find(formSelector).trigger("keydown.enter");
+                expect(wrapper.emitted().enter).toBeTruthy();
+            });
+
+            it("emit expDateYear input on enter", () => {
+                const formSelector = '[data-cp="expDateYear"]';
+                wrapper.find(formSelector).trigger("keydown.enter");
+                expect(wrapper.emitted().enter).toBeTruthy();
+            });
+
+            it("emit cvv input on enter", () => {
+                const formSelector = '[data-cp="cvv"]';
+                wrapper.find(formSelector).trigger("keydown.enter");
                 expect(wrapper.emitted().enter).toBeTruthy();
             });
         });
