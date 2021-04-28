@@ -270,7 +270,6 @@ export default {
             if (!this.$v.$invalid) {
                 event.target.blur();
             }
-            
             this.$v.$touch();
             this.$emit("enter", event);
         }
