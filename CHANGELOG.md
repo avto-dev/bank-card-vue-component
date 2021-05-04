@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ### Added
 
-- Added blur when pressing enter on input if the form is valid
+- Blur when pressing enter on input if the form is valid
 
 ### Changed
 
