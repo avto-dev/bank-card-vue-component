@@ -190,13 +190,8 @@
                         v-mask="cvvMask"
                         :value="cvv"
                         :placeholder="cardInfo.codeName || 'CVV'"
-                        :class="[
-                            ...fieldCssClasses('cvv'),
-                            {
-                                'card__field--secured':
-                                    isCvvSecured && !isFieldEmpty('cvv')
-                            }
-                        ]"
+                        :class="[...fieldCssClasses('cvv')]"
+                        class="card__field--secured"
                         @input="onInput($event, 'cvv')"
                         @focus="onFocus($event, 'cvv')"
                         @blur="onBlur($event, 'cvv')"
@@ -272,7 +267,9 @@ export default {
             this.resetForm();
         },
         onInputEnter(event) {
-            event.target.blur();
+            if (!this.$v.$invalid) {
+                event.target.blur();
+            }
             this.$v.$touch();
             this.$emit("enter", event);
         }

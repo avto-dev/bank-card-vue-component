@@ -35,8 +35,7 @@ export default {
     },
     data() {
         return {
-            reseting: false,
-            isCvvSecured: false
+            reseting: false
         };
     },
     watch: {
@@ -173,7 +172,6 @@ export default {
         onFocus(event, type) {
             this.$v[type].$reset();
             !isObjectEmpty(this.errors) && this.clearErrors(type);
-            type === "cvv" && (this.isCvvSecured = false);
         },
         /**
          * Handle @blur event on input
@@ -184,7 +182,6 @@ export default {
             this.$v[type].$touch();
             (type === "expDateMonth" || type === "expDateYear") &&
                 this.autocompleteDate(event);
-            type === "cvv" && (this.isCvvSecured = true);
         },
         /**
          * Handle @keydown.delete event on input

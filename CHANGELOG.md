@@ -4,6 +4,16 @@ All notable changes to this package will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## v1.0.16
+
+### Added
+
+- Blur when pressing enter on input if the form is valid
+
+### Changed
+
+- Was hide chars of the cvv code
+
 ## v1.0.15
 
 ### Added

@@ -127,28 +127,80 @@ describe("VueBankCardBase", () => {
                 }
             });
 
-            it("emit card number input on enter", () => {
-                const formSelector = '[data-cp="cardNumber"]';
-                wrapper.find(formSelector).trigger("keydown.enter");
-                expect(wrapper.emitted().enter).toBeTruthy();
+            describe("enter", () => {
+                it("emit card number input on enter", () => {
+                    const formSelector = '[data-cp="cardNumber"]';
+                    wrapper.find(formSelector).trigger("keydown.enter");
+                    expect(wrapper.emitted().enter).toBeTruthy();
+                });
+
+                it("emit expDateMonth input on enter", () => {
+                    const formSelector = '[data-cp="expDateMonth"]';
+                    wrapper.find(formSelector).trigger("keydown.enter");
+                    expect(wrapper.emitted().enter).toBeTruthy();
+                });
+
+                it("emit expDateYear input on enter", () => {
+                    const formSelector = '[data-cp="expDateYear"]';
+                    wrapper.find(formSelector).trigger("keydown.enter");
+                    expect(wrapper.emitted().enter).toBeTruthy();
+                });
+
+                it("emit cvv input on enter", () => {
+                    const formSelector = '[data-cp="cvv"]';
+                    wrapper.find(formSelector).trigger("keydown.enter");
+                    expect(wrapper.emitted().enter).toBeTruthy();
+                });
             });
 
-            it("emit expDateMonth input on enter", () => {
-                const formSelector = '[data-cp="expDateMonth"]';
-                wrapper.find(formSelector).trigger("keydown.enter");
-                expect(wrapper.emitted().enter).toBeTruthy();
-            });
-
-            it("emit expDateYear input on enter", () => {
-                const formSelector = '[data-cp="expDateYear"]';
-                wrapper.find(formSelector).trigger("keydown.enter");
-                expect(wrapper.emitted().enter).toBeTruthy();
-            });
-
-            it("emit cvv input on enter", () => {
+            describe("blur", () => {
                 const formSelector = '[data-cp="cvv"]';
-                wrapper.find(formSelector).trigger("keydown.enter");
-                expect(wrapper.emitted().enter).toBeTruthy();
+                let formElement;
+
+                it("should emit blur when is happening event `keydown.enter` on input if all field is valid", () => {
+                    const wrapper = shallowMount(VueBankCardBase, {
+                        propsData: {
+                            ...props,
+                            isNew: true,
+                            cardNumber: "4242 4242 4242 4242",
+                            expDateMonth: "06",
+                            expDateYear: "29",
+                            cvv: "111",
+                            cardInfo: new CardInfo("4242 4242 4242 4242")
+                        },
+                    });
+
+                    formElement = wrapper.find(formSelector).element;
+                    jest.spyOn(formElement, 'blur').mockImplementation(() => {});
+
+                    wrapper.vm.$nextTick();
+                    wrapper.find(formSelector).trigger("keydown.enter");
+                    expect(formElement.blur).toHaveBeenCalled();
+                });
+
+                it("should not emit blur when is happening event `keydown.enter` on input if any of field not valid", () => {
+                    const wrapper = shallowMount(VueBankCardBase, {
+                        propsData: {
+                            ...props,
+                            isNew: true,
+                            cardNumber: "4242 4242 4242 4242",
+                            expDateMonth: "",
+                            expDateYear: "29",
+                            cvv: "111",
+                            cardInfo: new CardInfo("4242 4242 4242 4242")
+                        },
+                    });
+
+                    formElement = wrapper.find(formSelector).element;
+                    jest.spyOn(
+                        formElement,
+                        "blur"
+                    ).mockImplementation(() => {});
+
+                    wrapper.vm.$nextTick();
+                    wrapper.find(formSelector).trigger("keydown.enter");
+                    expect(formElement.blur).toHaveBeenCalledTimes(0);
+                });
             });
         });
     });

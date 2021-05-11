@@ -323,14 +323,11 @@ export default {
             return [
                 "card__cvv",
                 "card__field-wrapper",
+                "card__field-wrapper--secured",
                 { "card__field-wrapper--focused": !this.isFieldEmpty("cvv") },
                 {
                     "card__field-wrapper--invalid":
                         this.$v.cvv.$error || !!this.errorFiltered("cvv")
-                },
-                {
-                    "card__field-wrapper--secured":
-                        this.isCvvSecured && !this.isFieldEmpty("cvv")
                 }
             ];
         }
