@@ -12,7 +12,7 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ### Changed
 
-- Was hide chars of the cvv code
+- Hide chars of the cvv code
 
 ## v1.0.15
 
