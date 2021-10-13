@@ -28,8 +28,8 @@ shell: ## Start shell into container with node
 	$(DC_BIN) run $(DC_RUN_ARGS) node sh
 
 watch: ## Start watching assets for changes
-	@printf "\n  \033[1;42m  %s  \033[0m\n\n" 'Navigate your browser to ⇒ http://127.0.0.1:8081'
-	$(DC_BIN) run $(DC_RUN_ARGS) -p "8081:8080/tcp" node yarn watch
+	@printf "\n  \033[1;47m  %s  \033[0m\n\n" 'Navigate your browser to ⇒ https://127.0.0.1:8082 or https://localhost:8082/'
+	$(DC_BIN) run $(DC_RUN_ARGS) -p "8082:8080/tcp" node yarn watch
 
 clean: ## Make some clean
 	rm -Rf "$(cwd)/coverage" "$(cwd)/dist" "$(cwd)/dist-demo"

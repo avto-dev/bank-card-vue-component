@@ -65,6 +65,10 @@
                         v-else
                         type="text"
                         data-cp="cardNumber"
+                        autocomplete="cc-number"
+                        maxlength="22"
+                        pattern="[ 0-9]*"
+                        inputmode="numeric"
                         ref="cardNumber"
                         placeholder="0000 0000 0000 0000"
                         v-mask="cardNumberMask"
@@ -81,6 +85,7 @@
                     <input
                         type="hidden"
                         data-cp="name"
+                        autocomplete="cc-name"
                         :value="cardHolderName"
                     />
 
@@ -117,6 +122,10 @@
                             <input
                                 type="text"
                                 data-cp="expDateMonth"
+                                autocomplete="cc-exp-month"
+                                pattern="[0-9]{2}"
+                                maxlength="2"
+                                inputmode="numeric"
                                 ref="expDateMonth"
                                 placeholder="ММ"
                                 v-mask="expDateMonthMask"
@@ -141,6 +150,10 @@
                             <input
                                 type="text"
                                 data-cp="expDateYear"
+                                autocomplete="cc-exp-year"
+                                pattern="[0-9]{2}"
+                                maxlength="2"
+                                inputmode="numeric"
                                 ref="expDateYear"
                                 placeholder="ГГ"
                                 v-mask="expDateYearMask"
@@ -186,6 +199,8 @@
                     <input
                         type="text"
                         data-cp="cvv"
+                        autocomplete="cc-csc"
+                        inputmode="numeric"
                         ref="cvv"
                         v-mask="cvvMask"
                         :value="cvv"
