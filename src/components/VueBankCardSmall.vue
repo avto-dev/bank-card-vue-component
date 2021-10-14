@@ -18,20 +18,11 @@
                 }"
             ></div>
         </div>
+
         <form
             :class="['card__main', { 'card__main--focused': cardFocused }]"
             @keydown.enter="$emit('enter', $event)"
         >
-            <span
-                v-show="!cardFocused && isFieldEmpty('cardNumber')"
-                class="card__main-title"
-                :class="{
-                    'card__main-title--invalid': !!errorFiltered('cardNumber')
-                }"
-            >
-                Новая карта
-            </span>
-
             <VueBankCardTooltip
                 position="left"
                 :is-show="!!errorFiltered('cardNumber')"
@@ -39,10 +30,7 @@
                 {{ errorFiltered("cardNumber") }}
             </VueBankCardTooltip>
 
-            <div
-                v-show="cardFocused || !isFieldEmpty('cardNumber')"
-                class="card__main-inner"
-            >
+            <div class="card__main-inner">
                 <div :class="cardNumberCssClasses">
                     <label
                         v-if="isNew"
@@ -57,6 +45,10 @@
                         class="card__field"
                         type="tel"
                         data-cp="cardNumber"
+                        autocomplete="cc-number"
+                        maxlength="22"
+                        pattern="[ 0-9]*"
+                        inputmode="numeric"
                         ref="cardNumber"
                         v-mask="cardNumberMask"
                         :value="cardNumber"
@@ -80,6 +72,7 @@
                     <input
                         type="hidden"
                         data-cp="name"
+                        autocomplete="cc-name"
                         :value="cardHolderName"
                     />
 
@@ -93,13 +86,10 @@
                     </VueBankCardTooltip>
                 </div>
 
-                <div
-                    v-show="isNew && cardNumberCollapsed"
-                    :class="expDateCssClasses"
-                >
+                <div v-show="isNew" :class="expDateCssClasses">
                     <label
-                        class="card__field-label"
                         :for="generateId('expDateMonth')"
+                        class="card__field-label"
                     >
                         ММ / ГГ
                     </label>
@@ -110,6 +100,10 @@
                             type="tel"
                             ref="expDateMonth"
                             data-cp="expDateMonth"
+                            autocomplete="cc-exp-month"
+                            pattern="[0-9]{2}"
+                            maxlength="2"
+                            inputmode="numeric"
                             v-mask="expDateMonthMask"
                             :value="expDateMonth"
                             :id="generateId('expDateMonth')"
@@ -134,6 +128,10 @@
                             type="tel"
                             ref="expDateYear"
                             data-cp="expDateYear"
+                            autocomplete="cc-exp-year"
+                            pattern="[0-9]{2}"
+                            maxlength="2"
+                            inputmode="numeric"
                             v-mask="expDateYearMask"
                             :value="expDateYear"
                             @input="onInput($event, 'expDateYear')"
@@ -165,11 +163,8 @@
                     </VueBankCardTooltip>
                 </div>
 
-                <div
-                    v-show="isNew && cardNumberCollapsed"
-                    :class="cvvCssClasses"
-                >
-                    <label class="card__field-label" :for="generateId('cvv')">
+                <div v-show="isNew" :class="cvvCssClasses">
+                    <label :for="generateId('cvv')" class="card__field-label">
                         {{ cardInfo.codeName || "CVV" }}
                     </label>
 
@@ -178,6 +173,8 @@
                         type="tel"
                         ref="cvv"
                         data-cp="cvv"
+                        autocomplete="cc-csc"
+                        inputmode="numeric"
                         v-mask="cvvMask"
                         :value="cvv"
                         :id="generateId('cvv')"
@@ -203,27 +200,12 @@
                 </div>
             </div>
         </form>
-        <button
+
+        <vue-bank-card-small-btn-del
             v-if="!isNew"
-            class="card-button__delete"
-            :class="{ 'card-button__delete--disabled': disableDelete }"
-            title="Удалить данные карты"
-            @click.stop="$emit('delete-card', $event)"
-        >
-            <svg
-                width="15"
-                height="17"
-                viewBox="0 0 15 17"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <path
-                    d="M13.609 3.139h-3.362v-.83A1.47 1.47 0 008.795.856h-3.28a1.47 1.47 0 00-1.452 1.453v.83H.785a.638.638 0 00-.623.622c0 .332.29.623.623.623h.747v11.163A1.47 1.47 0 002.984 17h8.425a1.47 1.47 0 001.453-1.453V4.384h.788c.332 0 .623-.29.623-.623 0-.332-.332-.622-.664-.622zm-8.3-.83c0-.125.082-.208.207-.208h3.279c.124 0 .207.083.207.208v.83H5.308v-.83zm6.266 13.238c0 .125-.083.208-.207.208H2.943c-.125 0-.208-.083-.208-.208V4.384h8.84v11.163z"
-                />
-                <path
-                    d="M4.686 4.305a.638.638 0 00-.623.623v7.47c0 .332.29.623.623.623.332 0 .622-.291.622-.623v-7.47a.611.611 0 00-.622-.623zM7.134 4.305a.638.638 0 00-.622.623v7.47c0 .332.29.623.622.623s.623-.291.623-.623v-7.47c0-.374-.249-.623-.623-.623zM9.002 4.928v7.47c0 .332.29.623.623.623.332 0 .622-.291.622-.623v-7.47a.638.638 0 00-.622-.623.611.611 0 00-.623.623z"
-                />
-            </svg>
-        </button>
+            :disable="disableDelete"
+            @delete-card="$emit('delete-card', $event)"
+        />
     </div>
 </template>
 
@@ -234,10 +216,12 @@ import { validationMixin } from "vuelidate";
 import { commonMixin, validatorsMixin, helpersMixin } from "@/mixins";
 import clickOutside from "@/utils/click-outside-directive";
 import VueBankCardTooltip from "./VueBankCardTooltip";
+import VueBankCardSmallBtnDel from "@/components/VueBankCardSmallBtnDel";
 
 export default {
     name: "VueBankCardSmall",
     components: {
+        VueBankCardSmallBtnDel,
         VueBankCardTooltip
     },
     directives: { mask, clickOutside },
@@ -301,6 +285,7 @@ export default {
             return [
                 "card__date",
                 "card__field-wrapper",
+                { "card__field-wrapper--hidden": !this.cardNumberCollapsed },
                 {
                     "card__field-wrapper--focused":
                         !this.isFieldEmpty("expDateMonth") ||
@@ -324,6 +309,7 @@ export default {
                 "card__cvv",
                 "card__field-wrapper",
                 "card__field-wrapper--secured",
+                { "card__field-wrapper--hidden": !this.cardNumberCollapsed },
                 { "card__field-wrapper--focused": !this.isFieldEmpty("cvv") },
                 {
                     "card__field-wrapper--invalid":
@@ -403,6 +389,7 @@ $field-font-family: "Roboto Mono", Arial, sans-serif;
 $security-font-family: "text-security-disc";
 
 $base-color: #343434;
+$secondary-color: #ababab;
 $invalid-color: #ff0624;
 $disabled-color: #e5e9ed;
 
@@ -452,6 +439,10 @@ $disabled-color: #e5e9ed;
 
         &--focused {
             border-color: #ffc510;
+
+            .card__field-label {
+                color: $secondary-color;
+            }
         }
 
         &-inner {
@@ -533,7 +524,7 @@ $disabled-color: #e5e9ed;
             font-family: $base-font-family;
             font-size: 16px;
             line-height: 19px;
-            color: #ababab;
+            color: $base-color;
             transition: font-size 0.2s, color 0.2s, transform 0.2s;
         }
 
@@ -592,46 +583,11 @@ $disabled-color: #e5e9ed;
                     letter-spacing: 0.35em;
                 }
             }
-        }
-    }
 
-    &-button__delete {
-        display: flex;
-        width: 43px;
-        height: 100%;
-        padding: 0;
-        border: 0;
-        border-left: 1px solid #e5e5e5;
-        outline: none;
-        background-color: transparent;
-        cursor: pointer;
-
-        svg {
-            display: block;
-            width: 15px;
-            height: 15px;
-            margin: auto;
-            fill: lighten($invalid-color, 5%);
-            transition: fill 0.3s;
-        }
-
-        &:hover,
-        &:focus {
-            svg {
-                fill: darken($invalid-color, 5%);
-            }
-        }
-
-        &--disabled {
-            svg {
-                fill: $disabled-color;
-            }
-
-            &:hover,
-            &:focus {
-                svg {
-                    fill: $disabled-color;
-                }
+            &--hidden {
+                width: 1px;
+                overflow: hidden;
+                opacity: 0;
             }
         }
     }
