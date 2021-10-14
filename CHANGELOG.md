@@ -10,6 +10,10 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 - Autocomplete for bank card
 
+### Changed
+
+- Upgrade dependencies
+
 ## v1.0.19
 
 ### Changed
