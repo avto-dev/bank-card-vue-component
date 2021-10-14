@@ -34,20 +34,34 @@ describe("VueBankCardSmall", () => {
     });
 
     describe("if isNew", () => {
-        const titleSelector = ".card__main-title";
         const labelSelector = ".card__number .card__field-label";
 
-        it("is true, then show new card", () => {
-            const isNew = true;
-            const wrapper = shallowMount(VueBankCardSmall, {
-                propsData: {
-                    ...props,
-                    isNew
-                }
+        describe("is true", () => {
+            let wrapper = null;
+            beforeEach(() => {
+                const isNew = true;
+                wrapper = shallowMount(VueBankCardSmall, {
+                    propsData: {
+                        ...props,
+                        isNew
+                    }
+                });
             });
 
-            expect(wrapper.contains(labelSelector)).toBeTruthy();
-            expect(wrapper.find(titleSelector).isVisible()).toBeTruthy();
+            it("then show new card", () => {
+                expect(wrapper.find(labelSelector).isVisible()).toBeTruthy();
+            });
+
+            it.each([
+                ["month", "cc-exp-month"],
+                ["year", "cc-exp-year"],
+                ["cvc", "cc-csc"]
+            ])("then show %s input", (inputName, inputType) => {
+                const input = wrapper.find(
+                    `[autocomplete="${inputType}"]`
+                );
+                expect(input.isVisible()).toBeTruthy();
+            });
         });
 
         it("is false, then show saved card", () => {
@@ -66,7 +80,6 @@ describe("VueBankCardSmall", () => {
             const numberCollapsedEl = wrapper.find(".card__number-caption");
 
             expect(wrapper.contains(labelSelector)).toBeFalsy();
-            expect(wrapper.find(titleSelector).isVisible()).toBeFalsy();
             expect(numberCollapsedEl.isVisible()).toBeTruthy();
             expect(numberCollapsedEl.text()).toBe(numberCollapsed);
         });

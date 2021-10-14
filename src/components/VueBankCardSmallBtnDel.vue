@@ -27,9 +27,9 @@ export default {
     props: {
         disable: {
             type: Boolean,
-            default: false,
-        },
-    },
+            default: false
+        }
+    }
 };
 </script>
 

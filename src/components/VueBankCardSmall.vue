@@ -86,10 +86,7 @@
                     </VueBankCardTooltip>
                 </div>
 
-                <div
-                    v-show="isNew"
-                    :class="expDateCssClasses"
-                >
+                <div v-show="isNew" :class="expDateCssClasses">
                     <label
                         :for="generateId('expDateMonth')"
                         class="card__field-label"
@@ -166,14 +163,8 @@
                     </VueBankCardTooltip>
                 </div>
 
-                <div
-                    v-show="isNew"
-                    :class="cvvCssClasses"
-                >
-                    <label
-                        :for="generateId('cvv')"
-                        class="card__field-label"
-                    >
+                <div v-show="isNew" :class="cvvCssClasses">
+                    <label :for="generateId('cvv')" class="card__field-label">
                         {{ cardInfo.codeName || "CVV" }}
                     </label>
 
@@ -231,7 +222,7 @@ export default {
     name: "VueBankCardSmall",
     components: {
         VueBankCardSmallBtnDel,
-        VueBankCardTooltip,
+        VueBankCardTooltip
     },
     directives: { mask, clickOutside },
     mixins: [commonMixin, validationMixin, validatorsMixin, helpersMixin],
