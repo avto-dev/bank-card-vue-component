@@ -36,6 +36,36 @@ describe("VueBankCardSmall", () => {
     describe("if isNew", () => {
         const labelSelector = ".card__number .card__field-label";
 
+        describe('label text', () => {
+            let wrapper = null;
+            let label = null;
+            beforeEach(() => {
+                const isNew = true;
+                wrapper = shallowMount(VueBankCardSmall, {
+                    propsData: {
+                        ...props,
+                        isNew
+                    }
+                });
+                label = wrapper.find('.card__field-label');
+            });
+
+            const defaultText = "Новая карта";
+            const nextStepText = "Номер карты";
+            it(`default text should be "${defaultText}"`, () => {
+                expect(label.text()).toBe(defaultText);
+            });
+
+            describe('if click on card container', () => {
+                it(`label text should be "${nextStepText}"`, async () => {
+                    const event = new Event("click");
+                    wrapper.element.dispatchEvent(event);
+                    await wrapper.vm.$nextTick();
+                    expect(label.text()).toBe(nextStepText);
+                });
+            });
+        });
+
         describe("is true", () => {
             let wrapper = null;
             beforeEach(() => {
