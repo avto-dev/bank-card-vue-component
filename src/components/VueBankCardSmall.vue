@@ -244,7 +244,7 @@ export default {
          * @return {string}
          */
         textLabelInput() {
-            if (!this.cardFocused && this.isFieldEmpty('cardNumber')) {
+            if (!this.cardFocused && this.isFieldEmpty("cardNumber")) {
                 return "Новая карта";
             }
             return "Номер карты";
