@@ -37,7 +37,7 @@
                         class="card__field-label"
                         :for="generateId('cardNumber')"
                     >
-                        Номер карты
+                        {{ textLabelInput }}
                     </label>
 
                     <input
@@ -239,6 +239,16 @@ export default {
         };
     },
     computed: {
+        /**
+         * Text for label
+         * @return {string}
+         */
+        textLabelInput() {
+            if (!this.cardFocused && this.isFieldEmpty("cardNumber")) {
+                return "Новая карта";
+            }
+            return "Номер карты";
+        },
         /**
          * Generate path for icon in avatar field
          * @returns { String }
