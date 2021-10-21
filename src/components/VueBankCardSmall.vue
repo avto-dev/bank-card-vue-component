@@ -33,15 +33,17 @@
             <div class="card__main-inner">
                 <div :class="cardNumberCssClasses">
                     <label
-                        v-if="isNew"
+                        v-if="isLabelInputShow"
+                        data-test-label-field-number
                         class="card__field-label"
                         :for="generateId('cardNumber')"
                     >
-                        {{ textLabelInput }}
+                        Номер карты
                     </label>
 
                     <input
                         v-show="!cardNumberCollapsed"
+                        data-test-input-field-number
                         class="card__field"
                         type="tel"
                         data-cp="cardNumber"
@@ -50,6 +52,7 @@
                         pattern="[ 0-9]*"
                         inputmode="numeric"
                         ref="cardNumber"
+                        :placeholder="textPlaceholderInput"
                         v-mask="cardNumberMask"
                         :value="cardNumber"
                         :id="generateId('cardNumber')"
@@ -240,10 +243,17 @@ export default {
     },
     computed: {
         /**
-         * Text for label
+         * Condition for show or don't show a label
          * @return {string}
          */
-        textLabelInput() {
+        isLabelInputShow() {
+            return this.isNew && !this.isFieldEmpty("cardNumber");
+        },
+        /**
+         * Text for placeholder
+         * @return {string}
+         */
+        textPlaceholderInput() {
             if (!this.cardFocused && this.isFieldEmpty("cardNumber")) {
                 return "Новая карта";
             }
@@ -599,6 +609,17 @@ $disabled-color: #e5e9ed;
                 overflow: hidden;
                 opacity: 0;
             }
+        }
+
+        &::placeholder {
+            font-size: 16px;
+            font-family: "PT Sans", "Arial", sans-serif;
+            line-height: 19px;
+            color: $base-color;
+        }
+
+        &:focus::placeholder {
+            color: $secondary-color;
         }
     }
 }
