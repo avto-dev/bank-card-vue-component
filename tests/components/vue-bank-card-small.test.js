@@ -36,38 +36,10 @@ describe("VueBankCardSmall", () => {
     describe("if isNew", () => {
         const labelSelector = ".card__number .card__field-label";
 
-        describe('label text', () => {
-            let wrapper = null;
-            let label = null;
-            beforeEach(() => {
-                const isNew = true;
-                wrapper = shallowMount(VueBankCardSmall, {
-                    propsData: {
-                        ...props,
-                        isNew
-                    }
-                });
-                label = wrapper.find('.card__field-label');
-            });
-
-            const defaultText = "Новая карта";
-            const nextStepText = "Номер карты";
-            it(`default text should be "${defaultText}"`, () => {
-                expect(label.text()).toBe(defaultText);
-            });
-
-            describe('if click on card container', () => {
-                it(`label text should be "${nextStepText}"`, async () => {
-                    const event = new Event("click");
-                    wrapper.element.dispatchEvent(event);
-                    await wrapper.vm.$nextTick();
-                    expect(label.text()).toBe(nextStepText);
-                });
-            });
-        });
-
         describe("is true", () => {
             let wrapper = null;
+            let label = null;
+            let input = null;
             beforeEach(() => {
                 const isNew = true;
                 wrapper = shallowMount(VueBankCardSmall, {
@@ -76,10 +48,29 @@ describe("VueBankCardSmall", () => {
                         isNew
                     }
                 });
+                label = wrapper.find("[data-test-label-field-number]");
+                input = wrapper.find("[data-test-input-field-number]");
             });
 
-            it("then show new card", () => {
-                expect(wrapper.find(labelSelector).isVisible()).toBeTruthy();
+            describe("placeholder text", () => {
+                const defaultText = "Новая карта";
+                const nextStepText = "Номер карты";
+                it(`default: placeholder on input should be "${defaultText}"`, () => {
+                    expect(input.element.placeholder).toBe(defaultText);
+                });
+
+                describe("if click on field card", () => {
+                    it(`label text should be "${nextStepText}"`, async () => {
+                        await wrapper.trigger("click");
+                        expect(input.element.placeholder).toBe(nextStepText);
+                    });
+                });
+            });
+
+            describe("label", () => {
+                it("default: label doesn't should exist", () => {
+                    expect(label.exists()).toBeFalsy();
+                });
             });
 
             it.each([
@@ -87,9 +78,7 @@ describe("VueBankCardSmall", () => {
                 ["year", "cc-exp-year"],
                 ["cvc", "cc-csc"]
             ])("then show %s input", (inputName, inputType) => {
-                const input = wrapper.find(
-                    `[autocomplete="${inputType}"]`
-                );
+                const input = wrapper.find(`[autocomplete="${inputType}"]`);
                 expect(input.isVisible()).toBeTruthy();
             });
         });

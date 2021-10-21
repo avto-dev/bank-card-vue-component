@@ -4,6 +4,13 @@ All notable changes to this package will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## Unreleased
+
+### Changed
+
+- Now a label from a field number isn't exist before how user become input
+some value with `is-new` prop
+
 ## v1.1.1
 
 ### Added
