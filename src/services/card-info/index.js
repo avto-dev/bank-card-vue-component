@@ -61,6 +61,18 @@ export default class CardInfo extends Card {
             this.numberGaps,
             this.numberLengths
         );
+
+        this.allBlocks = this._getAllBlocks(
+            this.numberGaps,
+            this.numberLengths
+        );
+
+        this.allMasks = this._getAllMasks(
+            this.options.maskDigitSymbol,
+            this.options.maskDelimiterSymbol,
+            this.allBlocks
+        );
+
         this.numberMask = this._getMask(
             this.options.maskDigitSymbol,
             this.options.maskDelimiterSymbol,
@@ -84,7 +96,7 @@ export default class CardInfo extends Card {
 
     _getBrand(number) {
         const brs = [];
-        Object.values(brands).forEach(brand => {
+        Object.values(brands).forEach((brand) => {
             if (brand.pattern.test(number)) brs.push(brand);
         });
         if (brs.length === 1) return brs[0];
@@ -147,6 +159,25 @@ export default class CardInfo extends Card {
         return blocks.reverse();
     }
 
+    _getAllBlocks(numberGaps, numberLengths) {
+        let result = [];
+        for (let numberLength of numberLengths) {
+            const blocks = [];
+            for (let i = numberGaps.length - 1; i >= 0; i--) {
+                const blockLength = numberLength - numberGaps[i];
+                numberLength -= blockLength;
+                if (blockLength > 0) {
+                    blocks.push(blockLength);
+                }
+            }
+            blocks.push(numberLength);
+            blocks.reverse();
+            result.push(blocks);
+        }
+
+        return result;
+    }
+
     _getMask(maskDigitSymbol, maskDelimiterSymbol, numberBlocks) {
         let mask = "";
         for (let i = 0; i < numberBlocks.length; i++) {
@@ -155,6 +186,27 @@ export default class CardInfo extends Card {
                 Array(numberBlocks[i] + 1).join(maskDigitSymbol);
         }
         return mask;
+    }
+
+    _getAllMasks(maskDigitSymbol, maskDelimiterSymbol, allBlocks) {
+        const masks = [];
+        for (const numberBlocks of allBlocks) {
+            let mask = "";
+            for (let i = 0; i < numberBlocks.length; i++) {
+                if (i) {
+                    mask += maskDelimiterSymbol;
+                }
+
+                if (numberBlocks[i] > 0) {
+                    const block = Array(numberBlocks[i] + 1).join(
+                        maskDigitSymbol
+                    );
+                    mask += block;
+                }
+            }
+            masks.push(mask);
+        }
+        return masks;
     }
 
     _getNumberNice(number, numberGaps) {

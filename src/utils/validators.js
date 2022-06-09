@@ -1,3 +1,4 @@
+import { BRANDS_WITH_MULTIPLE_MASKS } from "@/consts";
 /**
  * Compare current length with preset length
  * @param { String } type - Key of preset object
@@ -17,10 +18,18 @@ export const length = type =>
         ) {
             return true;
         }
-        return (
-            value.replace(/\s/g, "").length ===
-            vm[type].replace(/\s/g, "").length
-        );
+
+        const valueSymbolLength = value.replace(/\s/g, "").length;
+        // This brands has custom of count numbers on card number
+        if (BRANDS_WITH_MULTIPLE_MASKS.includes(vm.cardInfo.brandAlias) && type === 'cardNumberMask') {
+
+            const isNumberValid = vm.cardInfo.allMasks.some(
+                (mask) => valueSymbolLength === mask.replace(/\s/g, "").length
+            );
+            return isNumberValid;
+        }
+
+        return valueSymbolLength === vm[type].replace(/\s/g, "").length;
     };
 
 /**

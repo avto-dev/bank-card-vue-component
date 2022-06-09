@@ -1,4 +1,5 @@
 import { camelToKebab, isObjectEmpty } from "@/utils/helpers";
+import { BRANDS_WITH_MULTIPLE_MASKS } from "@/consts";
 
 export default {
     props: {
@@ -139,7 +140,7 @@ export default {
 
             if (lengthCondition && !orderItemCondition) {
                 const currentItem = this.fields.find(
-                    field => field.ref === current
+                    (field) => field.ref === current
                 );
                 const goToItem = this.fields[goToItemIndex];
 
@@ -158,8 +159,30 @@ export default {
         onInput(event, type) {
             if (event.isTrusted) return;
             this.$emit(`input-${camelToKebab(type)}`, event.target.value);
+            let validForNextStep = false;
+
+            if (BRANDS_WITH_MULTIPLE_MASKS.includes(this.cardInfo.brandAlias)) {
+                const longest = this.cardInfo.allMasks.sort(function (a, b) {
+                    return b.length - a.length;
+                });
+
+                const MAX_ALLOWED_SYMBOLS = longest[0].replace(
+                    /\s/g,
+                    ""
+                ).length;
+
+                const inputSymbolCount = event.target.value.replace(
+                    /\s/g,
+                    ""
+                ).length;
+
+                validForNextStep = inputSymbolCount === MAX_ALLOWED_SYMBOLS;
+            } else {
+                validForNextStep = this.isFieldFull(type) && !this.reseting;
+            }
+
             setTimeout(() => {
-                if (this.isFieldFull(type) && !this.reseting) {
+                if (validForNextStep) {
                     this.moveCaretTo("forward", type);
                 }
             }, 0);
@@ -192,6 +215,6 @@ export default {
             this.$nextTick(() => {
                 this.moveCaretTo("backward", type);
             });
-        }
-    }
+        },
+    },
 };
