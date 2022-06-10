@@ -2,6 +2,7 @@ import Card from "./card";
 import banks from "./banks";
 import brands from "./brands";
 import prefixes from "./prefixes";
+import { generateBlock } from "../../utils/helpers";
 
 export default class CardInfo extends Card {
     constructor(numberSource = "", options) {
@@ -162,19 +163,9 @@ export default class CardInfo extends Card {
     _getAllBlocks(numberGaps, numberLengths) {
         let result = [];
         for (let numberLength of numberLengths) {
-            const blocks = [];
-            for (let i = numberGaps.length - 1; i >= 0; i--) {
-                const blockLength = numberLength - numberGaps[i];
-                numberLength -= blockLength;
-                if (blockLength > 0) {
-                    blocks.push(blockLength);
-                }
-            }
-            blocks.push(numberLength);
-            blocks.reverse();
-            result.push(blocks);
+            const block = generateBlock(numberGaps, numberLength);
+            result.push(block);
         }
-
         return result;
     }
 
@@ -191,19 +182,18 @@ export default class CardInfo extends Card {
     _getAllMasks(maskDigitSymbol, maskDelimiterSymbol, allBlocks) {
         const masks = [];
         for (const numberBlocks of allBlocks) {
-            let mask = "";
-            for (let i = 0; i < numberBlocks.length; i++) {
-                if (i) {
-                    mask += maskDelimiterSymbol;
-                }
+            const mask = numberBlocks.reduce(
+                (prevCell, cellCharsLength, idx) => {
+                    const cellMask =
+                        prevCell + Array(cellCharsLength + 1).join("#");
+                    const delimiter = " ";
+                    return idx < numberBlocks.length - 1
+                        ? `${cellMask}${delimiter}`
+                        : cellMask;
+                },
+                ""
+            );
 
-                if (numberBlocks[i] > 0) {
-                    const block = Array(numberBlocks[i] + 1).join(
-                        maskDigitSymbol
-                    );
-                    mask += block;
-                }
-            }
             masks.push(mask);
         }
         return masks;

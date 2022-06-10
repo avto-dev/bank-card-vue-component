@@ -1,1 +1,2 @@
-export const BRANDS_WITH_MULTIPLE_MASKS = [null, "mir"]; // null - is undefined brand
+const undefinedBrand = null; // null - is undefined brand
+export const BRANDS_WITH_MULTIPLE_MASKS = [undefinedBrand, "mir"];

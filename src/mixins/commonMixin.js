@@ -1,5 +1,6 @@
 import { camelToKebab, isObjectEmpty } from "@/utils/helpers";
 import { BRANDS_WITH_MULTIPLE_MASKS } from "@/consts";
+import { getLongestMask, equalToOneMask } from "../utils/helpers";
 
 export default {
     props: {
@@ -7,42 +8,42 @@ export default {
         disableDelete: Boolean,
         cardInfo: {
             type: Object,
-            default: null
+            default: null,
         },
         cardNumber: {
             type: String,
-            required: true
+            required: true,
         },
         cardHolderName: {
             type: String,
-            required: true
+            required: true,
         },
         expDateMonth: {
             type: String,
-            required: true
+            required: true,
         },
         expDateYear: {
             type: String,
-            required: true
+            required: true,
         },
         cvv: {
             type: String,
-            required: true
+            required: true,
         },
         errors: Object,
         isReset: Boolean,
         isFocus: Boolean,
-        imagesBasePath: String
+        imagesBasePath: String,
     },
     data() {
         return {
-            reseting: false
+            reseting: false,
         };
     },
     watch: {
         isReset(value) {
             value && this.resetForm();
-        }
+        },
     },
     computed: {
         /**
@@ -57,7 +58,7 @@ export default {
             } else {
                 return "";
             }
-        }
+        },
     },
     methods: {
         /**
@@ -161,25 +162,21 @@ export default {
             this.$emit(`input-${camelToKebab(type)}`, event.target.value);
             let validForNextStep = false;
 
-            if (BRANDS_WITH_MULTIPLE_MASKS.includes(this.cardInfo.brandAlias)) {
-                const longest = this.cardInfo.allMasks.sort(function (a, b) {
-                    return b.length - a.length;
-                });
+            const countMaskIsEqual = equalToOneMask(
+                this.cardInfo,
+                event.target.value
+            );
 
-                const MAX_ALLOWED_SYMBOLS = longest[0].replace(
-                    /\s/g,
-                    ""
-                ).length;
+            const isMultipleMasks = BRANDS_WITH_MULTIPLE_MASKS.includes(
+                this.cardInfo.brandAlias
+            );
 
-                const inputSymbolCount = event.target.value.replace(
-                    /\s/g,
-                    ""
-                ).length;
+            console.log("isMultipleMasks");
+            console.log(isMultipleMasks);
 
-                validForNextStep = inputSymbolCount === MAX_ALLOWED_SYMBOLS;
-            } else {
-                validForNextStep = this.isFieldFull(type) && !this.reseting;
-            }
+            validForNextStep = isMultipleMasks
+                ? countMaskIsEqual
+                : this.isFieldFull(type) && !this.reseting;
 
             setTimeout(() => {
                 if (validForNextStep) {
