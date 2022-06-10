@@ -160,7 +160,6 @@ export default {
         onInput(event, type) {
             if (event.isTrusted) return;
             this.$emit(`input-${camelToKebab(type)}`, event.target.value);
-            let validForNextStep = false;
 
             const countMaskIsEqual = equalToOneMask(
                 this.cardInfo,
@@ -171,11 +170,12 @@ export default {
                 this.cardInfo.brandAlias
             );
 
-            validForNextStep = isMultipleMasks
-                ? countMaskIsEqual
-                : this.isFieldFull(type) && !this.reseting;
-
             setTimeout(() => {
+                const validForNextStep =
+                    isMultipleMasks && type === "cardNumber"
+                        ? countMaskIsEqual
+                        : this.isFieldFull(type) && !this.reseting;
+
                 if (validForNextStep) {
                     this.moveCaretTo("forward", type);
                 }

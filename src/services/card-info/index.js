@@ -2,7 +2,7 @@ import Card from "./card";
 import banks from "./banks";
 import brands from "./brands";
 import prefixes from "./prefixes";
-import { generateBlock } from "../../utils/helpers";
+import { generateBlock, generateMask } from "../../utils/helpers";
 
 export default class CardInfo extends Card {
     constructor(numberSource = "", options) {
@@ -182,17 +182,7 @@ export default class CardInfo extends Card {
     _getAllMasks(maskDigitSymbol, maskDelimiterSymbol, allBlocks) {
         const masks = [];
         for (const numberBlocks of allBlocks) {
-            const mask = numberBlocks.reduce(
-                (prevCell, cellCharsLength, idx) => {
-                    const cellMask =
-                        prevCell + Array(cellCharsLength + 1).join("#");
-                    const delimiter = " ";
-                    return idx < numberBlocks.length - 1
-                        ? `${cellMask}${delimiter}`
-                        : cellMask;
-                },
-                ""
-            );
+            const mask = generateMask(numberBlocks);
 
             masks.push(mask);
         }

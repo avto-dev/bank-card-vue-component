@@ -51,3 +51,13 @@ export const generateBlock = (numberGaps, numberLength) => {
     blocks.push(maxInputSize);
     return blocks.reverse();
 };
+
+export const generateMask = (numberBlocks) => {
+    return numberBlocks.reduce((prevCell, cellCharsLength, idx) => {
+        const cellMask = prevCell + Array(cellCharsLength + 1).join("#");
+        const delimiter = " ";
+        return idx < numberBlocks.length - 1
+            ? `${cellMask}${delimiter}`
+            : cellMask;
+    }, "");
+};
