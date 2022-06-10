@@ -171,9 +171,6 @@ export default {
                 this.cardInfo.brandAlias
             );
 
-            console.log("isMultipleMasks");
-            console.log(isMultipleMasks);
-
             validForNextStep = isMultipleMasks
                 ? countMaskIsEqual
                 : this.isFieldFull(type) && !this.reseting;
