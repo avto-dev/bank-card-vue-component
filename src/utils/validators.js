@@ -4,8 +4,7 @@ import { BRANDS_WITH_MULTIPLE_MASKS } from "@/consts";
  * @param { String } type - Key of preset object
  * @returns { Function } - curried function
  */
-export const length =
-    (type) =>
+export const length = type =>
     /**
      * @param { String } value - Value for comparing
      * @param { Object } vm - Instance
@@ -28,7 +27,7 @@ export const length =
         // This brands has custom of count numbers on card number
         if (isMultipleMaskBrand && type === "cardNumberMask") {
             const isNumberValid = vm.cardInfo.allMasks.some(
-                (mask) => valueSymbolLength === mask.replace(/\s/g, "").length
+                mask => valueSymbolLength === mask.replace(/\s/g, "").length
             );
             return isNumberValid;
         }
@@ -41,27 +40,23 @@ export const length =
  * @param { String } min - Key of minimum value
  * @returns { Function }
  */
-export const minValue =
-    (min) =>
+export const minValue = min =>
     /**
      * @param { String } value - Value for comparing
      * @param { Object } vm - Instance
      * @returns { Boolean }
      */
-    (value, vm) =>
-        +value >= +vm[min];
+    (value, vm) => +value >= +vm[min];
 
 /**
  * Compare current value with maximum value
  * @param { String } max - Key of maximum value
  * @returns { Function }
  */
-export const maxValue =
-    (max) =>
+export const maxValue = max =>
     /**
      * @param { String } value - Value for comparing
      * @param { Object } vm - Instance
      * @returns { Boolean }
      */
-    (value, vm) =>
-        +value <= +vm[max];
+    (value, vm) => +value <= +vm[max];
