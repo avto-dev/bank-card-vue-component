@@ -1,4 +1,6 @@
 import { camelToKebab, isObjectEmpty } from "@/utils/helpers";
+import { BRANDS_WITH_MULTIPLE_MASKS } from "@/consts";
+import { getLongestMask, equalToOneMask } from "../utils/helpers";
 
 export default {
     props: {
@@ -6,42 +8,42 @@ export default {
         disableDelete: Boolean,
         cardInfo: {
             type: Object,
-            default: null
+            default: null,
         },
         cardNumber: {
             type: String,
-            required: true
+            required: true,
         },
         cardHolderName: {
             type: String,
-            required: true
+            required: true,
         },
         expDateMonth: {
             type: String,
-            required: true
+            required: true,
         },
         expDateYear: {
             type: String,
-            required: true
+            required: true,
         },
         cvv: {
             type: String,
-            required: true
+            required: true,
         },
         errors: Object,
         isReset: Boolean,
         isFocus: Boolean,
-        imagesBasePath: String
+        imagesBasePath: String,
     },
     data() {
         return {
-            reseting: false
+            reseting: false,
         };
     },
     watch: {
         isReset(value) {
             value && this.resetForm();
-        }
+        },
     },
     computed: {
         /**
@@ -56,7 +58,7 @@ export default {
             } else {
                 return "";
             }
-        }
+        },
     },
     methods: {
         /**
@@ -139,7 +141,7 @@ export default {
 
             if (lengthCondition && !orderItemCondition) {
                 const currentItem = this.fields.find(
-                    field => field.ref === current
+                    (field) => field.ref === current
                 );
                 const goToItem = this.fields[goToItemIndex];
 
@@ -158,8 +160,23 @@ export default {
         onInput(event, type) {
             if (event.isTrusted) return;
             this.$emit(`input-${camelToKebab(type)}`, event.target.value);
+
+            const countMaskIsEqual = equalToOneMask(
+                this.cardInfo,
+                event.target.value
+            );
+
+            const isMultipleMasks = BRANDS_WITH_MULTIPLE_MASKS.includes(
+                this.cardInfo.brandAlias
+            );
+
             setTimeout(() => {
-                if (this.isFieldFull(type) && !this.reseting) {
+                const validForNextStep =
+                    isMultipleMasks && type === "cardNumber"
+                        ? countMaskIsEqual
+                        : this.isFieldFull(type) && !this.reseting;
+
+                if (validForNextStep) {
                     this.moveCaretTo("forward", type);
                 }
             }, 0);
@@ -192,6 +209,6 @@ export default {
             this.$nextTick(() => {
                 this.moveCaretTo("backward", type);
             });
-        }
-    }
+        },
+    },
 };

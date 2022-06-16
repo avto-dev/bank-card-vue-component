@@ -4,6 +4,13 @@ All notable changes to this package will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## Unreleased
+
+### Changed
+
+- Added additional numbers for MIR cards
+- Now additional numbers are displayed in a separate fifth block
+
 ## v1.1.4
 
 ### Changed

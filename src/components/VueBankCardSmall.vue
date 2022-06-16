@@ -48,7 +48,7 @@
                         type="tel"
                         data-cp="cardNumber"
                         autocomplete="cc-number"
-                        maxlength="22"
+                        maxlength="23"
                         pattern="[ 0-9]*"
                         inputmode="numeric"
                         ref="cardNumber"
@@ -59,6 +59,7 @@
                         :readonly="!isNew"
                         @input="onInput($event, 'cardNumber')"
                         @focus="onFocus($event, 'cardNumber')"
+                        @focusout="leaveFromCardNumber"
                         @blur="onBlur($event, 'cardNumber')"
                         @keydown.delete="onDel($event, 'cardNumber')"
                         @keydown.enter="onCardNumberEnter"
@@ -67,7 +68,7 @@
                     <span
                         v-show="cardNumberCollapsed"
                         class="card__number-caption"
-                        @click="onClickCollapsed"
+                        @click.prevent="onClickCollapsed"
                     >
                         {{ numberCollapsed }}
                     </span>
@@ -88,7 +89,15 @@
                         Вам нужно заполнить это поле
                     </VueBankCardTooltip>
                 </div>
-
+                <transition name="fade">
+                    <div v-if="displayNextStep" class="card__number-next">
+                        <img
+                            @click="onCardNumberEnter"
+                            src="/images/next-step.svg"
+                            alt="Следующий шаг"
+                        />
+                    </div>
+                </transition>
                 <div v-show="isNew" :class="expDateCssClasses">
                     <label
                         :for="generateId('expDateMonth')"
@@ -233,6 +242,7 @@ export default {
         return {
             cardFocused: false,
             cardNumberCollapsed: false,
+            focusedField: null,
             fields: [
                 { ref: "cardNumber", collapsible: true },
                 { ref: "expDateMonth" },
@@ -336,6 +346,14 @@ export default {
                         this.$v.cvv.$error || !!this.errorFiltered("cvv")
                 }
             ];
+        },
+        displayNextStep() {
+            return (
+                this.$v.cardNumber.length &&
+                this.isNew &&
+                !this.cardNumberCollapsed &&
+                this.cardFocused
+            );
         }
     },
     created() {
@@ -352,13 +370,15 @@ export default {
         onFocusCard(e) {
             if (this.isNew) {
                 this.cardFocused = true;
-                if (e.target.className !== "card__field") {
-                    for (let i = 0; i < this.fields.length; i++) {
-                        const ref = this.fields[i].ref;
+                if (!this.cardNumber) {
+                    if (e.target.className !== "card__field") {
+                        for (let i = 0; i < this.fields.length; i++) {
+                            const ref = this.fields[i].ref;
 
-                        if (!this.isFieldFull(ref)) {
-                            this.focusOnField(ref);
-                            break;
+                            if (!this.isFieldFull(ref)) {
+                                this.focusOnField(ref);
+                                break;
+                            }
                         }
                     }
                 }
@@ -397,6 +417,11 @@ export default {
             if (this.isFieldFull(name)) {
                 this.cardNumberCollapsed = true;
                 this.moveCaretTo("forward", name);
+            }
+        },
+        leaveFromCardNumber() {
+            if (!this.cardNumberCollapsed) {
+                this.onCardNumberEnter();
             }
         }
     }
@@ -488,12 +513,29 @@ $disabled-color: #e5e9ed;
     }
 
     &__number {
+        --display-next-step: inline;
+
         display: flex;
         width: 100%;
         transition: margin 0.3s;
 
+        &-next {
+            cursor: pointer;
+            display: var(--display-next-step);
+            transition: opacity 0.25s;
+
+            &:hover {
+                opacity: 0.5;
+            }
+
+            img {
+                max-height: 20px;
+            }
+        }
+
         &--collapsed {
             width: auto;
+            --display-next-step: none;
         }
 
         &-caption {
@@ -622,5 +664,13 @@ $disabled-color: #e5e9ed;
             color: $secondary-color;
         }
     }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.1s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+    opacity: 0;
 }
 </style>
