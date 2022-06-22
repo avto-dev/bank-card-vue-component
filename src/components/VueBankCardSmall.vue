@@ -93,7 +93,7 @@
                     <div v-if="displayNextStep" class="card__number-next">
                         <img
                             @click="onCardNumberEnter"
-                            src="/images/next-step.svg"
+                            :src="nextIcon"
                             alt="Следующий шаг"
                         />
                     </div>
@@ -354,6 +354,9 @@ export default {
                 !this.cardNumberCollapsed &&
                 this.cardFocused
             );
+        },
+        nextIcon() {
+            return this.imagesBasePath + "next-step.svg";
         }
     },
     created() {
