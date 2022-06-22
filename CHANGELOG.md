@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ### Fixed
 
-- Changed link to next stage button
+- Changed icon link to next stage button
 
 ## v1.2.0
 
