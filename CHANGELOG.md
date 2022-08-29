@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ## Unreleased
 
+### Added
+
+- Prop `isYearValidation` for "year" validation, default value `true`
+
 ### Changed
 
 - Now a label from a field number isn't exist before how user become input
