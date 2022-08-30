@@ -13,6 +13,7 @@
             :is-reset="isReset"
             :is-focus="isFocus"
             :images-base-path="imagesBasePath"
+            :is-year-validation="isYearValidation"
             @input-card-number="cardNumber = $event"
             @input-exp-date-month="expDateMonth = $event"
             @input-exp-date-year="expDateYear = $event"
@@ -35,6 +36,7 @@
             :is-reset="isReset"
             :is-focus="isFocus"
             :images-base-path="imagesBasePath"
+            :is-year-validation="isYearValidation"
             @input-card-number="cardNumber = $event"
             @input-exp-date-month="expDateMonth = $event"
             @input-exp-date-year="expDateYear = $event"
@@ -93,6 +95,10 @@ export default {
             default: String(
                 process.env.BANK_CARD_VUE_COMPONENT_IMAGES_BASE_PATH
             )
+        },
+        isYearValidation: {
+            type: Boolean,
+            default: true
         }
     },
     data() {

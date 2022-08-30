@@ -4,6 +4,12 @@ All notable changes to this package will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## Unreleased
+
+### Added
+
+- Prop `isYearValidation` for "year" validation, default value `true`
+
 ## v1.2.1
 
 ### Fixed

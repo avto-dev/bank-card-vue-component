@@ -1,7 +1,16 @@
 import { required } from "vuelidate/lib/validators";
 import { length, minValue, maxValue } from "@/utils/validators";
 
+const ABSOLUTE_MIN_YEAR = 0;
+const ABSOLUTE_MAX_YEAR = 99;
+
 export default {
+    props: {
+        isYearValidation: {
+            type: Boolean,
+            default: true
+        }
+    },
     data() {
         return {
             minMMDefault: "01",
@@ -59,14 +68,20 @@ export default {
          * @returns {String}
          */
         minYear() {
-            return this.currentYY;
+            if (this.isYearValidation) {
+                return this.currentYY;
+            }
+            return ABSOLUTE_MIN_YEAR;
         },
         /**
          * Get maximum year for date of expiration year
          * @returns {String}
          */
         maxYear() {
-            return (+this.currentYY + 10).toString();
+            if (this.isYearValidation) {
+                return (+this.currentYY + 10).toString();
+            }
+            return ABSOLUTE_MAX_YEAR;
         },
         /**
          * Current month in MM date format
