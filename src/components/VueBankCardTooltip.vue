@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$base-font-family: "PT Sans", Arial, sans-serif;
+$base-font-family: "Roboto", sans-serif;
 
 .card {
     &__tooltip {
@@ -39,6 +39,7 @@ $base-font-family: "PT Sans", Arial, sans-serif;
         margin-top: 7px;
         padding: 4px 8px;
         background-color: #fff;
+        border-radius: 5px;
         box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 
         &::before {
@@ -58,7 +59,8 @@ $base-font-family: "PT Sans", Arial, sans-serif;
             font-size: 12px;
             line-height: 16px;
             white-space: nowrap;
-            color: #000;
+            font-weight: 300;
+            color: #2c303b;
         }
 
         &--left {
@@ -76,6 +78,13 @@ $base-font-family: "PT Sans", Arial, sans-serif;
             &::before {
                 left: auto;
                 right: 15px;
+            }
+        }
+        &--start {
+            left: -15px;
+
+            &::before {
+                left: 16px;
             }
         }
     }

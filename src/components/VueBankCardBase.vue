@@ -114,7 +114,7 @@
                         class="card__field-label"
                         :style="{ color: cssPropertySpecial('textColor') }"
                     >
-                        Действует до:
+                        Карта действует до:
                     </p>
 
                     <div class="card__expiration">
@@ -189,12 +189,24 @@
                 </div>
 
                 <div class="card__field-group card__code">
-                    <p
-                        class="card__field-label"
-                        :style="{ color: cssPropertySpecial('textColor') }"
-                    >
-                        Код с обратной стороны:
-                    </p>
+                    <div class="card__field-secured-info">
+                        <div class="secured-helper">
+                            <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg" @mouseout="showInfo = false" @mouseover="showInfo = true">
+                                <path :fill="cssPropertySpecial('textColor') || '#74747c'" fill-rule="evenodd" clip-rule="evenodd" d="M5 1.32569C2.69459 1.32569 0.825688 3.19459 0.825688 5.5C0.825688 7.80541 2.69459 9.67431 5 9.67431C7.30541 9.67431 9.17431 7.80541 9.17431 5.5C9.17431 3.19459 7.30541 1.32569 5 1.32569ZM0 5.5C0 2.73858 2.23858 0.5 5 0.5C7.76142 0.5 10 2.73858 10 5.5C10 8.26142 7.76142 10.5 5 10.5C2.23858 10.5 0 8.26142 0 5.5ZM5 3.88636C5.22801 3.88636 5.41284 4.07119 5.41284 4.2992V8.02842C5.41284 8.25643 5.22801 8.44127 5 8.44127C4.77199 8.44127 4.58716 8.25643 4.58716 8.02842V4.2992C4.58716 4.07119 4.77199 3.88636 5 3.88636Z"/>
+                                <path :fill="cssPropertySpecial('textColor') || '#74747c'" d="M4.99996 3.43488C5.2533 3.43488 5.45867 3.2295 5.45867 2.97616C5.45867 2.72282 5.2533 2.51745 4.99996 2.51745C4.74661 2.51745 4.54124 2.72282 4.54124 2.97616C4.54124 3.2295 4.74661 3.43488 4.99996 3.43488Z"/>
+                            </svg>
+                            <VueBankCardTooltip :is-show="showInfo" :position="'start'">
+                                Трехзначный код на обратной стороне карты
+                            </VueBankCardTooltip>
+                        </div>
+
+                        <p
+                            class="card__field-label"
+                            :style="{ color: cssPropertySpecial('textColor') }"
+                        >
+                            CVV код
+                        </p>
+                    </div>
 
                     <input
                         type="text"
@@ -249,7 +261,8 @@ export default {
                 { ref: "expDateYear" },
                 { ref: "cvv" }
             ],
-            availableBrands: ["master-card", "maestro", "visa", "mir"]
+            availableBrands: ["master-card", "maestro", "visa", "mir"],
+            showInfo: false
         };
     },
     mounted() {
@@ -293,22 +306,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$base-font-family: "PT Sans", Arial, sans-serif;
-$field-font-family: "Roboto Mono", Arial, sans-serif;
+$base-font-family: "Roboto", sans-serif;
+$field-font-family: "Roboto Mono", sans-serif;
 $security-font-family: "text-security-disc";
 
-$card-bg-color: #e5e5e5;
+$card-bg-color: #e6e7f4;
 
 $base-color: #000;
-$field-color: #343434;
+$field-color: #74747c;
 
-$field-focus-outline-color: #ffd141;
-$field-invalid-outline-color: #df4242;
+$field-focus-outline-color: #ffb82e;
+$field-invalid-outline-color: #ff5959;
 
 .card {
     position: relative;
     width: 380px;
-    border-radius: 10px;
+    border-radius: 16px;
     background-color: $card-bg-color;
     transition: background-color 0.3s;
 
@@ -327,7 +340,7 @@ $field-invalid-outline-color: #df4242;
         justify-content: space-between;
         width: 100%;
         height: 100%;
-        padding: 6.3%;
+        padding: 6.3% 4.2%;
     }
 
     &__main {
@@ -338,11 +351,12 @@ $field-invalid-outline-color: #df4242;
     &__info {
         display: flex;
         width: 100%;
-        height: 55px;
+        height: 24px;
     }
 
     &__number {
         position: relative;
+        margin-top: 16px;
     }
 
     &__extra {
@@ -350,11 +364,18 @@ $field-invalid-outline-color: #df4242;
         flex-flow: row nowrap;
         align-items: flex-end;
         justify-content: space-between;
+        input {
+            text-align: center;
+            margin-top: 5px;
+        }
     }
 
-    &__code,
     &__date {
-        width: 70px;
+        width: 49px;
+    }
+
+    &__code {
+        width: 76px;
     }
 
     &__expiration {
@@ -364,13 +385,15 @@ $field-invalid-outline-color: #df4242;
 
     &__field {
         width: 100%;
-        padding: 10px;
-        border: 2px solid transparent;
+        padding: 15px;
+        border: 1px solid #f0f5fb;
+        border-radius: 5px;
         outline: none;
         font-family: $field-font-family;
-        font-size: 16px;
-        color: $field-color;
-        line-height: 20px;
+        font-size: 14px;
+        font-weight: 400;
+        color: $base-color;
+        line-height: 125%;
         transition: border-color 0.3s;
 
         &:focus {
@@ -388,19 +411,37 @@ $field-invalid-outline-color: #df4242;
         }
 
         &-label {
-            margin: 0 0 5px 0;
+            margin: 0;
+            vertical-align: middle;
             font-family: $base-font-family;
             font-size: 10px;
-            line-height: 13px;
-            color: $base-color;
+            font-weight: 300;
+            line-height: 15px;
+            color: $field-color;
             transition: color 0.3s;
+        }
+        &-secured-info {
+            display: flex;
+            align-items: center;
+            svg {
+                width: 10px;
+                height: 10px;
+                margin-right: 5px;
+            }
+            .secured-helper {
+                position: relative;
+                &:hover {
+                    cursor: pointer;
+                }
+            }
         }
 
         &-divider {
-            margin: 0 5px;
+            margin: 0 4px;
             font-family: $field-font-family;
-            font-size: 18px;
-            line-height: 21px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 125%;
             color: $field-color;
             transition: color 0.3s;
         }
@@ -412,12 +453,15 @@ $field-invalid-outline-color: #df4242;
         &-mock {
             display: block;
             width: 100%;
-            padding: 10px;
-            border: 2px solid transparent;
+            padding: 15px;
+            border: 1px solid #f0f5fb;
+            border-radius: 5px;
             background-color: #fff;
             font-size: 16px;
-            line-height: 20px;
+            line-height: 125%;
+            font-weight: 400;
             font-family: $field-font-family;
+            color: $field-color;
         }
 
         &-icon {
@@ -438,7 +482,7 @@ $field-invalid-outline-color: #df4242;
                 .card__field-icon-close {
                     &::before,
                     &::after {
-                        background-color: lighten($field-color, 10%);
+                        background-color: $field-color;
                     }
                 }
             }
@@ -449,14 +493,14 @@ $field-invalid-outline-color: #df4242;
                 left: 50%;
                 transform: translate(-50%, -50%) rotate(45deg);
                 display: block;
-                width: 20px;
-                height: 20px;
+                width: 12px;
+                height: 12px;
 
                 &::before,
                 &::after {
                     content: "";
                     position: absolute;
-                    background-color: lighten($field-color, 50%);
+                    background-color: $base-color;
                     transition: background-color 0.3s;
                 }
 
@@ -465,14 +509,14 @@ $field-invalid-outline-color: #df4242;
                     left: 50%;
                     height: 100%;
                     transform: translateX(-50%);
-                    width: 2px;
+                    width: 1px;
                 }
 
                 &::after {
                     top: 50%;
                     left: 0;
                     width: 100%;
-                    height: 2px;
+                    height: 1px;
                     transform: translateY(-50%);
                 }
             }
@@ -481,6 +525,7 @@ $field-invalid-outline-color: #df4242;
 
     &__brand {
         &-placeholder {
+            padding-top: 4px;
             display: flex;
 
             .card__brand-logo-wrapper {
@@ -489,15 +534,16 @@ $field-invalid-outline-color: #df4242;
         }
 
         &-logo {
-            width: 40px;
+            min-height: 15px;
+            max-height: 24px;
 
             &-wrapper {
                 display: flex;
                 align-items: flex-start;
-                max-width: 40px;
+                max-width: 90px;
 
                 &:not(:last-child) {
-                    margin-right: 10px;
+                    margin-right: 16px;
                 }
             }
         }
@@ -507,11 +553,15 @@ $field-invalid-outline-color: #df4242;
         &-info {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             width: 100%;
+            img {
+                height: 24px;
+            }
         }
 
         &-logo {
-            max-height: 35px;
+            max-height: 24px;
 
             &-wrapper {
                 display: flex;

@@ -1,22 +1,16 @@
 <template>
     <button
         class="vbc-btn"
-        :class="{ 'vbc-btn--disabled': disable }"
+        :class="{ 'vbc-btn--disabled': disable, 'vbc-btn--focused': disable }"
         title="Удалить данные карты"
         @click.stop="$emit('delete-card', $event)"
     >
-        <svg
-            width="15"
-            height="17"
-            viewBox="0 0 15 17"
-            xmlns="http://www.w3.org/2000/svg"
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="15"
+             height="17"
+             viewBox="0 0 15 17"
         >
-            <path
-                d="M13.609 3.139h-3.362v-.83A1.47 1.47 0 008.795.856h-3.28a1.47 1.47 0 00-1.452 1.453v.83H.785a.638.638 0 00-.623.622c0 .332.29.623.623.623h.747v11.163A1.47 1.47 0 002.984 17h8.425a1.47 1.47 0 001.453-1.453V4.384h.788c.332 0 .623-.29.623-.623 0-.332-.332-.622-.664-.622zm-8.3-.83c0-.125.082-.208.207-.208h3.279c.124 0 .207.083.207.208v.83H5.308v-.83zm6.266 13.238c0 .125-.083.208-.207.208H2.943c-.125 0-.208-.083-.208-.208V4.384h8.84v11.163z"
-            />
-            <path
-                d="M4.686 4.305a.638.638 0 00-.623.623v7.47c0 .332.29.623.623.623.332 0 .622-.291.622-.623v-7.47a.611.611 0 00-.622-.623zM7.134 4.305a.638.638 0 00-.622.623v7.47c0 .332.29.623.622.623s.623-.291.623-.623v-7.47c0-.374-.249-.623-.623-.623zM9.002 4.928v7.47c0 .332.29.623.623.623.332 0 .622-.291.622-.623v-7.47a.638.638 0 00-.622-.623.611.611 0 00-.623.623z"
-            />
+            <path d="M8 .5c1.6 0 2.7.8 3 2.4h3.8a.7.7 0 0 1 .1 1.3H14l-1 9.4c-.2 1-1 1.8-2 1.9H5.1c-1.1 0-2-.8-2.2-2L2 4.3h-.8A.7.7 0 0 1 1 3h4H5C5.3 1.3 6.4.5 8 .5Zm4.6 3.8H3.4l1 9.1c0 .4.3.7.6.7h5.8c.4 0 .8-.3.8-.7l1-9.2ZM8 5.3c.3 0 .6.3.7.7v6.2a.7.7 0 0 1-1.4 0V6.1c0-.4.3-.7.7-.7Zm2.6 0c.3.1.6.4.6.7l-.4 6.2a.7.7 0 0 1-1.3 0L9.9 6c0-.4.3-.6.7-.6ZM6 6V6l.4 6.2a.7.7 0 0 1-1.3.1L4.8 6A.7.7 0 0 1 6 5.9ZM8 2c-1 0-1.4.3-1.6 1h3.2c-.2-.7-.7-1-1.6-1Z"/>
         </svg>
     </button>
 </template>
@@ -28,6 +22,10 @@ export default {
         disable: {
             type: Boolean,
             default: false
+        },
+        focused: {
+            type: Boolean,
+            default: false
         }
     }
 };
@@ -36,7 +34,7 @@ export default {
 <style scoped lang="scss">
 $base-color: #343434;
 $invalid-color: #ff0624;
-$disabled-color: #e5e9ed;
+$disabled-color: #b7c7dc;
 
 .vbc-btn {
     display: flex;
@@ -44,7 +42,7 @@ $disabled-color: #e5e9ed;
     height: 100%;
     padding: 0;
     border: 0;
-    border-left: 1px solid #e5e5e5;
+    border-left: 1px solid #b7c7dc;
     outline: none;
     background-color: transparent;
     cursor: pointer;
@@ -54,14 +52,13 @@ $disabled-color: #e5e9ed;
         width: 15px;
         height: 15px;
         margin: auto;
-        fill: lighten($invalid-color, 5%);
-        transition: fill 0.3s;
+        fill: #ff5959;
     }
 
     &:hover,
     &:focus {
         svg {
-            fill: darken($invalid-color, 5%);
+            fill: #f93232;
         }
     }
 
@@ -72,6 +69,7 @@ $disabled-color: #e5e9ed;
 
         &:hover,
         &:focus {
+            cursor: default;
             svg {
                 fill: $disabled-color;
             }

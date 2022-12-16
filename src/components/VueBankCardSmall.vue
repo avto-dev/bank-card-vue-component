@@ -2,11 +2,18 @@
     <div
         class="card"
         ref="card"
-        :class="{ 'card--focused': cardFocused }"
+        :class="{
+            'card--focused': isNew && cardFocused,
+            'card--error': outsideErrors,
+            'card--invalid': invalidSomeElement,
+            'card--hover': isNew && !cardFocused,
+            'card--active': !isNew && cardFocused,
+            'card--saved': !isNew && !cardFocused
+        }"
         v-click-outside="onBlurCard"
         @click="onFocusCard"
     >
-        <div class="card__avatar">
+        <div class="card__avatar" :class="{ 'avatar--border': isNew }">
             <div
                 class="card__icon"
                 :style="{
@@ -33,7 +40,7 @@
             <div class="card__main-inner">
                 <div :class="cardNumberCssClasses">
                     <label
-                        v-if="isLabelInputShow"
+                        v-if="isLabelInputShow && $v.cardNumber.length"
                         data-test-label-field-number
                         class="card__field-label"
                         :for="generateId('cardNumber')"
@@ -103,7 +110,7 @@
                         :for="generateId('expDateMonth')"
                         class="card__field-label"
                     >
-                        ММ / ГГ
+                        ММ/ГГ
                     </label>
 
                     <div class="card__date-inner">
@@ -159,7 +166,7 @@
                             $v.expDateMonth.$error || $v.expDateYear.$error
                         "
                     >
-                        Введите дату как на карте
+                        Введите дату в формате ММ/ГГ как на карте
                     </VueBankCardTooltip>
                     <VueBankCardTooltip
                         position="right"
@@ -217,6 +224,7 @@
             v-if="!isNew"
             :disable="disableDelete"
             @delete-card="$emit('delete-card', $event)"
+            :focused="cardFocused"
         />
     </div>
 </template>
@@ -304,7 +312,8 @@ export default {
                         (this.$v.cardNumber.$error &&
                             this.$v.cardNumber.required) ||
                         !!this.errorFiltered("cardNumber")
-                }
+                },
+                { "card-number_input": !this.cardNumberCollapsed }
             ];
         },
         /**
@@ -357,6 +366,14 @@ export default {
         },
         nextIcon() {
             return this.imagesBasePath + "next-step.svg";
+        },
+        invalidSomeElement() {
+            return (this.$v.cardNumber.$error && this.$v.cardNumber.required) ||
+                this.$v.expDateMonth.$error || this.$v.expDateYear.$error ||
+                this.$v.cvv.$error;
+        },
+        outsideErrors() {
+            return Object.keys(this.errors).length > 0;
         }
     },
     created() {
@@ -371,8 +388,8 @@ export default {
          * @param { Object } e - Event
          */
         onFocusCard(e) {
+            this.cardFocused = true;
             if (this.isNew) {
-                this.cardFocused = true;
                 if (!this.cardNumber) {
                     if (e.target.className !== "card__field") {
                         for (let i = 0; i < this.fields.length; i++) {
@@ -432,26 +449,69 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$base-font-family: "PT Sans", Arial, sans-serif;
-$field-font-family: "Roboto Mono", Arial, sans-serif;
+$base-font-family: "Roboto", sans-serif;
+$field-font-family: "Roboto", sans-serif;
 $security-font-family: "text-security-disc";
 
-$base-color: #343434;
-$secondary-color: #ababab;
-$invalid-color: #ff0624;
+$base-color: #2c303b;
+$secondary-color: #fc0cf;
+$invalid-color: #f93232;
 $disabled-color: #e5e9ed;
+$focused-color: #ffb82e;
+$default-color: #f0f5fb;
+$hover-color: #b7c7dc;
+$placeholder-color: #74747c;
+
+$base-font-size: 14px;
 
 .card {
     display: flex;
     flex-wrap: nowrap;
     width: 100%;
     height: 45px;
-    border: 1px solid #e5e5e5;
-    border-radius: 2px;
-    background-color: #fafafa;
+    border: 1px solid $default-color;
+    border-radius: 5px;
+    background-color: #fff;
     transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
 
+    &--hover:hover {
+        border-color: $hover-color;
+        .avatar--border {
+            border-color: $hover-color;
+        }
+    }
+
+    &--saved {
+        border-color: $hover-color;
+        .avatar--border {
+            border-color: $hover-color;
+        }
+    }
+
+    &--error {
+        background-color: #ffecec;
+        border-color: $invalid-color;
+        .avatar--border {
+            border-color: $invalid-color;
+        }
+    }
+
+    &--invalid {
+        border-color: $invalid-color;
+        .avatar--border {
+            border-color: $invalid-color;
+        }
+    }
+
     &--focused {
+        background-color: #fff;
+        border-color: $focused-color;
+        .avatar--border {
+            border-color: $focused-color;
+        }
+    }
+
+    &--active {
         background-color: #fff;
         border-color: #067eff;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
@@ -462,7 +522,6 @@ $disabled-color: #e5e9ed;
         width: 52px;
         height: 100%;
     }
-
     &__icon {
         width: 30px;
         height: 30px;
@@ -486,8 +545,6 @@ $disabled-color: #e5e9ed;
         transition: border-color 0.3s;
 
         &--focused {
-            border-color: #ffc510;
-
             .card__field-label {
                 color: $secondary-color;
             }
@@ -546,7 +603,7 @@ $disabled-color: #e5e9ed;
             height: 100%;
             margin: 0;
             font-family: $field-font-family;
-            font-size: 16px;
+            font-size: $base-font-size;
             line-height: 21px;
             color: $base-color;
             white-space: nowrap;
@@ -587,9 +644,10 @@ $disabled-color: #e5e9ed;
             position: absolute;
             top: 0;
             font-family: $base-font-family;
-            font-size: 16px;
-            line-height: 19px;
+            font-size: $base-font-size;
+            line-height: 17.5px;
             color: $base-color;
+            font-weight: 400;
             transition: font-size 0.2s, color 0.2s, transform 0.2s;
         }
 
@@ -597,7 +655,7 @@ $disabled-color: #e5e9ed;
             display: block;
             height: 19px;
             font-family: $field-font-family;
-            font-size: 16px;
+            font-size: $base-font-size;
             line-height: 19px;
             color: $base-color;
         }
@@ -616,11 +674,17 @@ $disabled-color: #e5e9ed;
             &--focused {
                 &.card__number {
                     margin-top: 10px;
+                    &.card-number_input {
+                        margin-top: 0px;
+                    }
                 }
 
                 .card__field-label {
                     font-size: 10px;
-                    line-height: 13px;
+                    line-height: 15px;
+                    color: $placeholder-color;
+                    font-weight: 300;
+                    white-space: nowrap;
                     transform: translateY(-12px);
                 }
             }
@@ -629,10 +693,6 @@ $disabled-color: #e5e9ed;
                 .card {
                     &__field {
                         color: $invalid-color;
-
-                        &-label {
-                            color: $invalid-color;
-                        }
 
                         &-divider {
                             color: $invalid-color;
@@ -644,7 +704,7 @@ $disabled-color: #e5e9ed;
             &--secured {
                 .card__field {
                     font-family: $security-font-family;
-                    font-size: 12px;
+                    font-size: $base-font-size;
                     letter-spacing: 0.35em;
                 }
             }
@@ -657,16 +717,20 @@ $disabled-color: #e5e9ed;
         }
 
         &::placeholder {
-            font-size: 16px;
-            font-family: "PT Sans", "Arial", sans-serif;
+            font-size: $base-font-size;
+            font-family: $base-font-family;
             line-height: 19px;
-            color: $base-color;
+            color: $placeholder-color;
         }
 
         &:focus::placeholder {
-            color: $secondary-color;
+            color: $placeholder-color;
         }
     }
+}
+
+.avatar--border {
+    border-right: 1px solid $default-color;
 }
 
 .fade-enter-active,
