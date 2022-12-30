@@ -73,6 +73,7 @@
                         placeholder="0000 0000 0000 0000"
                         v-mask="cardNumberMask"
                         :value="cardNumber"
+                        class="card__field"
                         :class="fieldCssClasses('cardNumber')"
                         :readonly="!isNew"
                         @input="onInput($event, 'cardNumber')"
@@ -131,7 +132,7 @@
                                 v-mask="expDateMonthMask"
                                 :value="expDateMonth"
                                 :class="fieldCssClasses('expDateMonth')"
-                                class="card__field--extra"
+                                class="card__field card__field--extra"
                                 @input="onInput($event, 'expDateMonth')"
                                 @focus="onFocus($event, 'expDateMonth')"
                                 @blur="onBlur($event, 'expDateMonth')"
@@ -160,7 +161,7 @@
                                 v-mask="expDateYearMask"
                                 :value="expDateYear"
                                 :class="fieldCssClasses('expDateYear')"
-                                class="card__field--extra"
+                                class="card__field card__field--extra"
                                 @input="onInput($event, 'expDateYear')"
                                 @focus="onFocus($event, 'expDateYear')"
                                 @blur="onBlur($event, 'expDateYear')"
@@ -214,7 +215,7 @@
                         :value="cvv"
                         :placeholder="cardInfo.codeName || 'CVV'"
                         :class="[...fieldCssClasses('cvv')]"
-                        class="card__field--secured card__field--extra"
+                        class="card__field card__field--secured card__field--extra"
                         @input="onInput($event, 'cvv')"
                         @focus="onFocus($event, 'cvv')"
                         @blur="onBlur($event, 'cvv')"
@@ -280,13 +281,7 @@ export default {
          * @returns {Array}
          */
         fieldCssClasses(type) {
-            return [
-                "card__field",
-                {
-                    "card__field--invalid":
-                        this.$v[type].$error || this.errorFiltered(type)
-                }
-            ];
+            return { "card__field--invalid": this.$v[type].$error || this.errorFiltered(type) }
         },
         onReset() {
             this.resetForm();
