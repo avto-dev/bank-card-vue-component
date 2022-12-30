@@ -39,6 +39,11 @@ $disabled-color: #b7c7dc;
 $field-invalid-outline-color: #ff5959;
 
 .vbc-btn {
+    --field-invalid-outline-color: #ff5959;
+    --invalid-color: #f93232;
+    --disabled-color: #b7c7dc;
+    --fill-svg: var(--field-invalid-outline-color);
+
     display: flex;
     width: 43px;
     height: 100%;
@@ -54,27 +59,21 @@ $field-invalid-outline-color: #ff5959;
         width: 15px;
         height: 15px;
         margin: auto;
-        fill: $field-invalid-outline-color;
+        fill: var(--fill-svg);
     }
 
     &:hover,
     &:focus {
-        .vbc-btn__image {
-            fill: $invalid-color;
-        }
+        --fill-svg: var(--invalid-color);
     }
 
     &--disabled {
-        .vbc-btn__image {
-            fill: $disabled-color;
-        }
+        --fill-svg: var(--disabled-color);
 
         &:hover,
         &:focus {
             cursor: default;
-            .vbc-btn__image {
-                fill: $disabled-color;
-            }
+            --fill-svg: var(--disabled-color);
         }
     }
 }

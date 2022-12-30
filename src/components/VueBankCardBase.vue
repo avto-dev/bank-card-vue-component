@@ -41,7 +41,7 @@
                     <div class="card__bank-info" v-else>
                         <div class="card__bank-logo-wrapper">
                             <img
-                                class="card__bank-logo"
+                                class="card__bank-logo card__bank-logo--info"
                                 :src="`${imagesBasePath}${cardInfo.bankLogo}`"
                                 :alt="cardInfo.bankName"
                             />
@@ -49,7 +49,7 @@
 
                         <div class="card__brand-logo-wrapper">
                             <img
-                                class="card__brand-logo"
+                                class="card__brand-logo card__bank-logo--info"
                                 :src="`${imagesBasePath}${cardInfo.brandLogo}`"
                                 :alt="cardInfo.brandName"
                             />
@@ -131,7 +131,7 @@
                                 v-mask="expDateMonthMask"
                                 :value="expDateMonth"
                                 :class="fieldCssClasses('expDateMonth')"
-                                class="card__field-input"
+                                class="card__field--extra"
                                 @input="onInput($event, 'expDateMonth')"
                                 @focus="onFocus($event, 'expDateMonth')"
                                 @blur="onBlur($event, 'expDateMonth')"
@@ -160,7 +160,7 @@
                                 v-mask="expDateYearMask"
                                 :value="expDateYear"
                                 :class="fieldCssClasses('expDateYear')"
-                                class="card__field-input"
+                                class="card__field--extra"
                                 @input="onInput($event, 'expDateYear')"
                                 @focus="onFocus($event, 'expDateYear')"
                                 @blur="onBlur($event, 'expDateYear')"
@@ -214,7 +214,7 @@
                         :value="cvv"
                         :placeholder="cardInfo.codeName || 'CVV'"
                         :class="[...fieldCssClasses('cvv')]"
-                        class="card__field--secured card__field-input"
+                        class="card__field--secured card__field--extra"
                         @input="onInput($event, 'cvv')"
                         @focus="onFocus($event, 'cvv')"
                         @blur="onBlur($event, 'cvv')"
@@ -361,10 +361,6 @@ $field-invalid-outline-color: #ff5959;
         flex-flow: row nowrap;
         align-items: flex-end;
         justify-content: space-between;
-        .card__field-input {
-            text-align: center;
-            margin-top: 5px;
-        }
     }
 
     &__date {
@@ -405,6 +401,11 @@ $field-invalid-outline-color: #ff5959;
             font-family: $security-font-family;
             font-size: 12px;
             letter-spacing: 0.35em;
+        }
+
+        &--extra {
+            text-align: center;
+            margin-top: 5px;
         }
 
         &-label {
@@ -541,9 +542,6 @@ $field-invalid-outline-color: #ff5959;
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            img {
-                height: 24px;
-            }
         }
 
         &-logo {
@@ -552,6 +550,9 @@ $field-invalid-outline-color: #ff5959;
             &-wrapper {
                 display: flex;
             }
+        }
+        &-logo--info {
+            height: 24px;
         }
     }
 }
