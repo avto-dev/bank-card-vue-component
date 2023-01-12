@@ -10,8 +10,6 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 - Badge with `build` status in `README.md`
 
-## Unreleased
-
 ### Changed
 
 - Changed design
