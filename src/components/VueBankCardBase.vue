@@ -41,7 +41,7 @@
                     <div class="card__bank-info" v-else>
                         <div class="card__bank-logo-wrapper">
                             <img
-                                class="card__bank-logo"
+                                class="card__bank-logo card__bank-logo--info"
                                 :src="`${imagesBasePath}${cardInfo.bankLogo}`"
                                 :alt="cardInfo.bankName"
                             />
@@ -49,7 +49,7 @@
 
                         <div class="card__brand-logo-wrapper">
                             <img
-                                class="card__brand-logo"
+                                class="card__brand-logo card__bank-logo--info"
                                 :src="`${imagesBasePath}${cardInfo.brandLogo}`"
                                 :alt="cardInfo.brandName"
                             />
@@ -73,6 +73,7 @@
                         placeholder="0000 0000 0000 0000"
                         v-mask="cardNumberMask"
                         :value="cardNumber"
+                        class="card__field"
                         :class="fieldCssClasses('cardNumber')"
                         :readonly="!isNew"
                         @input="onInput($event, 'cardNumber')"
@@ -114,7 +115,7 @@
                         class="card__field-label"
                         :style="{ color: cssPropertySpecial('textColor') }"
                     >
-                        Действует до:
+                        Карта действует до:
                     </p>
 
                     <div class="card__expiration">
@@ -131,6 +132,7 @@
                                 v-mask="expDateMonthMask"
                                 :value="expDateMonth"
                                 :class="fieldCssClasses('expDateMonth')"
+                                class="card__field card__field--extra"
                                 @input="onInput($event, 'expDateMonth')"
                                 @focus="onFocus($event, 'expDateMonth')"
                                 @blur="onBlur($event, 'expDateMonth')"
@@ -159,6 +161,7 @@
                                 v-mask="expDateYearMask"
                                 :value="expDateYear"
                                 :class="fieldCssClasses('expDateYear')"
+                                class="card__field card__field--extra"
                                 @input="onInput($event, 'expDateYear')"
                                 @focus="onFocus($event, 'expDateYear')"
                                 @blur="onBlur($event, 'expDateYear')"
@@ -189,12 +192,18 @@
                 </div>
 
                 <div class="card__field-group card__code">
-                    <p
-                        class="card__field-label"
-                        :style="{ color: cssPropertySpecial('textColor') }"
-                    >
-                        Код с обратной стороны:
-                    </p>
+                    <div class="card__field-secured-info">
+                        <VueBankCardBaseHelper
+                            :special-color="cssPropertySpecial('textColor') || '#74747c'"
+                        />
+
+                        <p
+                            class="card__field-label"
+                            :style="{ color: cssPropertySpecial('textColor') }"
+                        >
+                            CVV код
+                        </p>
+                    </div>
 
                     <input
                         type="text"
@@ -206,7 +215,7 @@
                         :value="cvv"
                         :placeholder="cardInfo.codeName || 'CVV'"
                         :class="[...fieldCssClasses('cvv')]"
-                        class="card__field--secured"
+                        class="card__field card__field--secured card__field--extra"
                         @input="onInput($event, 'cvv')"
                         @focus="onFocus($event, 'cvv')"
                         @blur="onBlur($event, 'cvv')"
@@ -233,11 +242,13 @@ import { validationMixin } from "vuelidate";
 
 import { commonMixin, validatorsMixin, helpersMixin } from "@/mixins";
 import VueBankCardTooltip from "./VueBankCardTooltip";
+import VueBankCardBaseHelper from "./VueBankCardBaseHelper";
 
 export default {
     name: "VueBankCardBase",
     components: {
-        VueBankCardTooltip
+        VueBankCardTooltip,
+        VueBankCardBaseHelper
     },
     directives: { mask },
     mixins: [commonMixin, validationMixin, validatorsMixin, helpersMixin],
@@ -270,13 +281,7 @@ export default {
          * @returns {Array}
          */
         fieldCssClasses(type) {
-            return [
-                "card__field",
-                {
-                    "card__field--invalid":
-                        this.$v[type].$error || this.errorFiltered(type)
-                }
-            ];
+            return { "card__field--invalid": this.$v[type].$error || this.errorFiltered(type) }
         },
         onReset() {
             this.resetForm();
@@ -293,22 +298,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$base-font-family: "PT Sans", Arial, sans-serif;
-$field-font-family: "Roboto Mono", Arial, sans-serif;
+$base-font-family: "Roboto", sans-serif;
+$field-font-family: "Roboto Mono", sans-serif;
 $security-font-family: "text-security-disc";
 
-$card-bg-color: #e5e5e5;
+$card-bg-color: #e6e7f4;
 
 $base-color: #000;
-$field-color: #343434;
+$field-color: #74747c;
 
-$field-focus-outline-color: #ffd141;
-$field-invalid-outline-color: #df4242;
+$field-focus-outline-color: #ffb82e;
+$field-invalid-outline-color: #ff5959;
 
 .card {
     position: relative;
     width: 380px;
-    border-radius: 10px;
+    border-radius: 16px;
     background-color: $card-bg-color;
     transition: background-color 0.3s;
 
@@ -327,7 +332,7 @@ $field-invalid-outline-color: #df4242;
         justify-content: space-between;
         width: 100%;
         height: 100%;
-        padding: 6.3%;
+        padding: 6.3% 4.2%;
     }
 
     &__main {
@@ -338,11 +343,12 @@ $field-invalid-outline-color: #df4242;
     &__info {
         display: flex;
         width: 100%;
-        height: 55px;
+        height: 24px;
     }
 
     &__number {
         position: relative;
+        margin-top: 16px;
     }
 
     &__extra {
@@ -352,9 +358,12 @@ $field-invalid-outline-color: #df4242;
         justify-content: space-between;
     }
 
-    &__code,
     &__date {
-        width: 70px;
+        width: 49px;
+    }
+
+    &__code {
+        width: 76px;
     }
 
     &__expiration {
@@ -364,13 +373,15 @@ $field-invalid-outline-color: #df4242;
 
     &__field {
         width: 100%;
-        padding: 10px;
-        border: 2px solid transparent;
+        padding: 15px;
+        border: 1px solid #f0f5fb;
+        border-radius: 5px;
         outline: none;
         font-family: $field-font-family;
-        font-size: 16px;
-        color: $field-color;
-        line-height: 20px;
+        font-size: 14px;
+        font-weight: 400;
+        color: $base-color;
+        line-height: 125%;
         transition: border-color 0.3s;
 
         &:focus {
@@ -387,20 +398,32 @@ $field-invalid-outline-color: #df4242;
             letter-spacing: 0.35em;
         }
 
+        &--extra {
+            text-align: center;
+            margin-top: 5px;
+        }
+
         &-label {
-            margin: 0 0 5px 0;
+            margin: 0;
+            vertical-align: middle;
             font-family: $base-font-family;
             font-size: 10px;
-            line-height: 13px;
-            color: $base-color;
+            font-weight: 300;
+            line-height: 15px;
+            color: $field-color;
             transition: color 0.3s;
+        }
+        &-secured-info {
+            display: flex;
+            align-items: center;
         }
 
         &-divider {
-            margin: 0 5px;
+            margin: 0 4px;
             font-family: $field-font-family;
-            font-size: 18px;
-            line-height: 21px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 125%;
             color: $field-color;
             transition: color 0.3s;
         }
@@ -412,12 +435,15 @@ $field-invalid-outline-color: #df4242;
         &-mock {
             display: block;
             width: 100%;
-            padding: 10px;
-            border: 2px solid transparent;
+            padding: 15px;
+            border: 1px solid #f0f5fb;
+            border-radius: 5px;
             background-color: #fff;
             font-size: 16px;
-            line-height: 20px;
+            line-height: 125%;
+            font-weight: 400;
             font-family: $field-font-family;
+            color: $field-color;
         }
 
         &-icon {
@@ -438,7 +464,7 @@ $field-invalid-outline-color: #df4242;
                 .card__field-icon-close {
                     &::before,
                     &::after {
-                        background-color: lighten($field-color, 10%);
+                        background-color: $field-color;
                     }
                 }
             }
@@ -449,14 +475,14 @@ $field-invalid-outline-color: #df4242;
                 left: 50%;
                 transform: translate(-50%, -50%) rotate(45deg);
                 display: block;
-                width: 20px;
-                height: 20px;
+                width: 12px;
+                height: 12px;
 
                 &::before,
                 &::after {
                     content: "";
                     position: absolute;
-                    background-color: lighten($field-color, 50%);
+                    background-color: $base-color;
                     transition: background-color 0.3s;
                 }
 
@@ -465,14 +491,14 @@ $field-invalid-outline-color: #df4242;
                     left: 50%;
                     height: 100%;
                     transform: translateX(-50%);
-                    width: 2px;
+                    width: 1px;
                 }
 
                 &::after {
                     top: 50%;
                     left: 0;
                     width: 100%;
-                    height: 2px;
+                    height: 1px;
                     transform: translateY(-50%);
                 }
             }
@@ -481,6 +507,7 @@ $field-invalid-outline-color: #df4242;
 
     &__brand {
         &-placeholder {
+            padding-top: 4px;
             display: flex;
 
             .card__brand-logo-wrapper {
@@ -489,15 +516,16 @@ $field-invalid-outline-color: #df4242;
         }
 
         &-logo {
-            width: 40px;
+            min-height: 15px;
+            max-height: 24px;
 
             &-wrapper {
                 display: flex;
                 align-items: flex-start;
-                max-width: 40px;
+                max-width: 90px;
 
                 &:not(:last-child) {
-                    margin-right: 10px;
+                    margin-right: 16px;
                 }
             }
         }
@@ -507,15 +535,19 @@ $field-invalid-outline-color: #df4242;
         &-info {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             width: 100%;
         }
 
         &-logo {
-            max-height: 35px;
+            max-height: 24px;
 
             &-wrapper {
                 display: flex;
             }
+        }
+        &-logo--info {
+            height: 24px;
         }
     }
 }

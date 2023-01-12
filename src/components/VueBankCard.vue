@@ -153,7 +153,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url("https://fonts.googleapis.com/css?family=PT+Sans&display=swap&subset=cyrillic");
 @import url("https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap&subset=cyrillic");
 
 $font-path: "https://cdn.jsdelivr.net/gh/noppa/text-security@master/dist/";
