@@ -372,6 +372,10 @@ $field-invalid-outline-color: #ff5959;
     }
 
     &__field {
+        // For implementing outline using box-shadow. This need for support radius corner at Safari
+        --card-outline-color: transparent;
+        --card-outline-width: 2px;
+
         width: 100%;
         padding: 15px;
         border: 1px solid #f0f5fb;
@@ -383,13 +387,16 @@ $field-invalid-outline-color: #ff5959;
         color: $base-color;
         line-height: 125%;
         transition: border-color 0.3s;
+        box-shadow: 0 0 0 var(--card-outline-width) var(--card-outline-color);
 
         &:focus {
             border-color: $field-focus-outline-color;
+            --card-outline-color: #{$field-focus-outline-color};
         }
 
         &--invalid {
             border-color: $field-invalid-outline-color;
+            --card-outline-color: #{$field-invalid-outline-color};
         }
 
         &--secured {
