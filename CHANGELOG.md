@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ## Unreleased
 
+### Changed
+
 - Update style for outline states
 
 ## v2.0.0
