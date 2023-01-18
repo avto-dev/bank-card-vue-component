@@ -56,8 +56,8 @@ $field-invalid-outline-color: #ff5959;
 
     &__image {
         display: block;
-        width: 15px;
-        height: 15px;
+        width: 16px;
+        height: 16px;
         margin: auto;
         fill: var(--fill-svg);
     }

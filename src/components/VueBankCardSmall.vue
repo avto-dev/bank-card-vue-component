@@ -368,9 +368,12 @@ export default {
             return this.imagesBasePath + "next-step.svg";
         },
         invalidSomeElement() {
-            return (this.$v.cardNumber.$error && this.$v.cardNumber.required) ||
-                this.$v.expDateMonth.$error || this.$v.expDateYear.$error ||
-                this.$v.cvv.$error;
+            return (
+                (this.$v.cardNumber.$error && this.$v.cardNumber.required) ||
+                this.$v.expDateMonth.$error ||
+                this.$v.expDateYear.$error ||
+                this.$v.cvv.$error
+            );
         },
         outsideErrors() {
             return Object.keys(this.errors).length > 0;
@@ -458,13 +461,17 @@ $secondary-color: #fc0cf;
 $invalid-color: #f93232;
 $disabled-color: #e5e9ed;
 $focused-color: #ffb82e;
-$default-color: #f0f5fb;
+$default-color: #dbdfe2;
 $hover-color: #b7c7dc;
 $placeholder-color: #74747c;
 
 $base-font-size: 14px;
 
 .card {
+    // For implementing outline using box-shadow. This need for support radius corner at Safari
+    --card-outline-color: transparent;
+    --card-outline-width: 2px;
+
     display: flex;
     flex-wrap: nowrap;
     width: 100%;
@@ -473,6 +480,7 @@ $base-font-size: 14px;
     border-radius: 5px;
     background-color: #fff;
     transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 0 var(--card-outline-width) var(--card-outline-color);
 
     &--hover:hover {
         border-color: $hover-color;
@@ -489,6 +497,8 @@ $base-font-size: 14px;
     }
 
     &--error {
+        --card-outline-color: #{$invalid-color};
+
         background-color: #ffecec;
         border-color: $invalid-color;
         .avatar--border {
@@ -497,6 +507,8 @@ $base-font-size: 14px;
     }
 
     &--invalid {
+        --card-outline-color: #{$invalid-color};
+
         border-color: $invalid-color;
         .avatar--border {
             border-color: $invalid-color;
@@ -504,6 +516,8 @@ $base-font-size: 14px;
     }
 
     &--focused {
+        --card-outline-color: #{$focused-color};
+
         background-color: #fff;
         border-color: $focused-color;
         .avatar--border {
@@ -512,9 +526,10 @@ $base-font-size: 14px;
     }
 
     &--active {
+        --card-outline-color: #067eff;
+
         background-color: #fff;
         border-color: #067eff;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
     }
 
     &__avatar {
@@ -523,8 +538,8 @@ $base-font-size: 14px;
         height: 100%;
     }
     &__icon {
-        width: 30px;
-        height: 30px;
+        width: 26px;
+        height: 26px;
         margin: auto;
         border-radius: 3px;
         background-repeat: no-repeat;
