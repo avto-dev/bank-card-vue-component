@@ -374,7 +374,7 @@ $field-invalid-outline-color: #ff5959;
     &__field {
         // For implementing outline using box-shadow. This need for support radius corner at Safari
         --card-outline-color: transparent;
-        --card-outline-width: 2px;
+        --card-outline-width: 1px;
 
         width: 100%;
         padding: 15px;
