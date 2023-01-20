@@ -469,67 +469,62 @@ $base-font-size: 14px;
 
 .card {
     // For implementing outline using box-shadow. This need for support radius corner at Safari
-    --card-outline-color: transparent;
-    --card-outline-width: 2px;
+    --card-outline-color: #{$default-color};
+    --card-outline-width: 0;
+
+    --card-border-radius: 5px;
+    --card-border-color: #{$default-color};
 
     display: flex;
     flex-wrap: nowrap;
     width: 100%;
     height: 45px;
-    border: 1px solid $default-color;
-    border-radius: 5px;
+    border: 1px solid var(--card-border-color);
+    border-radius: var(--card-border-radius);
     background-color: #fff;
     transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
     box-shadow: 0 0 0 var(--card-outline-width) var(--card-outline-color);
 
     &--hover:hover {
-        border-color: $hover-color;
-        .avatar--border {
-            border-color: $hover-color;
-        }
+        --card-border-color: #{$hover-color};
     }
 
     &--saved {
-        border-color: $hover-color;
-        .avatar--border {
-            border-color: $hover-color;
-        }
+        --card-border-color: #{$hover-color};
     }
 
     &--error {
         --card-outline-color: #{$invalid-color};
+        --card-outline-width: 1px;
+        --card-border-color: #{$invalid-color};
 
         background-color: #ffecec;
-        border-color: $invalid-color;
-        .avatar--border {
-            border-color: $invalid-color;
-        }
-    }
-
-    &--invalid {
-        --card-outline-color: #{$invalid-color};
-
-        border-color: $invalid-color;
-        .avatar--border {
-            border-color: $invalid-color;
-        }
     }
 
     &--focused {
         --card-outline-color: #{$focused-color};
+        --card-outline-width: 1px;
+        --card-border-color: #{$focused-color};
 
         background-color: #fff;
-        border-color: $focused-color;
-        .avatar--border {
-            border-color: $focused-color;
-        }
     }
 
     &--active {
         --card-outline-color: #067eff;
+        --card-outline-width: 1px;
+        --card-border-color: #067eff;
 
         background-color: #fff;
-        border-color: #067eff;
+    }
+
+    &--invalid {
+        --card-outline-color: #{$invalid-color};
+        --card-outline-width: 1px;
+        --card-border-color: #{$invalid-color};
+
+        &:hover {
+            --card-border-color: #{$invalid-color};
+        }
     }
 
     &__avatar {
@@ -745,7 +740,10 @@ $base-font-size: 14px;
 }
 
 .avatar--border {
-    border-right: 1px solid $default-color;
+    border-radius: var(--card-border-radius) 0 0 var(--card-border-radius);
+    border-right: 1px solid var(--card-border-color);
+    box-shadow: 0 0 0 var(--card-outline-width) var(--card-outline-color);
+    transition: box-shadow 0.3s;
 }
 
 .fade-enter-active,
