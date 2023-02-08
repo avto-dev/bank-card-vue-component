@@ -48,12 +48,12 @@ $field-invalid-outline-color: #ff5959;
     --fill-svg: var(--field-invalid-outline-color);
 
     display: flex;
-    width: 43px;
+    width: 47px;
     height: 100%;
     padding: 0;
     border: 0;
     border-radius: 0 var(--card-border-radius) var(--card-border-radius) 0;
-    border-left: 1px solid var(--card-outline-color);
+    border-left: 1px solid var(--card-border-color);
     box-shadow: 0 0 0 var(--card-outline-width) var(--card-outline-color);
     transition: box-shadow 0.3s;
     outline: none;
