@@ -77,6 +77,7 @@
                         class="card__number-caption"
                         @click.prevent="onClickCollapsed"
                     >
+                        <span class="card__number-caption--secured">1111</span>
                         {{ numberCollapsed }}
                     </span>
 
@@ -478,7 +479,7 @@ $base-font-size: 14px;
     display: flex;
     flex-wrap: nowrap;
     width: 100%;
-    height: 45px;
+    height: 48px;
     border: 1px solid var(--card-border-color);
     border-radius: var(--card-border-radius);
     background-color: #fff;
@@ -529,7 +530,7 @@ $base-font-size: 14px;
 
     &__avatar {
         display: flex;
-        width: 52px;
+        width: 48px;
         height: 100%;
     }
     &__icon {
@@ -547,8 +548,8 @@ $base-font-size: 14px;
         flex-grow: 1;
         display: flex;
         align-items: center;
-        margin: -1px;
-        padding: 0 10px 0;
+        margin: -2px;
+        padding: 0 16px 0;
         border: 1px solid transparent;
         border-top-right-radius: 2px;
         border-bottom-right-radius: 2px;
@@ -617,6 +618,11 @@ $base-font-size: 14px;
             line-height: 21px;
             color: $base-color;
             white-space: nowrap;
+
+            &--secured {
+                font-family: $security-font-family;
+                font-size: 14px;
+            }
         }
     }
 
@@ -630,7 +636,7 @@ $base-font-size: 14px;
         }
 
         &-inner .card__field {
-            width: 22px;
+            width: 17px;
         }
     }
 
@@ -646,7 +652,7 @@ $base-font-size: 14px;
         outline: none;
         background-color: transparent;
         font-family: $field-font-family;
-        font-size: 16px;
+        font-size: 14px;
         line-height: 1;
         color: $base-color;
 
@@ -714,8 +720,7 @@ $base-font-size: 14px;
             &--secured {
                 .card__field {
                     font-family: $security-font-family;
-                    font-size: $base-font-size;
-                    letter-spacing: 0.35em;
+                    font-size: 14px;
                 }
             }
 

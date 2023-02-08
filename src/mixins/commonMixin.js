@@ -52,13 +52,11 @@ export default {
          */
         numberCollapsed() {
             if (this.isFieldFull("cardNumber")) {
-                const mask = "•••• ";
-                const number = this.cardNumber.slice(-4);
-                return mask + number;
+                return this.cardNumber.slice(-4);
             } else {
                 return "";
             }
-        },
+        }
     },
     methods: {
         /**
