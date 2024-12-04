@@ -243,7 +243,7 @@ import {commonMixin, helpersMixin} from "@/mixins";
 import clickOutside from "@/utils/click-outside-directive";
 import VueBankCardTooltip from "./VueBankCardTooltip";
 import VueBankCardSmallBtnDel from "@/components/VueBankCardSmallBtnDel";
-import {computed, defineComponent, ref, watch} from "vue";
+import {computed, defineComponent, ref, watch, getCurrentInstance} from "vue";
 import {useValidation} from "./useValidation";
 
 export default defineComponent({
@@ -306,6 +306,16 @@ export default defineComponent({
             cardNumberCollapsed.value = false;
         }
 
+        /**
+         * Generate unique id for labels and inputs
+         * @param { String } id - custom prefix id
+         * @returns { String }
+         */
+        function generateId(id) {
+            const instance = getCurrentInstance();
+            return `${id}-${instance.uid}`;
+        }
+
         watch(() => props.isReset, () => {
             onReset()
         })
@@ -338,6 +348,7 @@ export default defineComponent({
             onBlurField,
             onFocusField,
             onResetLocal,
+            generateId,
             cvvMask,
         }
     },
@@ -519,14 +530,6 @@ export default defineComponent({
                 this.cardNumberCollapsed = false;
                 this.focusOnField("cardNumber");
             }
-        },
-        /**
-         * Generate unique id for labels and inputs
-         * @param { String } id - custom prefix id
-         * @returns { String }
-         */
-        generateId(id) {
-            return `${id}`;
         },
         /**
          * Card number handler on enter

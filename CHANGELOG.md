@@ -4,6 +4,12 @@ All notable changes to this package will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## v3.2.3
+
+### Fixed
+
+-  Fix generate id method
+
 ## v3.2.2
 
 ### Fixed
