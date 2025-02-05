@@ -573,7 +573,7 @@ $base-font-size: 16px;
         &-title {
             margin: 0;
             font-size: 16px;
-            line-height: 21px;
+            line-height: 24px;
             font-family: $base-font-family;
             color: $base-color;
 
@@ -621,7 +621,7 @@ $base-font-size: 16px;
 
             &--secured {
                 font-family: $security-font-family;
-                font-size: $base-font-size;
+                font-size: 14px;
             }
         }
     }
@@ -636,7 +636,7 @@ $base-font-size: 16px;
         }
 
         &-inner .card__field {
-            width: 17px;
+            width: 20px;
         }
     }
 
@@ -653,7 +653,7 @@ $base-font-size: 16px;
         background-color: transparent;
         font-family: $field-font-family;
         font-size: $base-font-size;
-        line-height: 1;
+        line-height: 24px;
         color: $base-color;
 
         &-label {
@@ -679,7 +679,7 @@ $base-font-size: 16px;
         &-wrapper {
             position: relative;
             display: flex;
-            max-height: 21px;
+            max-height: 24px;
             height: 100%;
             margin-top: 10px;
 
@@ -691,7 +691,7 @@ $base-font-size: 16px;
                 &.card__number {
                     margin-top: 10px;
                     &.card-number_input {
-                        margin-top: 0px;
+                        margin-top: 2px;
                     }
                 }
 
@@ -734,7 +734,7 @@ $base-font-size: 16px;
         &::placeholder {
             font-size: $base-font-size;
             font-family: $base-font-family;
-            line-height: 19px;
+            line-height: 24px;
             color: $placeholder-color;
         }
 
