@@ -466,7 +466,7 @@ $default-color: #dbdfe2;
 $hover-color: #b7c7dc;
 $placeholder-color: #74747c;
 
-$base-font-size: 14px;
+$base-font-size: 16px;
 
 .card {
     // For implementing outline using box-shadow. This need for support radius corner at Safari
@@ -621,7 +621,7 @@ $base-font-size: 14px;
 
             &--secured {
                 font-family: $security-font-family;
-                font-size: 14px;
+                font-size: $base-font-size;
             }
         }
     }
@@ -652,7 +652,7 @@ $base-font-size: 14px;
         outline: none;
         background-color: transparent;
         font-family: $field-font-family;
-        font-size: 14px;
+        font-size: $base-font-size;
         line-height: 1;
         color: $base-color;
 
@@ -720,7 +720,7 @@ $base-font-size: 14px;
             &--secured {
                 .card__field {
                     font-family: $security-font-family;
-                    font-size: 14px;
+                    font-size: $base-font-size;
                 }
             }
 
