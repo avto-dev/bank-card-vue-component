@@ -466,7 +466,7 @@ $default-color: #dbdfe2;
 $hover-color: #b7c7dc;
 $placeholder-color: #74747c;
 
-$base-font-size: 14px;
+$base-font-size: 16px;
 
 .card {
     // For implementing outline using box-shadow. This need for support radius corner at Safari
@@ -573,7 +573,7 @@ $base-font-size: 14px;
         &-title {
             margin: 0;
             font-size: 16px;
-            line-height: 21px;
+            line-height: 24px;
             font-family: $base-font-family;
             color: $base-color;
 
@@ -636,7 +636,7 @@ $base-font-size: 14px;
         }
 
         &-inner .card__field {
-            width: 17px;
+            width: 20px;
         }
     }
 
@@ -652,8 +652,8 @@ $base-font-size: 14px;
         outline: none;
         background-color: transparent;
         font-family: $field-font-family;
-        font-size: 14px;
-        line-height: 1;
+        font-size: $base-font-size;
+        line-height: 24px;
         color: $base-color;
 
         &-label {
@@ -679,7 +679,7 @@ $base-font-size: 14px;
         &-wrapper {
             position: relative;
             display: flex;
-            max-height: 21px;
+            max-height: 24px;
             height: 100%;
             margin-top: 10px;
 
@@ -691,7 +691,7 @@ $base-font-size: 14px;
                 &.card__number {
                     margin-top: 10px;
                     &.card-number_input {
-                        margin-top: 0px;
+                        margin-top: 2px;
                     }
                 }
 
@@ -720,7 +720,7 @@ $base-font-size: 14px;
             &--secured {
                 .card__field {
                     font-family: $security-font-family;
-                    font-size: 14px;
+                    font-size: $base-font-size;
                 }
             }
 
@@ -734,7 +734,7 @@ $base-font-size: 14px;
         &::placeholder {
             font-size: $base-font-size;
             font-family: $base-font-family;
-            line-height: 19px;
+            line-height: 24px;
             color: $placeholder-color;
         }
 

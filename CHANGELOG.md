@@ -4,6 +4,12 @@ All notable changes to this package will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## v2.0.5
+
+### Changed
+
+- Changed `font-size` to 16 to disable iOS zoom on input focus
+
 ## v2.0.4
 
 ### Changed
