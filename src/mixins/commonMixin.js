@@ -178,13 +178,15 @@ export default {
             );
 
             setTimeout(() => {
-                const validForNextStep =
-                    isMultipleMasks && type === "cardNumber"
-                        ? countMaskIsEqual
-                        : this.isFieldFull(type, event.target.value) && !this.reseting;
+                if (event.target) {
+                    const validForNextStep =
+                        isMultipleMasks && type === "cardNumber"
+                            ? countMaskIsEqual
+                            : this.isFieldFull(type, event.target.value) && !this.reseting;
 
-                if (validForNextStep) {
-                    this.moveCaretTo("forward", type, event.target.value);
+                    if (validForNextStep) {
+                        this.moveCaretTo("forward", type, event.target.value);
+                    }
                 }
             }, 0);
         },
