@@ -9,6 +9,8 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 ### Fixed
 
 - Fix undefined `event.target` into input event handler
+- Upgrade `actions/cache` to 4 for github workflows
+- Tests tooling and migrate test to VTU 2
 
 ## v3.2.3
 
