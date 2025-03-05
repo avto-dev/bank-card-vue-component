@@ -11,7 +11,7 @@ on:
     - cron: '0 0 * * 0' # once in a week, docs: <https://git.io/JvxXE#onschedule>
 
 env:
-  NODE_VERSION: '12'
+  NODE_VERSION: '18'
 
 jobs: # Docs: <https://git.io/JvxXE>
   test:
