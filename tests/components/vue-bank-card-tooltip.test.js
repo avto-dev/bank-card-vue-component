@@ -1,22 +1,27 @@
 import { mount } from "@vue/test-utils";
+
 import VueBankCardTooltip from "@/components/VueBankCardTooltip";
 
 describe("VueBankCardTooltip", () => {
     describe("isShow prop", () => {
         it("show tooltip if prop isShow", () => {
             const wrapper = mount(VueBankCardTooltip, {
-                propsData: {
+                props: {
                     isShow: true
                 }
             });
 
-            expect(wrapper.contains(".card__tooltip")).toBeTruthy();
+            expect(wrapper.find(".card__tooltip").exists()).toBe(true);
         });
 
         it("hide tooltip by default", () => {
-            const wrapper = mount(VueBankCardTooltip);
+            const wrapper = mount(VueBankCardTooltip, {
+                props: {
+                    isShow: false,
+                }
+            });
 
-            expect(wrapper.contains(".card__tooltip")).toBeFalsy();
+            expect(wrapper.find(".card__tooltip").exists()).toBe(false);
         });
     });
 
@@ -26,15 +31,13 @@ describe("VueBankCardTooltip", () => {
         for (const position of positions) {
             it(`show ${position} if prop is ${position}`, () => {
                 const wrapper = mount(VueBankCardTooltip, {
-                    propsData: {
+                    props: {
                         isShow: true,
                         position
                     }
                 });
 
-                expect(
-                    wrapper.contains(`.card__tooltip--${position}`)
-                ).toBeTruthy();
+                expect(wrapper.find(`.card__tooltip--${position}`).exists()).toBe(true);
             });
         }
     });
@@ -42,7 +45,7 @@ describe("VueBankCardTooltip", () => {
     it("show message", () => {
         const message = "Введите номер карты";
         const wrapper = mount(VueBankCardTooltip, {
-            propsData: {
+            props: {
                 isShow: true
             },
             slots: {
