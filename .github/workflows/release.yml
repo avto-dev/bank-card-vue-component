@@ -27,7 +27,7 @@ jobs:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
         run: echo "::set-env name=PACKAGE_VERSION::${GITHUB_REF##*/v}"
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
@@ -63,7 +63,7 @@ jobs:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
         run: echo "::set-env name=PACKAGE_VERSION::${GITHUB_REF##*/v}"
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}

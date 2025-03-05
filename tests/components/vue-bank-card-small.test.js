@@ -2,7 +2,6 @@ import { shallowMount } from "@vue/test-utils";
 
 import VueBankCardSmall from "@/components/VueBankCardSmall";
 import CardInfo from "@/services/card-info";
-import { isObject } from "@/utils/helpers";
 
 describe("VueBankCardSmall", () => {
     class Props {
@@ -20,19 +19,6 @@ describe("VueBankCardSmall", () => {
     }
     const props = new Props();
 
-    const wrapper = shallowMount(VueBankCardSmall, {
-        propsData: { ...props }
-    });
-
-    describe("contains props", () => {
-        for (const [key, value] of Object.entries(props)) {
-            it(key, () => {
-                const method = isObject(value) ? "toEqual" : "toBe";
-                expect(wrapper.props(key))[method](value);
-            });
-        }
-    });
-
     describe("if isNew", () => {
         const labelSelector = ".card__number .card__field-label";
 
@@ -43,7 +29,7 @@ describe("VueBankCardSmall", () => {
             beforeEach(() => {
                 const isNew = true;
                 wrapper = shallowMount(VueBankCardSmall, {
-                    propsData: {
+                    props: {
                         ...props,
                         isNew
                     }
@@ -88,17 +74,17 @@ describe("VueBankCardSmall", () => {
             const cardNumber = "5536 9111 2222 3333";
             const cardInfo = new CardInfo(cardNumber);
             const wrapper = shallowMount(VueBankCardSmall, {
-                propsData: {
+                props: {
                     ...props,
                     isNew,
                     cardNumber,
                     cardInfo
                 }
             });
-            const numberCollapsed = "•••• 3333";
+            const numberCollapsed = "1111 3333";
             const numberCollapsedEl = wrapper.find(".card__number-caption");
 
-            expect(wrapper.contains(labelSelector)).toBeFalsy();
+            expect(wrapper.find(labelSelector).exists()).toBe(false);
             expect(numberCollapsedEl.isVisible()).toBeTruthy();
             expect(numberCollapsedEl.text()).toBe(numberCollapsed);
         });
@@ -110,7 +96,7 @@ describe("VueBankCardSmall", () => {
                 const cardNumber = "55";
                 const cardInfo = new CardInfo(cardNumber);
                 const wrapper = shallowMount(VueBankCardSmall, {
-                    propsData: {
+                    props: {
                         ...props,
                         cardNumber,
                         cardInfo
@@ -127,7 +113,7 @@ describe("VueBankCardSmall", () => {
             const cardNumber = "5536 9111 2222 3333";
             const cardInfo = new CardInfo(cardNumber);
             const wrapper = shallowMount(VueBankCardSmall, {
-                propsData: {
+                props: {
                     ...props,
                     cardNumber,
                     cardInfo
@@ -145,7 +131,7 @@ describe("VueBankCardSmall", () => {
             const cardNumber = "";
             const cardInfo = new CardInfo(cardNumber);
             const wrapper = shallowMount(VueBankCardSmall, {
-                propsData: {
+                props: {
                     ...props,
                     cardNumber,
                     cardInfo

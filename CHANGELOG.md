@@ -9,18 +9,20 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 ### Fixed
 
 - Fix undefined `event.target` into input event handler
+- Upgrade `actions/cache` to 4 for github workflows
+- Tests tooling and migrate test to VTU 2
 
 ## v3.2.3
 
 ### Fixed
 
--  Fix generate id method
+- Fix generate id method
 
 ## v3.2.2
 
 ### Fixed
 
--  Card number collapsed focus
+- Card number collapsed focus
 
 ## v3.2.1
 
@@ -32,7 +34,7 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ### Added
 
--  Add public reset method in card
+- Add public reset method in card
 
 ### Fixed
 
@@ -48,7 +50,7 @@ The format is based on [Keep a Changelog][keepachangelog] and this project adher
 
 ### Changed
 
- - Package `maska` version updated to `3.0.3`
+- Package `maska` version updated to `3.0.3`
 
 ### Fixed
 
