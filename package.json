@@ -31,8 +31,7 @@
         "@vee-validate/yup": "^4.13.2",
         "core-js": "^3.38.1",
         "maska": "^3.0.3",
-        "vee-validate": "^4.13.2",
-        "vue": "^3.5.8"
+        "vee-validate": "^4.13.2"
     },
     "devDependencies": {
         "@vue/cli-plugin-babel": "^5.0.8",
@@ -55,6 +54,10 @@
         "jest-transform-stub": "^2.0.0",
         "markdown-loader-jest": "^0.1.1",
         "sass": "1.79.4",
-        "sass-loader": "^10.1.0"
+        "sass-loader": "^10.1.0",
+        "vue": "^3.5.22"
+    },
+    "peerDependencies": {
+        "vue": "^3.5.22"
     }
 }
