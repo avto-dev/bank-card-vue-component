@@ -5,7 +5,7 @@ on:
     types: [published]
 
 env:
-  NODE_VERSION: '18'
+  NODE_VERSION: '12'
 
 jobs:
   npmjs:
