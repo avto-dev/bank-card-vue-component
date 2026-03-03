@@ -4,6 +4,12 @@ All notable changes to this package will be documented in this file.
 
 The format is based on [Keep a Changelog][keepachangelog] and this project adheres to [Semantic Versioning][semver].
 
+## v2.0.6
+
+### Fixed
+
+- Deploy stage ci
+
 ## v2.0.5
 
 ### Removed
