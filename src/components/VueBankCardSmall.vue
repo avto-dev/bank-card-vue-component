@@ -453,9 +453,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$base-font-family: "Roboto", sans-serif;
-$field-font-family: "Roboto", sans-serif;
-$security-font-family: "text-security-disc";
+$base-font-family: var(--bank-card-base-font-family, inherit);
+$field-font-family: var(--bank-card-field-font-family, inherit);
+$security-font-family: var(--bank-card-security-font-family, "text-security-disc");
 
 $base-color: #2c303b;
 $secondary-color: #fc0cf;
