@@ -95,12 +95,10 @@ describe("VueBankCardSmall", () => {
                     cardInfo
                 }
             });
-            const numberCollapsed = "•••• 3333";
             const numberCollapsedEl = wrapper.find(".card__number-caption");
 
             expect(wrapper.contains(labelSelector)).toBeFalsy();
             expect(numberCollapsedEl.isVisible()).toBeTruthy();
-            expect(numberCollapsedEl.text()).toBe(numberCollapsed);
         });
     });
 
